@@ -20,13 +20,26 @@ function GuestList() {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h1>This is the GuestList Page</h1>
-      {guests.map((guest) => {
+      <h4>your guets list contains {guests.length} members</h4>
+
+      {guests.map((guest, index) => {
         return (
           <div key={guest._id}>
-            <p >{guest.name}</p>
-            <img src={guest.imageUrl} alt="" />
+            <ol className="list-group">
+              <li className="list-group-item d-flex justify-content-between align-items-start">
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold "> <span className="pe-4">{index + 1}</span>{guest.name}</div>
+                  <div className="ps-5">
+                  {guest.description}
+                  </div>
+                </div>
+                <div>
+                  <img src={guest.imageUrl} alt="" className="custom-img" />
+                </div>
+              </li>
+            </ol>
           </div>
         );
       })}
