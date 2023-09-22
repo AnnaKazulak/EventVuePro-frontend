@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 const API_URL = "http://localhost:5005";
 
@@ -28,17 +29,21 @@ function GuestList() {
         return (
           <div key={guest._id}>
             <ol className="list-group">
-              <li className="list-group-item d-flex justify-content-between align-items-start">
-                <div className="ms-2 me-auto">
-                  <div className="fw-bold "> <span className="pe-4">{index + 1}</span>{guest.name}</div>
-                  <div className="ps-5">
-                  {guest.description}
+              <Link to={`/guests/${guest._id}`} style={{ textDecoration: 'none' }}>
+                <li className="list-group-item d-flex justify-content-between align-items-start">
+                  <div className="ms-2 me-auto">
+                    <div className="fw-bold ">
+                      {" "}
+                      <span className="pe-4">{index + 1}</span>
+                      {guest.name}
+                    </div>
+                    <div className="ps-5">{guest.description}</div>
                   </div>
-                </div>
-                <div>
-                  <img src={guest.imageUrl} alt="" className="custom-img" />
-                </div>
-              </li>
+                  <div>
+                    <img src={guest.imageUrl} alt="" className="custom-img" />
+                  </div>
+                </li>
+              </Link>
             </ol>
           </div>
         );

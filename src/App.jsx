@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import CustomNavbar from "./components/Navbar";
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
+import GuestDetails from "./pages/GuestDetails";
 
 function App() {
   return (
@@ -31,6 +32,14 @@ function App() {
           element={
             <IsPrivate>
               <CreateGuest />
+            </IsPrivate>
+          }
+        />
+                <Route
+          path="/guests/:guestId"
+          element={
+            <IsPrivate>
+              <GuestDetails />
             </IsPrivate>
           }
         />
