@@ -18,12 +18,17 @@ function GuestList() {
   useEffect(() => {
     getAllGuests();
   }, []);
-  
+
   return (
     <div>
       <h1>This is the GuestList Page</h1>
       {guests.map((guest) => {
-      return  <p key={guest._id}>{guest.name}</p>;
+        return (
+          <div key={guest._id}>
+            <p >{guest.name}</p>
+            <img src={guest.imageUrl} alt="" />
+          </div>
+        );
       })}
     </div>
   );

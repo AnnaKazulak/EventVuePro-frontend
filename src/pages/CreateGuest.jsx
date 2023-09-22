@@ -1,11 +1,35 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
 function CreateGuest(props) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
+  const navigate = useNavigate();
+
+  const uploadImage = (file) => {
+    return axios
+      .post(`${API_URL}/api/upload`, file)
+      .then((res) => res.data)
+      .catch((e) => console.log("Error uploading img ", e));
+  };
+
+  const handleFileUpload = (e) => { 
+
+    const uploadData = new FormData();
+
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    uploadImage(uploadData)
+      .then((response) => {
+        setImageUrl(response.fileUrl);
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +37,7 @@ function CreateGuest(props) {
 
     const { eventId } = props;
 
-    const requestBody = { name, description, eventId };
+    const requestBody = { name, description, imageUrl, eventId };
 
     axios
       .post(`${API_URL}/api/guests`, requestBody, {
@@ -23,6 +47,8 @@ function CreateGuest(props) {
         // Reset the state to clear the inputs
         setName("");
         setDescription("");
+        setImageUrl("");
+        navigate("/guests");
         // to do
         // Invoke the callback function coming through the props
         // from the EventDetailsPage, to refresh the event details --> does not exist yet
@@ -54,6 +80,8 @@ function CreateGuest(props) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+
+        <input type="file" onChange={(e) => handleFileUpload(e)} />
 
         <button type="submit">Add Guest</button>
       </form>
