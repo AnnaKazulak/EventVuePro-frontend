@@ -103,15 +103,28 @@ function EditEvent(props) {
       .then((response) => {
         console.log(response.data);
         navigate(`/events/${eventId}`);
-    
       })
       .catch((error) => console.log(error));
   };
 
+  const deleteEvent = (e) => {
+    e.preventDefault()
+    axios
+      .delete(`${API_URL}/api/events/${eventId}`)
+      .then(() => {
+        navigate("/events");
+      })
+      .catch((err) => {
+        console.log(err);
+        // navigate("/events"); 
+      });
+  };
+  
+
   return (
     <>
       <div className="container">
-        <h2>Create an Event</h2>
+        <h2>Edit your Event</h2>
 
         <form className="center-form">
           <div className="mb-3">
@@ -193,17 +206,13 @@ function EditEvent(props) {
       <p className="error text-danger">{{errorMessage}}</p>
     {{/if}} */}
           <div className="mb-3">
-            <label required htmlFor="image" className="form-label">
-              Image
-            </label>
-            <input
-              type="file"
-              className="form-control-file"
-              id="image"
-              placeholder="image"
-              name="movie-cover-image"
-              onChange={(e) => handleFileUpload(e)}
-            />
+            <label>Edit Image:</label>
+            {currentImageUrl && (
+              <div>
+                <img src={currentImageUrl} alt="Current Image" />
+              </div>
+            )}
+            <input type="file" onChange={(e) => handleFileUpload(e)} />
           </div>
           <div className="mb-3">
             <label htmlFor="characters" className="form-label">
@@ -237,15 +246,16 @@ function EditEvent(props) {
             className="btn btn-primary mb-5"
             onClick={handleSubmit}
           >
-            Create
+            Save Changes
           </button>
           <a
             className="btn btn-outline-success mb-5"
             role="button"
-            href="/characters"
+            href={`/events/${eventId}`}
           >
             Cancel
           </a>
+          <button onClick={(e) => deleteEvent(e)}>Delete Event</button>
         </form>
       </div>
     </>

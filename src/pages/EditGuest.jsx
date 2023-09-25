@@ -96,6 +96,13 @@ function EditGuest(props) {
 
         <button onClick={handleFormSubmit}>Submit</button>
         <button onClick={deleteGuest}>Delete Guest</button>
+        <a
+            className="btn btn-outline-success mb-5"
+            role="button"
+            href={`/guests/${guestId}`}
+          >
+            Cancel
+          </a>
       </form>
     </div>
   );
