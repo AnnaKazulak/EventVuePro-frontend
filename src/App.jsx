@@ -12,6 +12,8 @@ import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
 import GuestDetails from "./pages/GuestDetails";
 import EditGuest from "./pages/EditGuest";
+import EventDetails from "./pages/EventDetails";
+import EditEvent from "./pages/EditEvent";
 
 function App() {
   return (
@@ -36,7 +38,7 @@ function App() {
             </IsPrivate>
           }
         />
-                <Route
+        <Route
           path="/guests/:guestId"
           element={
             <IsPrivate>
@@ -46,7 +48,6 @@ function App() {
         />
         <Route path="/guests/edit/:guestId" element={<EditGuest />} />
 
-
         <Route
           path="/events"
           element={
@@ -55,6 +56,17 @@ function App() {
             </IsPrivate>
           }
         />
+        <Route
+          path="/events/:eventId"
+          element={
+            <IsPrivate>
+              <EventDetails />
+            </IsPrivate>
+          }
+        />
+
+        <Route path="/events/edit/:eventId" element={<EditEvent />} />
+
         <Route
           path="/events/create"
           element={

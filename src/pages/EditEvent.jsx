@@ -1,10 +1,10 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const API_URL = "http://localhost:5005";
 
-function CreateEvent(props) {
+function EditEvent(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -14,7 +14,33 @@ function CreateEvent(props) {
   const [guests, setGuests] = useState([]);
   const [guestList, setGuestList] = useState([]);
 
+  const [currentImageUrl, setCurrentImageUrl] = useState("");
+
+  const { eventId } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/api/guests`)
+      .then((response) => {
+        setGuestList(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching guests: ", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/api/events/${eventId}`)
+      .then((response) => {
+        const oneGuest = response.data;
+        setTitle(oneGuest.title);
+        setDescription(oneGuest.description);
+        setCurrentImageUrl(oneGuest.imageUrl);
+      })
+      .catch((error) => console.log(error));
+  }, [eventId]);
 
   const uploadImage = (file) => {
     return axios
@@ -35,16 +61,26 @@ function CreateEvent(props) {
       .catch((err) => console.log("Error while uploading the file: ", err));
   };
 
-  useEffect(() => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const requestBody = { title, description, imageUrl };
+
     axios
-      .get(`${API_URL}/api/guests`)
+      .put(`${API_URL}/api/events/${eventId}`, requestBody)
       .then((response) => {
-        setGuestList(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching guests: ", error);
+        navigate(`/events/${eventId}`);
       });
-  }, []);
+  };
+
+  const deleteGuest = () => {
+    axios
+      .delete(`${API_URL}/api/events/${eventId}`)
+      .then(() => {
+        navigate("/events");
+      })
+      .catch((err) => console.log(err));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,30 +97,17 @@ function CreateEvent(props) {
     };
 
     axios
-      .post(`${API_URL}/api/events`, requestBody, {
+      .put(`${API_URL}/api/events/${eventId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         console.log(response.data);
-        // Reset the state to clear the inputs
-        setTitle("");
-        setDescription("");
-        setLocation("");
-        setDate("");
-        setTime("");
-        setImageUrl("");
-        setGuests([]);
-        navigate("/events");
-        // to do
-        // Invoke the callback function coming through the props
-        // from the EventDetailsPage, to refresh the event details --> does not exist yet
-        // props.refreshProject();
+        navigate(`/events/${eventId}`);
+    
       })
       .catch((error) => console.log(error));
   };
-  useEffect(() => {
-    console.log(guests);
-  }, [guests]);
+
   return (
     <>
       <div className="container">
@@ -228,4 +251,5 @@ function CreateEvent(props) {
     </>
   );
 }
-export default CreateEvent;
+
+export default EditEvent;
