@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 const API_URL = "http://localhost:5005";
 
@@ -32,7 +33,9 @@ function GuestDetails() {
               <p className="card-text">{guest.description}</p>
             </div>
           </div>
-          <button>Edit</button>
+          <Link to={`/guests/edit/${guestId}`}>
+            <button>Edit Guest</button>
+          </Link>
         </div>
         <div className="col-md-6">
           <img

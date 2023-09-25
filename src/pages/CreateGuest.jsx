@@ -62,7 +62,7 @@ function CreateGuest(props) {
       className="CreateGuest;
 "
     >
-      <h3>Add New Task</h3>
+      <h3>Add New Guest</h3>
 
       <form onSubmit={handleSubmit}>
         <label>Name:</label>

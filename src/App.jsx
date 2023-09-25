@@ -11,6 +11,7 @@ import CustomNavbar from "./components/Navbar";
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
 import GuestDetails from "./pages/GuestDetails";
+import EditGuest from "./pages/EditGuest";
 
 function App() {
   return (
@@ -43,6 +44,8 @@ function App() {
             </IsPrivate>
           }
         />
+        <Route path="/guests/edit/:guestId" element={<EditGuest />} />
+
 
         <Route
           path="/events"
