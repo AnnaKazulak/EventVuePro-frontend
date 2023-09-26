@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-const API_URL = "http://localhost:5005";
 
 function EventList() {
   const [events, setEvents] = useState([]);
@@ -9,7 +8,7 @@ function EventList() {
   const getAllEvents = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${API_URL}/api/events`, {
+      .get(`${import.meta.env.VITE_API_URL}/api/events`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => setEvents(response.data))

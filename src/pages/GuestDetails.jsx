@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
-const API_URL = "http://localhost:5005";
 
 function GuestDetails() {
   const { guestId } = useParams();
@@ -11,7 +10,7 @@ function GuestDetails() {
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${API_URL}/api/guests/${guestId}`, {
+      .get(`${import.meta.env.VITE_API_URL}/api/guests/${guestId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => setGuest(response.data))

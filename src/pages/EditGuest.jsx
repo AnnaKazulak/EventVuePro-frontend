@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:5005";
-
 function EditGuest(props) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -16,7 +14,7 @@ function EditGuest(props) {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/guests/${guestId}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/guests/${guestId}`)
       .then((response) => {
         const oneGuest = response.data;
         setName(oneGuest.name);
@@ -28,7 +26,7 @@ function EditGuest(props) {
 
   const uploadImage = (file) => {
     return axios
-      .post(`${API_URL}/api/upload`, file)
+      .post(`${import.meta.env.VITE_API_URL}/api/upload`, file)
       .then((res) => res.data)
       .catch((e) => console.log("Error uploading img ", e));
   };
@@ -51,7 +49,7 @@ function EditGuest(props) {
     const requestBody = { name, description, imageUrl };
 
     axios
-      .put(`${API_URL}/api/guests/${guestId}`, requestBody)
+      .put(`${import.meta.env.VITE_API_URL}/api/guests/${guestId}`, requestBody)
       .then((response) => {
         navigate(`/guests/${guestId}`);
       });
@@ -59,7 +57,7 @@ function EditGuest(props) {
 
   const deleteGuest = () => {
     axios
-      .delete(`${API_URL}/api/guests/${guestId}`)
+      .delete(`${import.meta.env.VITE_API_URL}/api/guests/${guestId}`)
       .then(() => {
         navigate("/guests");
       })
@@ -97,12 +95,12 @@ function EditGuest(props) {
         <button onClick={handleFormSubmit}>Submit</button>
         <button onClick={deleteGuest}>Delete Guest</button>
         <a
-            className="btn btn-outline-success mb-5"
-            role="button"
-            href={`/guests/${guestId}`}
-          >
-            Cancel
-          </a>
+          className="btn btn-outline-success mb-5"
+          role="button"
+          href={`/guests/${guestId}`}
+        >
+          Cancel
+        </a>
       </form>
     </div>
   );

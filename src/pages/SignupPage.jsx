@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:5005";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -22,7 +21,7 @@ function SignupPage() {
     console.log(requestBody)
 
     axios
-      .post(`${API_URL}/auth/signup`, requestBody)
+      .post(`${import.meta.env.VITE_API_URL}/auth/signup`, requestBody)
       .then(() => {
         navigate("/auth/login");
       })

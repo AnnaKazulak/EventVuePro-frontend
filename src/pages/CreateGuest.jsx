@@ -2,7 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5005";
 
 function CreateGuest(props) {
   const [name, setName] = useState("");
@@ -13,13 +12,12 @@ function CreateGuest(props) {
 
   const uploadImage = (file) => {
     return axios
-      .post(`${API_URL}/api/upload`, file)
+      .post(`${import.meta.env.VITE_API_URL}/api/upload`, file)
       .then((res) => res.data)
       .catch((e) => console.log("Error uploading img ", e));
   };
 
-  const handleFileUpload = (e) => { 
-
+  const handleFileUpload = (e) => {
     const uploadData = new FormData();
 
     uploadData.append("imageUrl", e.target.files[0]);
@@ -40,7 +38,7 @@ function CreateGuest(props) {
     const requestBody = { name, description, imageUrl, eventId };
 
     axios
-      .post(`${API_URL}/api/guests`, requestBody, {
+      .post(`${import.meta.env.VITE_API_URL}/api/guests`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

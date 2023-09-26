@@ -2,8 +2,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5005";
-
 function CreateEvent(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -18,7 +16,7 @@ function CreateEvent(props) {
 
   const uploadImage = (file) => {
     return axios
-      .post(`${API_URL}/api/upload`, file)
+      .post(`${import.meta.env.VITE_API_URL}/api/upload`, file)
       .then((res) => res.data)
       .catch((e) => console.log("Error uploading img ", e));
   };
@@ -37,7 +35,7 @@ function CreateEvent(props) {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/guests`)
+      .get(`${import.meta.env.VITE_API_URL}/api/guests`)
       .then((response) => {
         setGuestList(response.data);
       })
@@ -61,7 +59,7 @@ function CreateEvent(props) {
     };
 
     axios
-      .post(`${API_URL}/api/events`, requestBody, {
+      .post(`${import.meta.env.VITE_API_URL}/api/events`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

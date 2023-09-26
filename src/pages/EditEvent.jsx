@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:5005";
-
 function EditEvent(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -21,7 +19,7 @@ function EditEvent(props) {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/guests`)
+      .get(`${import.meta.env.VITE_API_URL}/api/guests`)
       .then((response) => {
         setGuestList(response.data);
       })
@@ -32,7 +30,7 @@ function EditEvent(props) {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/events/${eventId}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/events/${eventId}`)
       .then((response) => {
         const oneGuest = response.data;
         setTitle(oneGuest.title);
@@ -44,7 +42,7 @@ function EditEvent(props) {
 
   const uploadImage = (file) => {
     return axios
-      .post(`${API_URL}/api/upload`, file)
+      .post(`${import.meta.env.VITE_API_URL}/api/upload`, file)
       .then((res) => res.data)
       .catch((e) => console.log("Error uploading img ", e));
   };
@@ -67,7 +65,7 @@ function EditEvent(props) {
     const requestBody = { title, description, imageUrl };
 
     axios
-      .put(`${API_URL}/api/events/${eventId}`, requestBody)
+      .put(`${import.meta.env.VITE_API_URL}/api/events/${eventId}`, requestBody)
       .then((response) => {
         navigate(`/events/${eventId}`);
       });
@@ -75,7 +73,7 @@ function EditEvent(props) {
 
   const deleteGuest = () => {
     axios
-      .delete(`${API_URL}/api/events/${eventId}`)
+      .delete(`${import.meta.env.VITE_API_URL}/api/events/${eventId}`)
       .then(() => {
         navigate("/events");
       })
@@ -97,9 +95,13 @@ function EditEvent(props) {
     };
 
     axios
-      .put(`${API_URL}/api/events/${eventId}`, requestBody, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
+      .put(
+        `${import.meta.env.VITE_API_URL}/api/events/${eventId}`,
+        requestBody,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      )
       .then((response) => {
         console.log(response.data);
         navigate(`/events/${eventId}`);
@@ -108,18 +110,16 @@ function EditEvent(props) {
   };
 
   const deleteEvent = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     axios
-      .delete(`${API_URL}/api/events/${eventId}`)
+      .delete(`${import.meta.env.VITE_API_URL}/api/events/${eventId}`)
       .then(() => {
         navigate("/events");
       })
       .catch((err) => {
         console.log(err);
-        // navigate("/events"); 
       });
   };
-  
 
   return (
     <>

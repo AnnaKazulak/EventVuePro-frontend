@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
-const API_URL = "http://localhost:5005";
 
 function LoginPage(props) {
   const [name, setName] = useState("");
@@ -25,7 +24,7 @@ function LoginPage(props) {
     console.log(requestBody);
 
     axios
-      .post(`${API_URL}/auth/login`, requestBody)
+      .post(`${import.meta.env.VITE_API_URL}/auth/login`, requestBody)
       .then((response) => {
         console.log("JWT token", response.data.authToken);
 
