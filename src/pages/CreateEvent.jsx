@@ -85,9 +85,8 @@ function CreateEvent(props) {
   }, [guests]);
   return (
     <>
-      <div className="container">
-        <h2>Create an Event</h2>
-
+      <div className="container custom-container">
+      <h2>Create an Event</h2>
         <form className="center-form">
           <div className="mb-3">
             <label htmlFor="title" className="form-label">
@@ -120,7 +119,7 @@ function CreateEvent(props) {
           </div>
           <div className="mb-3">
             <label htmlFor="location" className="form-label">
-              location
+              Location
               {/* <span className="text-danger">*</span> */}
             </label>
             <input
@@ -135,7 +134,7 @@ function CreateEvent(props) {
           </div>
           <div className="mb-3">
             <label htmlFor="date" className="form-label">
-              date
+              Date
               {/* <span className="text-danger">*</span> */}
             </label>
             <input
@@ -150,7 +149,7 @@ function CreateEvent(props) {
           </div>
           <div className="mb-3">
             <label htmlFor="time" className="form-label">
-              time
+              Time
               {/* <span className="text-danger">*</span> */}
             </label>
             <input
@@ -168,12 +167,9 @@ function CreateEvent(props) {
       <p className="error text-danger">{{errorMessage}}</p>
     {{/if}} */}
           <div className="mb-3">
-            <label required htmlFor="image" className="form-label">
-              Image
-            </label>
             <input
               type="file"
-              className="form-control-file"
+              className="btn btn-secondary"
               id="image"
               placeholder="image"
               name="movie-cover-image"
@@ -181,11 +177,11 @@ function CreateEvent(props) {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="characters" className="form-label">
+            <label htmlFor="guests" className="form-label">
               Guests
               <select
-                name="characters"
-                className="form-select select-custom"
+                name="guests"
+                className="form-select select-custom custom-select"
                 multiple
                 value={guests}
                 onChange={(e) =>
@@ -209,15 +205,15 @@ function CreateEvent(props) {
           </div>
           <button
             type="submit"
-            className="btn btn-primary mb-5"
+            className="btn btn-success mb-5 me-5"
             onClick={handleSubmit}
           >
-            Create
+            Add Event
           </button>
           <a
             className="btn btn-outline-success mb-5"
             role="button"
-            href="/characters"
+            href="/guests"
           >
             Cancel
           </a>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function EditGuest(props) {
   const [name, setName] = useState("");
@@ -65,35 +66,41 @@ function EditGuest(props) {
   };
 
   return (
-    <div className="EditGuest">
-      <h3>Edit the Project</h3>
+    <div className="container custom-container">
+      <h3>Edit your Guest</h3>
 
       <form onSubmit={handleFormSubmit}>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <div className="mb-3">
+          <label>Name:</label>
+          <input
+           className="form-control"
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label>Description:</label>
+          <textarea
+            type="text"
+            className="form-control"
+            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          {currentImageUrl && (
+            <div>
+              <img src={currentImageUrl} alt="Current Image" />
+            </div>
+          )}
+          <input className="btn btn-secondary mt-2" type="file" onChange={(e) => handleFileUpload(e)} />
+        </div>
 
-        <label>Description:</label>
-        <textarea
-          type="text"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <label>Edit Image:</label>
-        {currentImageUrl && (
-          <div>
-            <img src={currentImageUrl} alt="Current Image" />
-          </div>
-        )}
-        <input type="file" onChange={(e) => handleFileUpload(e)} />
-
-        <button onClick={handleFormSubmit}>Submit</button>
-        <button onClick={deleteGuest}>Delete Guest</button>
+        <button  className="btn btn-success me-5 mb-5" onClick={handleFormSubmit}>Save Changes</button>
+        <button  className="btn btn-danger me-5 mb-5" onClick={deleteGuest}>Delete Guest</button>
         <a
           className="btn btn-outline-success mb-5"
           role="button"

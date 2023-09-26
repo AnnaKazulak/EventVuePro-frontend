@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function CreateGuest(props) {
   const [name, setName] = useState("");
@@ -56,34 +57,62 @@ function CreateGuest(props) {
   };
 
   return (
-    <div
-      className="CreateGuest;
-"
-    >
+    <>
+      <div className="container custom-container">
       <h3>Add New Guest</h3>
+        <form
+          className="center-form"
+          onSubmit={handleSubmit}
+        >
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">
+              Name
+              <span className="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              placeholder="name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="description" className="form-label">
+              Description
+            </label>
+            <textarea
+              className="form-control"
+              id="description"
+              rows="3"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </div>
+          <div className="mb-3">
+            <input
+              className="btn btn-secondary me-5"
+              type="file"
+              onChange={(e) => handleFileUpload(e)}
+            />
+          </div>
 
-      <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <label>Description:</label>
-        <textarea
-          type="text"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-
-        <input type="file" onChange={(e) => handleFileUpload(e)} />
-
-        <button type="submit">Add Guest</button>
-      </form>
-    </div>
+          <button className="btn btn-success me-5 mb-5" type="submit">
+            Add Guest
+          </button>
+          <a
+            className="btn btn-outline-success mb-5"
+            role="button"
+            href="/guests"
+          >
+            Cancel
+          </a>
+        </form>
+      </div>
+    </>
   );
 }
 

@@ -123,7 +123,7 @@ function EditEvent(props) {
 
   return (
     <>
-      <div className="container">
+      <div className="container custom-container">
         <h2>Edit your Event</h2>
 
         <form className="center-form">
@@ -158,7 +158,7 @@ function EditEvent(props) {
           </div>
           <div className="mb-3">
             <label htmlFor="location" className="form-label">
-              location
+              Location
               {/* <span className="text-danger">*</span> */}
             </label>
             <input
@@ -173,7 +173,7 @@ function EditEvent(props) {
           </div>
           <div className="mb-3">
             <label htmlFor="date" className="form-label">
-              date
+              Date
               {/* <span className="text-danger">*</span> */}
             </label>
             <input
@@ -188,7 +188,7 @@ function EditEvent(props) {
           </div>
           <div className="mb-3">
             <label htmlFor="time" className="form-label">
-              time
+              Time
               {/* <span className="text-danger">*</span> */}
             </label>
             <input
@@ -206,20 +206,19 @@ function EditEvent(props) {
       <p className="error text-danger">{{errorMessage}}</p>
     {{/if}} */}
           <div className="mb-3">
-            <label>Edit Image:</label>
             {currentImageUrl && (
               <div>
                 <img src={currentImageUrl} alt="Current Image" />
               </div>
             )}
-            <input type="file" onChange={(e) => handleFileUpload(e)} />
+            <input  className="btn btn-secondary mt-2" type="file" onChange={(e) => handleFileUpload(e)} />
           </div>
           <div className="mb-3">
             <label htmlFor="characters" className="form-label">
               Guests
               <select
                 name="characters"
-                className="form-select select-custom"
+                className="form-select select-custom custom-select"
                 multiple
                 value={guests}
                 onChange={(e) =>
@@ -243,11 +242,12 @@ function EditEvent(props) {
           </div>
           <button
             type="submit"
-            className="btn btn-primary mb-5"
+            className="btn btn-success mb-5 me-5"
             onClick={handleSubmit}
           >
             Save Changes
           </button>
+          <button className="btn btn-danger me-5 mb-5" onClick={(e) => deleteEvent(e)}>Delete Event</button>
           <a
             className="btn btn-outline-success mb-5"
             role="button"
@@ -255,7 +255,6 @@ function EditEvent(props) {
           >
             Cancel
           </a>
-          <button onClick={(e) => deleteEvent(e)}>Delete Event</button>
         </form>
       </div>
     </>
