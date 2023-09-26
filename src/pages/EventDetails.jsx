@@ -31,7 +31,6 @@ function EventDetails() {
             <div className="card-body">
               <h5 className="card-title">{event.title}</h5>
               <p className="card-text">{event.description}</p>
-              {console.log(event)}
               {event.guests.map((guest) => {
                 return (
                   <ul key={guest._id}>
