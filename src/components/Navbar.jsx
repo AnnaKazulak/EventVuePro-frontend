@@ -2,16 +2,14 @@ import { Link } from "react-router-dom";
 
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-  console.log("halooooo from the navbar")
-  console.log("isLoggedIn", isLoggedIn)
-  // console.log("user", user)
+  console.log("isLoggedIn", isLoggedIn);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light px-5 custom-navbar">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           EventVue
@@ -34,39 +32,49 @@ function Navbar() {
                 Guests
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link "
-                aria-current="page"
-                to="/guests/create"
-              >
-                Create Guest
-              </Link>
-            </li>
+
             <li className="nav-item">
               <Link className="nav-link " to="/events">
                 Events
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link "
-                aria-current="page"
-                to="/events/create"
+
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-                Create Event
-              </Link>
+                Create
+              </a>
+              <ul className="dropdown-menu">
+                <Link
+                  className="dropdown-item"
+                  aria-current="page"
+                  to="/guests/create"
+                >
+                  new Guest
+                </Link>
+                <Link
+                  className="dropdown-item"
+                  aria-current="page"
+                  to="/events/create"
+                >
+                  new Event
+                </Link>
+              </ul>
             </li>
           </ul>
           <div className="col d-flex justify-content-end align-items-center gap-3">
             {isLoggedIn && (
               <>
+                <span>Hallo {user && user.name}</span>
                 <Link to="/events">
-                  <button>My Events</button>
+                  <button  className="btn btn-secondary">My Events</button>
                 </Link>
-
-                <span>{user && user.name}</span>
-                <button onClick={logOutUser}>Logout</button>
+                <button  className="btn btn-danger" onClick={logOutUser}>Logout</button>
               </>
             )}
             {!isLoggedIn && (
