@@ -66,7 +66,7 @@ function EditGuest(props) {
   };
 
   return (
-    <div className="container custom-container">
+    <div className="container custom-container mt-5">
       <h3>Edit your Guest</h3>
 
       <form onSubmit={handleFormSubmit}>

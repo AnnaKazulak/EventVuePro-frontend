@@ -123,7 +123,7 @@ function EditEvent(props) {
 
   return (
     <>
-      <div className="container custom-container">
+      <div className="container custom-container mt-5">
         <h2>Edit your Event</h2>
 
         <form className="center-form">

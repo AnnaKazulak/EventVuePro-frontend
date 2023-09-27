@@ -12,7 +12,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light bg-light px-5 custom-navbar">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          EventVue
+          EventVuePro
         </Link>
         <button
           className="navbar-toggler"

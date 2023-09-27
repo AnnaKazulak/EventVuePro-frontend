@@ -85,7 +85,7 @@ function CreateEvent(props) {
   }, [guests]);
   return (
     <>
-      <div className="container custom-container">
+      <div className="container custom-container mt-5">
       <h2>Create an Event</h2>
         <form className="center-form">
           <div className="mb-3">

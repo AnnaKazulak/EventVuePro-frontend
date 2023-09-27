@@ -58,7 +58,7 @@ function CreateGuest(props) {
 
   return (
     <>
-      <div className="container custom-container">
+      <div className="container custom-container mt-5">
       <h3>Add New Guest</h3>
         <form
           className="center-form"

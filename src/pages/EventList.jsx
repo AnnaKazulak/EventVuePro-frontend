@@ -20,32 +20,24 @@ function EventList() {
   }, []);
 
   return (
-    <div className="container">
-      <h1>This is the EventList Page</h1>
+    <div className="container mt-5">
+      <h1>All my Events</h1>
 
       {events.map((event, index) => {
         return (
           <div key={event._id}>
-            <ol className="list-group">
+            <ol className="list-group custom-list-group">
               <Link
                 to={`/events/${event._id}`}
                 style={{ textDecoration: "none" }}
               >
                 <li className="list-group-item d-flex justify-content-between align-items-start">
                   <div className="ms-2 me-auto">
-                    <div className="fw-bold ">
+                    <div className="fs-6 ">
                       {" "}
-                      <span className="pe-4">{index + 1}</span>
+                      <span className="pe-4">{index + 1}.</span>
                       {event.title}
                     </div>
-                    <div className="ps-5">{event.description}</div>
-                    {event.guests.map((guest) => {
-                      return (
-                        <ul key={guest._id}>
-                          <li>{guest.name}</li>
-                        </ul>
-                      );
-                    })}
                   </div>
                   <div>
                     <img src={event.imageUrl} alt="" className="custom-img" />
