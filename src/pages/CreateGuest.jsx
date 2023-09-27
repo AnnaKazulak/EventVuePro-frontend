@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function CreateGuest(props) {
+function CreateGuest({updateImageDimensions}) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [imageWidth, setImageWidth] = useState("");
+  const [imageHeight, setImageHeight] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,12 +22,15 @@ function CreateGuest(props) {
 
   const handleFileUpload = (e) => {
     const uploadData = new FormData();
-
     uploadData.append("imageUrl", e.target.files[0]);
 
     uploadImage(uploadData)
       .then((response) => {
+        console.log("response", response);
         setImageUrl(response.fileUrl);
+       updateImageDimensions(response.fileUrl, response.imageWidth, response.imageHeight);
+        setImageWidth(response.imageWidth);
+        setImageHeight(response.imageHeight);
       })
       .catch((err) => console.log("Error while uploading the file: ", err));
   };
@@ -34,9 +39,16 @@ function CreateGuest(props) {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
 
-    const { eventId } = props;
+  
 
-    const requestBody = { name, description, imageUrl, eventId };
+    const requestBody = {
+      name,
+      description,
+      imageUrl,
+      imageWidth,
+      imageHeight,
+   
+    };
 
     axios
       .post(`${import.meta.env.VITE_API_URL}/api/guests`, requestBody, {
@@ -59,11 +71,8 @@ function CreateGuest(props) {
   return (
     <>
       <div className="container custom-container mt-5">
-      <h3>Add New Guest</h3>
-        <form
-          className="center-form"
-          onSubmit={handleSubmit}
-        >
+        <h3>Add New Guest</h3>
+        <form className="center-form" onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
               Name

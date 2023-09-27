@@ -11,13 +11,15 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
-function GuestList() {
+function GuestList({ imageDimensions }) {
   const [guests, setGuests] = useState([]);
   const [viewMode, setViewMode] = useState("list");
   const [index, setIndex] = useState(-1);
 
   const [searchInput, setSearchInput] = useState("");
   const [filteredGuests, setFilteredGuests] = useState([]);
+
+  console.log("filteredGuests ", filteredGuests, "image dimensions", imageDimensions)
 
   const getAllGuests = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -26,6 +28,7 @@ function GuestList() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
+       
         setGuests(response.data);
         // Initialize the filtered list with all guests
         setFilteredGuests(response.data);
@@ -36,7 +39,6 @@ function GuestList() {
   useEffect(() => {
     getAllGuests();
   }, []);
-
   const toggleViewMode = () => {
     setViewMode(viewMode === "list" ? "gallery" : "list");
   };
@@ -119,8 +121,10 @@ function GuestList() {
           <PhotoAlbum
             photos={filteredGuests.map((guest) => ({
               src: guest.imageUrl,
-              width: 800,
-              height: 600,
+              width:100,
+              height: 100
+              // width: imageDimensions[guest.imageUrl]?.width,
+              // height: imageDimensions[guest.imageUrl]?.height
             }))}
             layout="rows"
             targetRowHeight={150}

@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState } from "react";
 import HomePage from "./pages/HomePage";
 import GuestList from "./pages/GuestList";
 import EventList from "./pages/EventList";
@@ -16,6 +17,14 @@ import EventDetails from "./pages/EventDetails";
 import EditEvent from "./pages/EditEvent";
 
 function App() {
+  const [imageDimensions, setImageDimensions] = useState({});
+
+  const updateImageDimensions = (imageUrl, width, height) => {
+    setImageDimensions({
+      ...imageDimensions,
+      [imageUrl]: { width, height },
+    });
+  };
   return (
     <div className="App">
       <CustomNavbar />
@@ -26,7 +35,7 @@ function App() {
           path="/guests"
           element={
             <IsPrivate>
-              <GuestList />
+              <GuestList imageDimensions={imageDimensions} />
             </IsPrivate>
           }
         />
@@ -34,7 +43,7 @@ function App() {
           path="/guests/create"
           element={
             <IsPrivate>
-              <CreateGuest />
+              <CreateGuest updateImageDimensions={updateImageDimensions} />
             </IsPrivate>
           }
         />
@@ -46,7 +55,7 @@ function App() {
             </IsPrivate>
           }
         />
-        <Route path="/guests/edit/:guestId" element={<EditGuest />} />
+        <Route path="/guests/edit/:guestId" element={<EditGuest  updateImageDimensions={updateImageDimensions} />} />
 
         <Route
           path="/events"
