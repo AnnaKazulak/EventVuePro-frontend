@@ -1,5 +1,3 @@
-
-
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -43,7 +41,15 @@
   color: #888;
 } */
 
+.custom-btn-text {
+  text-decoration: none;
 
+}
+
+.custom-img-details {
+  width: auto;
+  max-height: 20vw;
+}
 
 .custom-navbar {
   position: sticky;
@@ -51,10 +57,16 @@
   z-index: 500;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
-.custom-img {
-  max-width: 17vw;
-  height: auto;
 
+.custom-img {
+  /* max-width: 17vw;
+  height: auto; */
+  width: 15vh;
+  max-height: auto;
+}
+
+.custom-list-group{
+  max-height: 12vh;
 }
 
 .custom-select {
