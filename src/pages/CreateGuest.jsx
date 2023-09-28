@@ -28,7 +28,6 @@ function CreateGuest({ updateImageDimensions }) {
 
     uploadImage(uploadData)
       .then((response) => {
-        console.log("response", response);
         setImageUrl(response.fileUrl);
         updateImageDimensions(
           response.fileUrl,
