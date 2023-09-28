@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
 function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +17,7 @@ function SignupPage() {
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     const requestBody = { email, password, name };
-    console.log(requestBody)
+    console.log(requestBody);
 
     axios
       .post(`${import.meta.env.VITE_API_URL}/auth/signup`, requestBody)
@@ -31,9 +30,7 @@ function SignupPage() {
       });
   };
   return (
-    <div className="container">
-      <p>Create an account here</p>
-
+    <div className="container custom-container mt-5">
       <form className="center-form" onSubmit={handleSignupSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
@@ -82,8 +79,10 @@ function SignupPage() {
             Password must be longer than 6 characters.
           </div>
         </div>
-        {errorMessage && <p className="error-message text-danger">{errorMessage}</p>}
-        <p>you'll be redirected to the homepage</p>
+        {errorMessage && (
+          <p className="error-message text-danger">{errorMessage}</p>
+        )}
+        <p>you'll be redirected to the login page</p>
         <button type="submit" className="btn btn-primary">
           Sign Up
         </button>

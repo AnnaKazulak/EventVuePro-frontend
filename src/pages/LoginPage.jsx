@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
-
 function LoginPage(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -40,9 +39,7 @@ function LoginPage(props) {
   };
 
   return (
-    <div className="container">
-      <p>If you have an account, please log in here</p>
-
+    <div className="container custom-container mt-5">
       <form onSubmit={handleLoginSubmit} className="center-form">
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
@@ -95,14 +92,20 @@ function LoginPage(props) {
           <p className="error-message text-danger">{errorMessage}</p>
         )}
 
-        <p>you'll be redirected to the homepage</p>
-      
-        <button type="submit" className="btn btn-success">
+        <p>You'll be redirected to the homepage</p>
+
+        <button type="submit" className="btn btn-success mb-3">
           Log in
         </button>
       </form>
       <p>Don't have an account yet?</p>
-       <button className="btn btn-primary"> <Link to={"/auth/signup"} className="text-white"> Sign Up</Link></button>
+      <button className="btn btn-primary">
+        {" "}
+        <Link to={"/auth/signup"} className="text-white custom-btn-text">
+          {" "}
+          Sign Up
+        </Link>
+      </button>
     </div>
   );
 }
