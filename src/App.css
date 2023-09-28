@@ -1,45 +1,46 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* HOMEPAGE Apply styles to the hero section */
+.hero {
+  background-image: url('src/assets/baloons.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
   text-align: center;
+  padding: 100px 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.hero-content {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hero h1 {
+  font-size: 36px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
-.card {
-  padding: 2em;
+
+.hero button {
+  margin: 10px;
 }
 
-.read-the-docs {
-  color: #888;
-} */
+
+/* ---------------------- */
+
+/* NAVBAR */
+.custom-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
 
 .custom-btn-text {
   text-decoration: none;
@@ -51,21 +52,15 @@
   max-height: 20vw;
 }
 
-.custom-navbar {
-  position: sticky;
-  top: 0;
-  z-index: 500;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-}
+
+
 
 .custom-img {
-  /* max-width: 17vw;
-  height: auto; */
   width: 15vh;
   max-height: auto;
 }
 
-.custom-list-group{
+.custom-list-group {
   max-height: 12vh;
 }
 
