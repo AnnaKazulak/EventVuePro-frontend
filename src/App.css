@@ -1,13 +1,12 @@
 /* HOMEPAGE Apply styles to the hero section */
 .hero {
-  background-image: url('src/assets/baloons.jpg');
+  background-image: url('/baloons.jpg');
   background-size: cover;
   background-position: center;
   color: #fff;
   text-align: center;
   padding: 100px 0;
 }
-
 
 .hero-content {
   max-width: 600px;
