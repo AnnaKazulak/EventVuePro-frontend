@@ -4,16 +4,18 @@ import { useNavigate } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function CreateGuest({updateImageDimensions}) {
+function CreateGuest({ updateImageDimensions }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [imageWidth, setImageWidth] = useState("");
   const [imageHeight, setImageHeight] = useState("");
+  const [imageUploading, setImageUploading] = useState(false);
 
   const navigate = useNavigate();
 
   const uploadImage = (file) => {
+    setImageUploading(true);
     return axios
       .post(`${import.meta.env.VITE_API_URL}/api/upload`, file)
       .then((res) => res.data)
@@ -28,18 +30,21 @@ function CreateGuest({updateImageDimensions}) {
       .then((response) => {
         console.log("response", response);
         setImageUrl(response.fileUrl);
-       updateImageDimensions(response.fileUrl, response.imageWidth, response.imageHeight);
+        updateImageDimensions(
+          response.fileUrl,
+          response.imageWidth,
+          response.imageHeight
+        );
         setImageWidth(response.imageWidth);
         setImageHeight(response.imageHeight);
       })
-      .catch((err) => console.log("Error while uploading the file: ", err));
+      .catch((err) => console.log("Error while uploading the file: ", err))
+      .finally(() => setImageUploading(false));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
-
-  
 
     const requestBody = {
       name,
@@ -47,7 +52,6 @@ function CreateGuest({updateImageDimensions}) {
       imageUrl,
       imageWidth,
       imageHeight,
-   
     };
 
     axios
@@ -67,6 +71,8 @@ function CreateGuest({updateImageDimensions}) {
       })
       .catch((error) => console.log(error));
   };
+
+  const isAddGuestButtonDisabled = imageUploading;
 
   return (
     <>
@@ -109,8 +115,12 @@ function CreateGuest({updateImageDimensions}) {
             />
           </div>
 
-          <button className="btn btn-success me-5 mb-5" type="submit">
-            Add Guest
+          <button
+            className="btn btn-success me-5 mb-5"
+            type="submit"
+            disabled={isAddGuestButtonDisabled}
+          >
+            {imageUploading ? "Uploading Image..." : "Add Guest"}
           </button>
           <a
             className="btn btn-outline-success mb-5"
