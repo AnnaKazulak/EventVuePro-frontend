@@ -34,11 +34,14 @@ function EditEvent(props) {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/api/events/${eventId}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/events/${eventId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         const oneGuest = response.data;
         setTitle(oneGuest.title);
         setDescription(oneGuest.description);
+        setLocation(oneGuest.location);
         setCurrentImageUrl(oneGuest.imageUrl);
       })
       .catch((error) => console.log(error));
