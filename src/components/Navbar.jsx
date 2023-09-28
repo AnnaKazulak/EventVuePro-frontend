@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
@@ -28,15 +28,15 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link " to="/guests">
+              <NavLink className="nav-link " to="/guests">
                 Guests
-              </Link>
+              </NavLink>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link " to="/events">
+              <NavLink className="nav-link " to="/events">
                 Events
-              </Link>
+              </NavLink>
             </li>
 
             <li className="nav-item dropdown">
@@ -50,20 +50,20 @@ function Navbar() {
                 Create
               </a>
               <ul className="dropdown-menu">
-                <Link
+                <NavLink
                   className="dropdown-item"
                   aria-current="page"
                   to="/guests/create"
                 >
                   new Guest
-                </Link>
-                <Link
+                </NavLink>
+                <NavLink
                   className="dropdown-item"
                   aria-current="page"
                   to="/events/create"
                 >
                   new Event
-                </Link>
+                </NavLink>
               </ul>
             </li>
           </ul>
@@ -71,22 +71,22 @@ function Navbar() {
             {isLoggedIn && (
               <>
                 <span>Hallo {user && user.name}</span>
-                <Link to="/events">
+                <NavLink to="/events">
                   <button  className="btn btn-secondary">My Events</button>
-                </Link>
+                </NavLink>
                 <button  className="btn btn-danger" onClick={logOutUser}>Logout</button>
               </>
             )}
             {!isLoggedIn && (
               <>
-                <Link to="/auth/signup">
+                <NavLink to="/auth/signup">
                   {" "}
                   <button className="btn btn-primary">Sign Up</button>{" "}
-                </Link>
-                <Link to="/auth/login">
+                </NavLink>
+                <NavLink to="/auth/login">
                   {" "}
                   <button className="btn btn-success">Login</button>{" "}
-                </Link>
+                </NavLink>
               </>
             )}
           </div>
