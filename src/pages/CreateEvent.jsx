@@ -12,6 +12,7 @@ function CreateEvent(props) {
   const [guests, setGuests] = useState([]);
   const [guestList, setGuestList] = useState([]);
 
+  const token = localStorage.getItem("authToken");
   const navigate = useNavigate();
 
   const uploadImage = (file) => {
@@ -35,7 +36,9 @@ function CreateEvent(props) {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/api/guests`)
+      .get(`${import.meta.env.VITE_API_URL}/api/guests`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         setGuestList(response.data);
       })

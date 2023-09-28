@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const token = localStorage.getItem("authToken");
+
 function EditEvent(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
