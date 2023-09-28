@@ -1,5 +1,6 @@
 import "./App.css";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import HomePage from "./pages/HomePage";
 import GuestList from "./pages/GuestList";
 import EventList from "./pages/EventList";
@@ -20,11 +21,39 @@ function App() {
   const [imageDimensions, setImageDimensions] = useState({});
 
   const updateImageDimensions = (imageUrl, width, height) => {
-    setImageDimensions({
-      ...imageDimensions,
-      [imageUrl]: { width, height },
-    });
+    console.log("💪💪💪",imageDimensions)
+    setImageDimensions(prev =>
+    ( { ...prev,
+      [imageUrl]: { width, height }})
+  );
   };
+
+  useEffect(() => {
+    const fetchGuests = async () => {
+      try {
+        const storedToken = localStorage.getItem("authToken");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/guests`,
+          {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          }
+        );
+
+        // Process the response and extract image dimensions
+        const guests = response.data;
+        // Update image dimensions based on the response data
+        guests.forEach((guest) => {
+          const { imageUrl, imageWidth, imageHeight } = guest;
+          updateImageDimensions(imageUrl, imageWidth, imageHeight);
+        });
+      } catch (error) {
+        console.error("Error fetching guest data:", error);
+      }
+    };
+
+    fetchGuests();
+  }, []);
+
   return (
     <div className="App">
       <CustomNavbar />
@@ -55,7 +84,10 @@ function App() {
             </IsPrivate>
           }
         />
-        <Route path="/guests/edit/:guestId" element={<EditGuest  updateImageDimensions={updateImageDimensions} />} />
+        <Route
+          path="/guests/edit/:guestId"
+          element={<EditGuest updateImageDimensions={updateImageDimensions} />}
+        />
 
         <Route
           path="/events"

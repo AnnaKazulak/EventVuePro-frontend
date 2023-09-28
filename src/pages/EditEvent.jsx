@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const token = localStorage.getItem("authToken");
 function EditEvent(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -19,7 +19,9 @@ function EditEvent(props) {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/api/guests`)
+      .get(`${import.meta.env.VITE_API_URL}/api/guests`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         setGuestList(response.data);
       })
@@ -189,7 +191,6 @@ function EditEvent(props) {
           <div className="mb-3">
             <label htmlFor="time" className="form-label">
               Time
-              {/* <span className="text-danger">*</span> */}
             </label>
             <input
               type="text"
@@ -201,17 +202,17 @@ function EditEvent(props) {
               onChange={(e) => setTime(e.target.value)}
             />
           </div>
-
-          {/* {{#if errorMessage}}
-      <p className="error text-danger">{{errorMessage}}</p>
-    {{/if}} */}
           <div className="mb-3">
             {currentImageUrl && (
               <div>
                 <img src={currentImageUrl} alt="Current Image" />
               </div>
             )}
-            <input  className="btn btn-secondary mt-2" type="file" onChange={(e) => handleFileUpload(e)} />
+            <input
+              className="btn btn-secondary mt-2"
+              type="file"
+              onChange={(e) => handleFileUpload(e)}
+            />
           </div>
           <div className="mb-3">
             <label htmlFor="characters" className="form-label">
@@ -247,7 +248,12 @@ function EditEvent(props) {
           >
             Save Changes
           </button>
-          <button className="btn btn-danger me-5 mb-5" onClick={(e) => deleteEvent(e)}>Delete Event</button>
+          <button
+            className="btn btn-danger me-5 mb-5"
+            onClick={(e) => deleteEvent(e)}
+          >
+            Delete Event
+          </button>
           <a
             className="btn btn-outline-success mb-5"
             role="button"

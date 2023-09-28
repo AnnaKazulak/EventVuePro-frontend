@@ -19,7 +19,12 @@ function GuestList({ imageDimensions }) {
   const [searchInput, setSearchInput] = useState("");
   const [filteredGuests, setFilteredGuests] = useState([]);
 
-  console.log("filteredGuests ", filteredGuests, "image dimensions", imageDimensions)
+  console.log(
+    "filteredGuests ",
+    filteredGuests,
+    "image dimensions",
+    imageDimensions
+  );
 
   const getAllGuests = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -28,7 +33,6 @@ function GuestList({ imageDimensions }) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-       
         setGuests(response.data);
         // Initialize the filtered list with all guests
         setFilteredGuests(response.data);
@@ -84,7 +88,7 @@ function GuestList({ imageDimensions }) {
       {viewMode === "list" && (
         <div>
           <h4>Your guest list contains {filteredGuests.length} members</h4>
-          {filteredGuests.map((guest, index) => {
+          { filteredGuests && filteredGuests.map((guest, index) => {
             return (
               <div key={guest._id}>
                 <ol className="list-group custom-list-group">
@@ -116,16 +120,20 @@ function GuestList({ imageDimensions }) {
         </div>
       )}
 
-      {viewMode === "gallery" && (
+      {viewMode === "gallery" && filteredGuests && (
         <>
           <PhotoAlbum
-            photos={filteredGuests.map((guest) => ({
-              src: guest.imageUrl,
-              width:100,
-              height: 100
-              // width: imageDimensions[guest.imageUrl]?.width,
-              // height: imageDimensions[guest.imageUrl]?.height
-            }))}
+            photos={filteredGuests.map((guest) => {
+              console.log(guest)
+              console.log(imageDimensions)
+              return  {src: guest.imageUrl,
+              // width:100,
+              // height: 100
+              width: imageDimensions[guest.imageUrl].width,
+              height: imageDimensions[guest.imageUrl].height
+            }
+             
+            })}
             layout="rows"
             targetRowHeight={150}
             onClick={({ index }) => setIndex(index)}

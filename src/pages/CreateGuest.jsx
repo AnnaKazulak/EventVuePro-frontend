@@ -73,6 +73,7 @@ function CreateGuest({ updateImageDimensions }) {
 
   const isAddGuestButtonDisabled = imageUploading;
 
+  console.log("imageHeight ", imageHeight,"imageWidth ",imageWidth)
   return (
     <>
       <div className="container custom-container mt-5">

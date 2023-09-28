@@ -23,8 +23,11 @@ function GuestDetails() {
   }
 
   const deleteGuest = () => {
+    const storedToken = localStorage.getItem("authToken");
     axios
-      .delete(`${import.meta.env.VITE_API_URL}/api/guests/${guestId}`)
+      .delete(`${import.meta.env.VITE_API_URL}/api/guests/${guestId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then(() => {
         navigate("/guests");
       })
