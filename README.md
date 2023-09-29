@@ -57,8 +57,7 @@ The application will be accessible at `http://localhost:5173`.
 |-----------|------------------------|------------------------------ |-------------------------------------------------------- |--------------------- |
 | POST      | `/api/events`          | Authorization: Bearer <jwt>   | `{ email: String, password: String }`                   | Create new event     |
 | GET       | `/api/events`          | -                             | -                                                       | Get all events       |
-| PUT       | `/api/events/:eventId` | Authorization: Bearer <jwt>   | {
-                                                                          title: { type: String,                               | Update an event      |
+| PUT       | `/api/events/:eventId` | Authorization: Bearer <jwt>   | {  title: { type: String,                               | Update an event      |
                                                                           required: [true, "Event title is required"] },
                                                                           description: String,
                                                                           date: Date,
