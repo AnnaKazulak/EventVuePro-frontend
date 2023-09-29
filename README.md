@@ -30,23 +30,51 @@ API Endpoints
 
 ## Auth Endpoints
 
-| HTTP Verb | Path               | Request Headers             | Request Body                            | Description                 |
-|-----------|--------------------|-----------------------------|----------------------------------------|-----------------------------|
-| POST      | `/api/auth/signup` | -                           | `{ email: String, password: String }` | Create an account           |
-| POST      | `/api/auth/login`  | -                           | `{ email: String, password: String }` | Login                       |
-| GET       | `/api/auth/verify` | Authorization: Bearer `<jwt>` | -                                    | Verify jwt                   |
+| HTTP Verb | Path               | Request Headers               | Request Body                            | Description                 |
+|-----------|--------------------|------------------------------ |---------------------------------------- |-----------------------------|
+| POST      | `/api/auth/signup` | -                             | `{ email: String, password: String }`   | Create an account           |
+| POST      | `/api/auth/login`  | -                             | `{ email: String, password: String }`   | Login                       |
+| GET       | `/api/auth/verify` | Authorization: Bearer `<jwt>` | -                                       | Verify jwt                  |
 
 
 
 The application will be accessible at `http://localhost:5173`.
 
-## Auth Endpoints
+## Event Endpoints
 
-| HTTP Verb | Path               | Request Headers             | Request Body                            | Description                 |
-|-----------|--------------------|-----------------------------|----------------------------------------|-----------------------------|
-| POST      | `/api/auth/signup` | -                           | `{ email: String, password: String }` | Create an account           |
-| POST      | `/api/auth/login`  | -                           | `{ email: String, password: String }` | Login                       |
-| GET       | `/api/auth/verify` | Authorization: Bearer `<jwt>` | -                                    | Verify jwt                   |
+| HTTP Verb | Path                   | Request Headers               | Request Body                            | Description                 |
+|-----------|----------------------- |-----------------------------  |---------------------------------------- |-----------------------------|
+| POST      | `/api/events`          | Authorization: Bearer <jwt>   | `{ email: String, password: String }`   | Create new event            |
+| GET       | `/api/events    `      | -                             | `{ email: String, password: String }`   | Login                       |
+| GET       | `/api/events/:eventId` | Authorization: Bearer `<jwt>` | -                                       | Verify jwt                  |
+| PUT       | `/api/events/:eventId` | Authorization: Bearer `<jwt>` | -                                       | Verify jwt                  |
+
+
+
+## Event Endpoints
+
+| HTTP Verb | Path                   | Request Headers               | Request Body                                            | Description          |
+|-----------|------------------------|------------------------------ |-------------------------------------------------------- |--------------------- |
+| POST      | `/api/events`          | Authorization: Bearer <jwt>   | `{ email: String, password: String }`                   | Create new event     |
+| GET       | `/api/events`          | -                             | -                                                       | Get all events       |
+| PUT       | `/api/events/:eventId` | Authorization: Bearer <jwt>   | {
+                                                                          title: { type: String,                               | Update an event      |
+                                                                          required: [true, "Event title is required"] },
+                                                                          description: String,
+                                                                          date: Date,
+                                                                          time: String,
+                                                                          location: String,
+                                                                          imageUrl: { type: String, required: false },
+                                                                          guests: [
+                                                                            {
+                                                                              type: Schema.Types.ObjectId,
+                                                                              ref: "Guest",
+                                                                            },
+                                                                          ],
+                                                                        }                           
+
+
+| DELETE    | `/api/events/:eventId` | Authorization: Bearer <jwt>   | -                                                        | Delete an event |
 
 
 
