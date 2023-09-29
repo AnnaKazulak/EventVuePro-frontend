@@ -3,7 +3,7 @@ import CustomerRecommendations from "../components/CustomerRecommendations";
 
 function HomePage() {
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 mb-5">
       <div className="hero">
         <div className="container-hero"></div>
         <div className="hero-content">
