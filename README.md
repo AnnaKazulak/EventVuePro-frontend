@@ -18,11 +18,22 @@ cd eventvuepro-frontend
 npm install
 
 
-4. Create a `.env` file in the root directory and add the necessary environment variables. You can find a sample `.env` file in the `.env.example` file.
+4. Create a `.env` file in the root directory and add the necessary environment variables. 
+* ORIGIN, with the location of your frontend app (example, ORIGIN=https://mycoolapp.netlify.com)
+* TOKEN_SECRET: used to sign auth tokens (example, TOKEN_SECRET=ilovepizza)
 
 5. Start the application in development mode:
 npm run dev
 
+
+API Endpoints
+
+Auth endpoints
+
+HTTP verb	Path	Request Headers	Request body	Description
+POST	/api/auth/signup	–	{ email: String, password: String }	Create an account
+POST	/api/auth/login	–	{ email: String, password: String }	Login
+GET	/api/auth/verify	Authorization: Bearer <jwt>	–	Verify jwt
 
 The application will be accessible at `http://localhost:5173`.
 
