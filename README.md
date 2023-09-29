@@ -57,21 +57,10 @@ The application will be accessible at `http://localhost:5173`.
 |-----------|------------------------|------------------------------ |-------------------------------------------------------- |--------------------- |
 | POST      | `/api/events`          | Authorization: Bearer <jwt>   | `{ email: String, password: String }`                   | Create new event     |
 | GET       | `/api/events`          | -                             | -                                                       | Get all events       |
-| PUT       | `/api/events/:eventId` | Authorization: Bearer <jwt>   | {  title: { type: String,  required: [true, "Event title is required"] },  
+| PUT       | `/api/events/:eventId` | Authorization: Bearer <jwt>   | {  title: { type: String,  required: [true, "Event title is required"] },description: String, date: Date, time: String,location: String,imageUrl: { type: String, required: false },guests: [{type: Schema.Types.ObjectId,ref: "Guest",},],}
                                                                                                 | Update an event      |
                                                                          
-                                                                          description: String,
-                                                                          date: Date,
-                                                                          time: String,
-                                                                          location: String,
-                                                                          imageUrl: { type: String, required: false },
-                                                                          guests: [
-                                                                            {
-                                                                              type: Schema.Types.ObjectId,
-                                                                              ref: "Guest",
-                                                                            },
-                                                                          ],
-                                                                        }                           
+                                                                                                 
 
 
 | DELETE    | `/api/events/:eventId` | Authorization: Bearer <jwt>   | -                                                        | Delete an event |
