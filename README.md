@@ -26,6 +26,16 @@ npm run dev
 
 The application will be accessible at `http://localhost:5173`.
 
+## Auth Endpoints
+
+| HTTP Verb | Path               | Request Headers             | Request Body                            | Description                 |
+|-----------|--------------------|-----------------------------|----------------------------------------|-----------------------------|
+| POST      | `/api/auth/signup` | -                           | `{ email: String, password: String }` | Create an account           |
+| POST      | `/api/auth/login`  | -                           | `{ email: String, password: String }` | Login                       |
+| GET       | `/api/auth/verify` | Authorization: Bearer `<jwt>` | -                                    | Verify jwt                   |
+
+
+
 ## Demo
 You can access the deployed version of EvenVuePro on Netlify:
 [https://event-vue-pro.netlify.app/](link-to-netlify-demo)
