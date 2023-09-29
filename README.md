@@ -28,12 +28,15 @@ npm run dev
 
 API Endpoints
 
-Auth endpoints
+## Auth Endpoints
 
-HTTP verb	Path	Request Headers	Request body	Description
-POST	/api/auth/signup	–	{ email: String, password: String }	Create an account
-POST	/api/auth/login	–	{ email: String, password: String }	Login
-GET	/api/auth/verify	Authorization: Bearer <jwt>	–	Verify jwt
+| HTTP Verb | Path               | Request Headers             | Request Body                            | Description                 |
+|-----------|--------------------|-----------------------------|----------------------------------------|-----------------------------|
+| POST      | `/api/auth/signup` | -                           | `{ email: String, password: String }` | Create an account           |
+| POST      | `/api/auth/login`  | -                           | `{ email: String, password: String }` | Login                       |
+| GET       | `/api/auth/verify` | Authorization: Bearer `<jwt>` | -                                    | Verify jwt                   |
+
+
 
 The application will be accessible at `http://localhost:5173`.
 
