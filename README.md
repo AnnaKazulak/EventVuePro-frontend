@@ -42,17 +42,6 @@ The application will be accessible at `http://localhost:5173`.
 
 ## Event Endpoints
 
-| HTTP Verb | Path                   | Request Headers               | Request Body                            | Description                 |
-|-----------|----------------------- |-----------------------------  |---------------------------------------- |-----------------------------|
-| POST      | `/api/events`          | Authorization: Bearer <jwt>   | `{ email: String, password: String }`   | Create new event            |
-| GET       | `/api/events    `      | -                             | `{ email: String, password: String }`   | Login                       |
-| GET       | `/api/events/:eventId` | Authorization: Bearer `<jwt>` | -                                       | Verify jwt                  |
-| PUT       | `/api/events/:eventId` | Authorization: Bearer `<jwt>` | -                                       | Verify jwt                  |
-
-
-
-## Event Endpoints
-
 | HTTP Verb | Path                   | Request Headers               | Request Body                                            | Description          |
 |-----------|------------------------|------------------------------ |-------------------------------------------------------- |--------------------- |
 | POST      | `/api/events`          | Authorization: Bearer <jwt>   | `{ email: String, password: String }`                   | Create new event     |
