@@ -49,6 +49,14 @@ The application will be accessible at `http://localhost:5173`.
 | PUT       | `/api/events/:eventId` | Authorization: Bearer <jwt>   | {  title: { type: String,  required: [true, "Event title is required"] },description: String, date: Date, time: String,location: String,imageUrl: { type: String, required: false },guests: [{type: Schema.Types.ObjectId,ref: "Guest",},],}   | Update an event      |
 | DELETE    | `/api/events/:eventId` | Authorization: Bearer <jwt>   | -                                                       | Delete an event      |
 
+## Guest Endpoints
+
+| HTTP Verb | Path                    | Request Headers               | Request Body                                            | Description          |
+|-----------|------------------------ |------------------------------ |-------------------------------------------------------- |--------------------- |
+| POST      | `/api/guests`           | Authorization: Bearer <jwt>   | `{ email: String, password: String }`                   | Create new guest     |
+| GET       | `/api/guests`           | -                             | -                                                       | Get all guests       |
+| PUT       | `/api/guests/:guestsId` | Authorization: Bearer <jwt>   | {  name: {type: String, required: true},description: String, imageUrl: { type: String, required: false } imageWidth: Number,imageHeight: Number,,guests: [{type: Schema.Types.ObjectId,ref: "Event",}   creator: {type: Schema.Types.ObjectId, ref: "User", },,],}    | Update an event      |
+| DELETE    | `/api/guests/:guestId`  | Authorization: Bearer <jwt>   | -                                                       | Delete an guest      |
 
 
 ## Demo
