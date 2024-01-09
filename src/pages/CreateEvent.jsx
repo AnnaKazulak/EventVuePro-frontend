@@ -7,10 +7,11 @@ function CreateEvent(props) {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState(""); 
   const [imageUrl, setImageUrl] = useState("");
   const [guests, setGuests] = useState([]);
   const [guestList, setGuestList] = useState([]);
+  const [validationErrors, setValidationErrors] = useState(null);
 
   const token = localStorage.getItem("authToken");
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ function CreateEvent(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
-
+console.log("hallo clg")
     const requestBody = {
       title,
       description,
@@ -81,7 +82,16 @@ function CreateEvent(props) {
         // from the EventDetailsPage, to refresh the event details --> does not exist yet
         // props.refreshProject();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        // Check if the error is a validation error
+        if (error.response && error.response.status === 400) {
+          // Display the validation error message
+          setValidationErrors(error.response.data.error);
+        } else {
+          // Handle other errors
+          console.log(error);
+        }
+      });
   };
   useEffect(() => {
     console.log(guests);
@@ -89,13 +99,20 @@ function CreateEvent(props) {
   return (
     <>
       <div className="container custom-container mt-5">
-      <h2>Create an Event</h2>
+        <h2>Create an Event</h2>
         <form className="center-form">
           <div className="mb-3">
             <label htmlFor="title" className="form-label">
               Title
               <span className="text-danger">*</span>
             </label>
+            {validationErrors && (
+              <div className="alert alert-danger" role="alert">
+                {validationErrors.map((error, index) => (
+                  <p key={index}>{error}</p>
+                ))}
+              </div>
+            )}
             <input
               type="text"
               className="form-control"
