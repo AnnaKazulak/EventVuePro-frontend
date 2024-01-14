@@ -16,16 +16,19 @@ import GuestDetails from "./pages/GuestDetails";
 import EditGuest from "./pages/EditGuest";
 import EventDetails from "./pages/EventDetails";
 import EditEvent from "./pages/EditEvent";
+import MapContainer from "./MapContainer";
 
 function App() {
   const [imageDimensions, setImageDimensions] = useState({});
 
   const updateImageDimensions = (imageUrl, width, height) => {
-    console.log("💪💪💪",imageDimensions)
+    console.log("💪💪💪", imageDimensions)
     setImageDimensions(prev =>
-    ( { ...prev,
-      [imageUrl]: { width, height }})
-  );
+    ({
+      ...prev,
+      [imageUrl]: { width, height }
+    })
+    );
   };
 
   useEffect(() => {
@@ -106,13 +109,19 @@ function App() {
           }
         />
 
-        <Route path="/events/edit/:eventId" element={<EditEvent />} />
+        <Route path="/events/edit/:eventId" element={
+          <MapContainer>
+            <EditEvent />
+          </MapContainer>
+        } />
 
         <Route
           path="/events/create"
           element={
             <IsPrivate>
-              <CreateEvent />
+              <MapContainer>
+                <CreateEvent />
+              </MapContainer>
             </IsPrivate>
           }
         />

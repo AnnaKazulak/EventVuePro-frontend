@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 
 
 function CreateEvent() {
@@ -16,7 +16,7 @@ function CreateEvent() {
   const [validationErrors, setValidationErrors] = useState(null);
 
   const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
- 
+
 
   const token = localStorage.getItem("authToken");
   const navigate = useNavigate();
@@ -186,24 +186,21 @@ function CreateEvent() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
-            <LoadScript googleMapsApiKey={import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY}
-             >
-              <GoogleMap
-                mapContainerStyle={{ height: "300px", width: "100%" }}
-                center={mapCenter}
-                zoom={14}
-                onClick={handleMapClick}
-              >
-                {/* Marker for user's current location with a custom pin */}
-                <Marker
-                  position={mapCenter}
-                  // icon={{
-                  //   url: "https://maps.google.com/mapfiles/ms/micons/blue-dot.png",
-                  //   scaledSize: { width: 40, height: 40 },
-                  // }}
-                />
-              </GoogleMap>
-            </LoadScript>
+            <GoogleMap
+              mapContainerStyle={{ height: "300px", width: "100%" }}
+              center={mapCenter}
+              zoom={14}
+              onClick={handleMapClick}
+            >
+              {/* Marker for user's current location with a custom pin */}
+              <Marker
+                position={mapCenter}
+              // icon={{
+              //   url: "https://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+              //   scaledSize: { width: 40, height: 40 },
+              // }}
+              />
+            </GoogleMap>
           </div>
 
           <div className="mb-3">
