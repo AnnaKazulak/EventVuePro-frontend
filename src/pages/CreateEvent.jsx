@@ -1,17 +1,22 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-function CreateEvent(props) {
+
+function CreateEvent() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
-  const [time, setTime] = useState(""); 
+  const [time, setTime] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [guests, setGuests] = useState([]);
   const [guestList, setGuestList] = useState([]);
   const [validationErrors, setValidationErrors] = useState(null);
+
+  const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
+ 
 
   const token = localStorage.getItem("authToken");
   const navigate = useNavigate();
@@ -51,7 +56,7 @@ function CreateEvent(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
-console.log("hallo clg")
+    console.log("hallo clg")
     const requestBody = {
       title,
       description,
@@ -96,6 +101,36 @@ console.log("hallo clg")
   useEffect(() => {
     console.log(guests);
   }, [guests]);
+
+
+  useEffect(() => {
+    // Get user's current location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setMapCenter({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        (error) => {
+          console.error("Error getting user's location: ", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+
+  }, []);
+
+  // Handle map click event
+  const handleMapClick = (event) => {
+    // Update the location state with the clicked coordinates
+    setLocation(`${event.latLng.lat()}, ${event.latLng.lng()}`);
+  };
+
+
+
   return (
     <>
       <div className="container custom-container mt-5">
@@ -151,7 +186,26 @@ console.log("hallo clg")
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
+            <LoadScript googleMapsApiKey={import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY}
+             >
+              <GoogleMap
+                mapContainerStyle={{ height: "300px", width: "100%" }}
+                center={mapCenter}
+                zoom={14}
+                onClick={handleMapClick}
+              >
+                {/* Marker for user's current location with a custom pin */}
+                <Marker
+                  position={mapCenter}
+                  // icon={{
+                  //   url: "https://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+                  //   scaledSize: { width: 40, height: 40 },
+                  // }}
+                />
+              </GoogleMap>
+            </LoadScript>
           </div>
+
           <div className="mb-3">
             <label htmlFor="date" className="form-label">
               Date
