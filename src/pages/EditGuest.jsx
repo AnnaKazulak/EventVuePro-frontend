@@ -9,8 +9,7 @@ function EditGuest({ updateImageDimensions }) {
   const [imageUrl, setImageUrl] = useState("");
   const [imageWidth, setImageWidth] = useState("");
   const [imageHeight, setImageHeight] = useState("");
-  const [imageUploading, setImageUploading] = useState(false);
-
+  const [newImageLoading, setNewImageLoading] = useState(false); // Renamed to make it clearer
   const [currentImageUrl, setCurrentImageUrl] = useState("");
 
   const { guestId } = useParams();
@@ -19,8 +18,7 @@ function EditGuest({ updateImageDimensions }) {
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${import.meta.env.VITE_API_URL}/api/guests/${guestId}`
-      , {
+      .get(`${import.meta.env.VITE_API_URL}/api/guests/${guestId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -33,11 +31,12 @@ function EditGuest({ updateImageDimensions }) {
   }, [guestId]);
 
   const uploadImage = (file) => {
-    setImageUploading(true);
+    setNewImageLoading(true);
     return axios
       .post(`${import.meta.env.VITE_API_URL}/api/upload`, file)
       .then((res) => res.data)
-      .catch((e) => console.log("Error uploading img ", e));
+      .catch((e) => console.log("Error uploading img ", e))
+      .finally(() => setNewImageLoading(false));
   };
 
   const handleFileUpload = (e) => {
@@ -46,6 +45,7 @@ function EditGuest({ updateImageDimensions }) {
 
     uploadImage(uploadData)
       .then((response) => {
+        setCurrentImageUrl(response.fileUrl); // Update currentImageUrl immediately
         setImageUrl(response.fileUrl);
         updateImageDimensions(
           response.fileUrl,
@@ -56,29 +56,25 @@ function EditGuest({ updateImageDimensions }) {
         setImageHeight(response.imageHeight);
       })
       .catch((err) => console.log("Error while uploading the file: ", err))
-      .finally(() => setImageUploading(false));
+      .finally(() => setNewImageLoading(false));
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
-    
+
     const requestBody = {
       name,
       description,
-      imageUrl,
+      imageUrl: imageUrl || currentImageUrl,
       imageWidth,
       imageHeight,
     };
 
     axios
-      .put(
-        `${import.meta.env.VITE_API_URL}/api/guests/${guestId}`,
-        requestBody,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }
-      )
+      .put(`${import.meta.env.VITE_API_URL}/api/guests/${guestId}`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
         navigate(`/guests/${guestId}`);
       })
@@ -94,7 +90,7 @@ function EditGuest({ updateImageDimensions }) {
       .catch((err) => console.log(err));
   };
 
-  const isAddGuestButtonDisabled = imageUploading;
+  const isSaveChangesButtonDisabled = newImageLoading;
 
   return (
     <div className="container custom-container mt-5">
@@ -135,12 +131,12 @@ function EditGuest({ updateImageDimensions }) {
         </div>
 
         <button
-            className="btn btn-success me-5 mb-5"
-            type="submit"
-            disabled={isAddGuestButtonDisabled}
-          >
-            {imageUploading ? "Uploading Image..." : "Save Changes"}
-          </button>
+          className="btn btn-success me-5 mb-5"
+          type="submit"
+          disabled={isSaveChangesButtonDisabled}
+        >
+          {newImageLoading ? "Uploading New Image..." : "Save Changes"}
+        </button>
         <button className="btn btn-danger me-5 mb-5" onClick={deleteGuest}>
           Delete Guest
         </button>
@@ -157,3 +153,5 @@ function EditGuest({ updateImageDimensions }) {
 }
 
 export default EditGuest;
+
+
