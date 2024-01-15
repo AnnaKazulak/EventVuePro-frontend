@@ -15,6 +15,8 @@ function EditEvent() {
   const [currentImageUrl, setCurrentImageUrl] = useState("");
   const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
 
+  const [imageLoading, setImageLoading] = useState(false);
+
   const { eventId } = useParams();
   const navigate = useNavigate();
 
@@ -43,14 +45,12 @@ function EditEvent() {
         setTitle(event.title);
         setDescription(event.description);
         setLocation(event.location);
-        console.log("🚀", event.location)
         setDate(event.date);
         setTime(event.time);
         setCurrentImageUrl(event.imageUrl);
         setGuests(event.guests.map((guest) => guest._id));
         // Set map center based on the event's location
         if (event.location) {
-          console.log("🚛", event.location)
           const [lat, lng] = event.location.split(",");
           setMapCenter({
             lat: parseFloat(lat),
@@ -73,11 +73,16 @@ function EditEvent() {
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
 
+    setImageLoading(true);
+
     uploadImage(uploadData)
       .then((response) => {
         setImageUrl(response.fileUrl);
       })
-      .catch((err) => console.log("Error while uploading the file: ", err));
+      .catch((err) => console.log("Error while uploading the file: ", err))
+      .finally(() => {
+        setImageLoading(false);
+      });
   };
 
   const handleSubmit = (e) => {
@@ -168,19 +173,19 @@ function EditEvent() {
             />
             {/* Debugging information */}
             {mapCenter.lat !== 0 && mapCenter.lng !== 0 ? (
-                <GoogleMap
-                  mapContainerStyle={{ height: "300px", width: "100%" }}
-                  center={mapCenter}
-                  zoom={14}
-                  onClick={(event) => {
-                    // Update the location state with the clicked coordinates
-                    setLocation(`${event.latLng.lat()}, ${event.latLng.lng()}`);
-                  }}
-                >
-                  {/* Marker for the event's location */}
-                  <Marker position={mapCenter} />
-                </GoogleMap>
-           
+              <GoogleMap
+                mapContainerStyle={{ height: "300px", width: "100%" }}
+                center={mapCenter}
+                zoom={14}
+                onClick={(event) => {
+                  // Update the location state with the clicked coordinates
+                  setLocation(`${event.latLng.lat()}, ${event.latLng.lng()}`);
+                }}
+              >
+                {/* Marker for the event's location */}
+                <Marker position={mapCenter} />
+              </GoogleMap>
+
             ) : (
               <div>Map is not rendered. Coordinates: {JSON.stringify(mapCenter)}</div>
             )}
@@ -257,8 +262,9 @@ function EditEvent() {
             type="submit"
             className="btn btn-success mb-5 me-5"
             onClick={handleSubmit}
+            disabled={imageLoading}
           >
-            Save Changes
+            {imageLoading ? "Loading Image..." : "Save Changes"}
           </button>
           <button
             className="btn btn-danger me-5 mb-5"

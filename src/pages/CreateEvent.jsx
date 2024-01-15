@@ -15,6 +15,8 @@ function CreateEvent() {
   const [guestList, setGuestList] = useState([]);
   const [validationErrors, setValidationErrors] = useState(null);
 
+  const [imageLoading, setImageLoading] = useState(false);
+
   const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
 
 
@@ -33,11 +35,16 @@ function CreateEvent() {
 
     uploadData.append("imageUrl", e.target.files[0]);
 
+    setImageLoading(true);
+
     uploadImage(uploadData)
       .then((response) => {
         setImageUrl(response.fileUrl);
       })
-      .catch((err) => console.log("Error while uploading the file: ", err));
+      .catch((err) => console.log("Error while uploading the file: ", err))
+      .finally(() => {
+        setImageLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -278,8 +285,9 @@ function CreateEvent() {
             type="submit"
             className="btn btn-success mb-5 me-5"
             onClick={handleSubmit}
+            disabled={imageLoading}
           >
-            Add Event
+            {imageLoading ? "Loading Image..." : "Add Event"}
           </button>
           <a
             className="btn btn-outline-success mb-5"
