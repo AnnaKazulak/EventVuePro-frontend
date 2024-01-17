@@ -9,8 +9,9 @@ function EditGuest({ updateImageDimensions }) {
   const [imageUrl, setImageUrl] = useState("");
   const [imageWidth, setImageWidth] = useState("");
   const [imageHeight, setImageHeight] = useState("");
-  const [newImageLoading, setNewImageLoading] = useState(false); // Renamed to make it clearer
+  const [newImageLoading, setNewImageLoading] = useState(false);
   const [currentImageUrl, setCurrentImageUrl] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const { guestId } = useParams();
   const navigate = useNavigate();
@@ -40,12 +41,18 @@ function EditGuest({ updateImageDimensions }) {
   };
 
   const handleFileUpload = (e) => {
+    const file = e.target.files[0];
     const uploadData = new FormData();
-    uploadData.append("imageUrl", e.target.files[0]);
+    uploadData.append("imageUrl", file);
+
+    // Clone the currentImageUrl to avoid referencing the same URL
+    const clonedCurrentImageUrl = `${currentImageUrl}?timestamp=${Date.now()}`;
+
+    setSelectedFile(URL.createObjectURL(file));
+    setCurrentImageUrl(clonedCurrentImageUrl); // Update currentImageUrl immediately
 
     uploadImage(uploadData)
       .then((response) => {
-        setCurrentImageUrl(response.fileUrl); // Update currentImageUrl immediately
         setImageUrl(response.fileUrl);
         updateImageDimensions(
           response.fileUrl,
@@ -58,6 +65,7 @@ function EditGuest({ updateImageDimensions }) {
       .catch((err) => console.log("Error while uploading the file: ", err))
       .finally(() => setNewImageLoading(false));
   };
+
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -97,6 +105,7 @@ function EditGuest({ updateImageDimensions }) {
       <h3>Edit your Guest</h3>
 
       <form onSubmit={handleFormSubmit}>
+
         <div className="mb-3">
           <label>Name:</label>
           <input
@@ -118,11 +127,32 @@ function EditGuest({ updateImageDimensions }) {
           />
         </div>
         <div className="mb-3">
-          {currentImageUrl && (
-            <div>
-              <img src={currentImageUrl} alt="Current Image" />
-            </div>
-          )}
+          <div style={{ display: "flex" }}>
+            {/* Preview for selected image */}
+            {selectedFile && (
+              <div style={{ marginRight: "10px" }}>
+                <img
+                  src={selectedFile}
+                  alt="Selected File"
+                  className="image-preview updated-image"
+                  style={{ maxWidth: "100%", maxHeight: "200px" }}
+                />
+              </div>
+            )}
+
+            {/* Preview for current image */}
+            {currentImageUrl && (
+              <div>
+                <img
+                  src={currentImageUrl}
+                  alt="Current Image"
+                  className={`image-preview ${selectedFile ? "current-image" : ""
+                    }`}
+                  style={{ maxWidth: "100%", maxHeight: "200px" }}
+                />
+              </div>
+            )}
+          </div>
           <input
             className="btn btn-secondary mt-2"
             type="file"
@@ -153,5 +183,3 @@ function EditGuest({ updateImageDimensions }) {
 }
 
 export default EditGuest;
-
-

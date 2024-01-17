@@ -76,3 +76,16 @@
     max-width: 60vw;
   }
 }
+
+
+.image-preview {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.updated-image {
+  opacity: 1; /* Full opacity for the updated image */
+}
+
+.current-image {
+  opacity: 0.5; /* opacity for the previous image*/
+}
