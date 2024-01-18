@@ -22,7 +22,6 @@ function App() {
   const [imageDimensions, setImageDimensions] = useState({});
 
   const updateImageDimensions = (imageUrl, width, height) => {
-    console.log("💪💪💪", imageDimensions)
     setImageDimensions(prev =>
     ({
       ...prev,
