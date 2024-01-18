@@ -51,30 +51,30 @@ function CreateEvent() {
   };
 
 
-const handleGalleryFileUpload = (e) => {
-  const uploadData = new FormData();
+  const handleGalleryFileUpload = (e) => {
+    const uploadData = new FormData();
 
-  // Use 'append' to add each file separately to the form data
-  Array.from(e.target.files).forEach((file, index) => {
-    console.log("🚖", file, index)
-    uploadData.append("imageType", "galleryImage");
-    uploadData.append("imageUrl", file);
-  });
-
-  setImageLoading(true);
-
-  uploadImage(uploadData)
-    .then((responses) => {
-      // Extract file URLs from responses
-      console.log("🚇Server response:", responses); 
-      setGalleryImages((prevGalleryImages) => [...prevGalleryImages, ...responses.fileUrl]);
-      console.log("galleryImages:", galleryImages);
-    })
-    .catch((err) => console.log("Error while uploading the file: ", err))
-    .finally(() => {
-      setImageLoading(false);
+    // Use 'append' to add each file separately to the form data
+    Array.from(e.target.files).forEach((file, index) => {
+      console.log("🚖", file, index)
+      uploadData.append("imageType", "galleryImage");
+      uploadData.append("imageUrl", file);
     });
-};
+
+    setImageLoading(true);
+
+    uploadImage(uploadData)
+      .then((responses) => {
+        // Extract file URLs from responses
+        console.log("🚇Server response:", responses);
+        setGalleryImages((prevGalleryImages) => [...prevGalleryImages, ...responses.fileUrl]);
+        console.log("galleryImages:", galleryImages);
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err))
+      .finally(() => {
+        setImageLoading(false);
+      });
+  };
 
 
 
@@ -315,6 +315,19 @@ const handleGalleryFileUpload = (e) => {
               At lest one guest must be selected
             </div>
           </div>
+
+          {/* Main Image Preview */}
+          {imageUrl && (
+            <div className="mb-3">
+              <img
+                src={imageUrl}
+                alt="Main Event"
+                style={{ maxWidth: '200px', height: 'auto' }}
+              />
+            </div>
+          )}
+
+          {/* Main Image Input */}
           <div className="mb-3">
             <label htmlFor="image" className="form-label">
               Main Image
@@ -355,6 +368,22 @@ const handleGalleryFileUpload = (e) => {
           >
             Cancel
           </a>
+
+          {/* Gallery Images Preview */}
+          {galleryImages.length > 0 && (
+            <div className="mb-3">
+              <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                {galleryImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Gallery Image ${index + 1}`}
+                    style={{ maxWidth: '100%', height: 'auto', marginRight: '10px', marginBottom: '10px' }}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </form>
       </div>
     </>
