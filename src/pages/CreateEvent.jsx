@@ -16,6 +16,7 @@ function CreateEvent() {
   const [validationErrors, setValidationErrors] = useState(null);
 
   const [imageLoading, setImageLoading] = useState(false);
+  const [galleryImages, setGalleryImages] = useState([]);
 
   const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
 
@@ -33,12 +34,14 @@ function CreateEvent() {
   const handleFileUpload = (e) => {
     const uploadData = new FormData();
 
+    uploadData.append("imageType", "mainImage");
     uploadData.append("imageUrl", e.target.files[0]);
 
     setImageLoading(true);
 
     uploadImage(uploadData)
       .then((response) => {
+        console.log('response mainImage', response)
         setImageUrl(response.fileUrl);
       })
       .catch((err) => console.log("Error while uploading the file: ", err))
@@ -46,6 +49,34 @@ function CreateEvent() {
         setImageLoading(false);
       });
   };
+
+
+const handleGalleryFileUpload = (e) => {
+  const uploadData = new FormData();
+
+  // Use 'append' to add each file separately to the form data
+  Array.from(e.target.files).forEach((file, index) => {
+    console.log("🚖", file, index)
+    uploadData.append("imageType", "galleryImage");
+    uploadData.append("imageUrl", file);
+  });
+
+  setImageLoading(true);
+
+  uploadImage(uploadData)
+    .then((responses) => {
+      // Extract file URLs from responses
+      console.log("🚇Server response:", responses); 
+      setGalleryImages((prevGalleryImages) => [...prevGalleryImages, ...responses.fileUrl]);
+      console.log("galleryImages:", galleryImages);
+    })
+    .catch((err) => console.log("Error while uploading the file: ", err))
+    .finally(() => {
+      setImageLoading(false);
+    });
+};
+
+
 
   useEffect(() => {
     axios
@@ -62,8 +93,9 @@ function CreateEvent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const storedToken = localStorage.getItem("authToken");
-    console.log("hallo clg")
+
     const requestBody = {
       title,
       description,
@@ -71,6 +103,7 @@ function CreateEvent() {
       time,
       location,
       imageUrl,
+      gallery: galleryImages.map((url) => ({ galleryImageUrl: url })),
       guests,
     };
 
@@ -105,6 +138,7 @@ function CreateEvent() {
         }
       });
   };
+
   useEffect(() => {
     console.log(guests);
   }, [guests]);
@@ -244,7 +278,7 @@ function CreateEvent() {
           {/* {{#if errorMessage}}
       <p className="error text-danger">{{errorMessage}}</p>
     {{/if}} */}
-          <div className="mb-3">
+          {/* <div className="mb-3">
             <input
               type="file"
               className="btn btn-secondary"
@@ -253,7 +287,7 @@ function CreateEvent() {
               name="movie-cover-image"
               onChange={(e) => handleFileUpload(e)}
             />
-          </div>
+          </div> */}
           <div className="mb-3">
             <label htmlFor="guests" className="form-label">
               Guests
@@ -280,6 +314,31 @@ function CreateEvent() {
             <div id="multiSelectHelp" className="form-text">
               At lest one guest must be selected
             </div>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="image" className="form-label">
+              Main Image
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              id="image"
+              name="main-image"
+              onChange={(e) => handleFileUpload(e)}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="galleryImages" className="form-label">
+              Gallery Images
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              id="galleryImages"
+              name="gallery-images"
+              multiple
+              onChange={(e) => handleGalleryFileUpload(e)}
+            />
           </div>
           <button
             type="submit"
