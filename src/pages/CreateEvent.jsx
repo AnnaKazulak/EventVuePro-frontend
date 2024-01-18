@@ -278,16 +278,6 @@ function CreateEvent() {
           {/* {{#if errorMessage}}
       <p className="error text-danger">{{errorMessage}}</p>
     {{/if}} */}
-          {/* <div className="mb-3">
-            <input
-              type="file"
-              className="btn btn-secondary"
-              id="image"
-              placeholder="image"
-              name="movie-cover-image"
-              onChange={(e) => handleFileUpload(e)}
-            />
-          </div> */}
           <div className="mb-3">
             <label htmlFor="guests" className="form-label">
               Guests
@@ -378,7 +368,7 @@ function CreateEvent() {
                     key={index}
                     src={image}
                     alt={`Gallery Image ${index + 1}`}
-                    style={{ maxWidth: '100%', height: 'auto', marginRight: '10px', marginBottom: '10px' }}
+                    style={{ maxWidth: '100%', maxHeight: '200px', marginRight: '10px', marginBottom: '10px' }}
                   />
                 ))}
               </div>
