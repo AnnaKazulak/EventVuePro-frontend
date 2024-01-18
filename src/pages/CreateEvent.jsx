@@ -24,6 +24,19 @@ function CreateEvent() {
   const token = localStorage.getItem("authToken");
   const navigate = useNavigate();
 
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [isLightboxOpen, setLightboxOpen] = useState(false);
+
+  const openLightbox = (index) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    setLightboxIndex(null);
+  };
+
   const uploadImage = (file) => {
     return axios
       .post(`${import.meta.env.VITE_API_URL}/api/upload`, file)
@@ -358,22 +371,33 @@ function CreateEvent() {
           >
             Cancel
           </a>
-
           {/* Gallery Images Preview */}
           {galleryImages.length > 0 && (
-            <div className="mb-3">
-              <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            <div className="gallery-container mb-3">
+              <div className="gallery-images-container">
                 {galleryImages.map((image, index) => (
                   <img
                     key={index}
                     src={image}
                     alt={`Gallery Image ${index + 1}`}
-                    style={{ maxWidth: '100%', maxHeight: '200px', marginRight: '10px', marginBottom: '10px' }}
+                    className="gallery-image"
+                    onClick={() => openLightbox(index)}
                   />
                 ))}
               </div>
             </div>
           )}
+          {/* Lightbox */}
+          {isLightboxOpen && (
+            <div className="lightbox-overlay" onClick={closeLightbox}>
+              <img
+                src={galleryImages[lightboxIndex]}
+                alt={`Gallery Image ${lightboxIndex + 1}`}
+                className="lightbox-image"
+              />
+            </div>
+          )}
+
         </form>
       </div>
     </>
