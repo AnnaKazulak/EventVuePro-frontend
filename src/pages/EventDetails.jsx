@@ -101,6 +101,9 @@ function EventDetails() {
               <button className="btn btn-danger me-5" onClick={deleteEvent}>
                 Delete Event
               </button>
+              <button className="btn btn-warning me-5" onClick={() => { console.log("Add photos clicked") }}>
+                Add Photos
+              </button>
 
               <a
                 className="btn btn-outline-success "

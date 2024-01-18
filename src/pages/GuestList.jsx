@@ -11,6 +11,7 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
+
 function GuestList({ imageDimensions }) {
   const [guests, setGuests] = useState([]);
   const [viewMode, setViewMode] = useState("list");
@@ -18,13 +19,6 @@ function GuestList({ imageDimensions }) {
 
   const [searchInput, setSearchInput] = useState("");
   const [filteredGuests, setFilteredGuests] = useState([]);
-
-  console.log(
-    "filteredGuests ",
-    filteredGuests,
-    "image dimensions",
-    imageDimensions
-  );
 
   const getAllGuests = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -124,13 +118,10 @@ function GuestList({ imageDimensions }) {
         <>
           <PhotoAlbum
             photos={filteredGuests.map((guest) => {
-              console.log(guest)
-              console.log(imageDimensions)
-              return  {src: guest.imageUrl,
-              // width:100,
-              // height: 100
+              return  {
+              src: guest.imageUrl,
               width: imageDimensions[guest.imageUrl].width,
-              height: imageDimensions[guest.imageUrl].height
+              height: imageDimensions[guest.imageUrl].height,
             }
              
             })}
@@ -138,6 +129,7 @@ function GuestList({ imageDimensions }) {
             targetRowHeight={150}
             onClick={({ index }) => setIndex(index)}
           />
+          <span>Hallo</span>
 
           <Lightbox
             slides={filteredGuests.map((guest) => ({
