@@ -104,7 +104,6 @@ function EventDetails() {
               <button className="btn btn-warning me-5" onClick={() => { console.log("Add photos clicked") }}>
                 Add Photos
               </button>
-
               <a
                 className="btn btn-outline-success "
                 role="button"
@@ -115,6 +114,20 @@ function EventDetails() {
             </div>
           </div>
         </div>
+        {event.gallery.length > 0 && (
+          <div className="mb-3">
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+              {event.gallery.map((image, index) => (
+                <img
+                  key={index}
+                  src={image.galleryImageUrl}
+                  alt={`Gallery Image ${index + 1}`}
+                  style={{ maxWidth: '100%', maxHeight: '200px', marginRight: '10px', marginBottom: '10px' }}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
