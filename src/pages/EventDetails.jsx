@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import GalleryPreview from "../components/GalleryPreview";
 
 function EventDetails() {
   const { eventId } = useParams();
@@ -61,7 +62,7 @@ function EventDetails() {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                   Guest&apos; List
+                    Guest&apos; List
                   </button>
                 </h2>
                 <div
@@ -114,20 +115,7 @@ function EventDetails() {
             </div>
           </div>
         </div>
-        {event.gallery.length > 0 && (
-          <div className="mb-3">
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {event.gallery.map((image, index) => (
-                <img
-                  key={index}
-                  src={image.galleryImageUrl}
-                  alt={`Gallery Image ${index + 1}`}
-                  style={{ maxWidth: '100%', maxHeight: '200px', marginRight: '10px', marginBottom: '10px' }}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+        <GalleryPreview images={event.gallery.map(image => image.galleryImageUrl)} />
       </div>
     </>
   );
