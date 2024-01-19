@@ -61,7 +61,7 @@ function EventDetails() {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    Guest's List
+                   Guest&apos; List
                   </button>
                 </h2>
                 <div
