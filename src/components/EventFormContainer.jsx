@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EventForm from "../components/EventForm";
+import PropTypes from "prop-types";
 
 function EventFormContainer({ eventId }) {
 
@@ -132,6 +133,12 @@ function EventFormContainer({ eventId }) {
 
         const storedToken = localStorage.getItem("authToken");
 
+        const apiEndpoint = eventId
+            ? `${import.meta.env.VITE_API_URL}/api/events/${eventId}`
+            : `${import.meta.env.VITE_API_URL}/api/events`;
+
+        const requestMethod = eventId ? "PUT" : "POST";
+
         const requestBody = {
             title,
             description,
@@ -144,7 +151,10 @@ function EventFormContainer({ eventId }) {
         };
 
         axios
-            .post(`${import.meta.env.VITE_API_URL}/api/events`, requestBody, {
+            .request({
+                method: requestMethod,
+                url: apiEndpoint,
+                data: requestBody,
                 headers: { Authorization: `Bearer ${storedToken}` },
             })
             .then((response) => {
@@ -234,6 +244,11 @@ function EventFormContainer({ eventId }) {
             />
         </>
     );
+}
+
+
+EventFormContainer.propTypes = {
+    eventId: PropTypes.string,
 }
 
 export default EventFormContainer;
