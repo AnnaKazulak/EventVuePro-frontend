@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GoogleMap, Marker } from "@react-google-maps/api";
-
+import GalleryPreview from "../components/GalleryPreview";
 
 function CreateEvent() {
   const [title, setTitle] = useState("");
@@ -24,18 +24,6 @@ function CreateEvent() {
   const token = localStorage.getItem("authToken");
   const navigate = useNavigate();
 
-  const [lightboxIndex, setLightboxIndex] = useState(null);
-  const [isLightboxOpen, setLightboxOpen] = useState(false);
-
-  const openLightbox = (index) => {
-    setLightboxIndex(index);
-    setLightboxOpen(true);
-  };
-
-  const closeLightbox = () => {
-    setLightboxOpen(false);
-    setLightboxIndex(null);
-  };
 
   const uploadImage = (file) => {
     return axios
@@ -371,32 +359,8 @@ function CreateEvent() {
           >
             Cancel
           </a>
-          {/* Gallery Images Preview */}
-          {galleryImages.length > 0 && (
-            <div className="gallery-container mb-3">
-              <div className="gallery-images-container">
-                {galleryImages.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`Gallery Image ${index + 1}`}
-                    className="gallery-image"
-                    onClick={() => openLightbox(index)}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-          {/* Lightbox */}
-          {isLightboxOpen && (
-            <div className="lightbox-overlay" onClick={closeLightbox}>
-              <img
-                src={galleryImages[lightboxIndex]}
-                alt={`Gallery Image ${lightboxIndex + 1}`}
-                className="lightbox-image"
-              />
-            </div>
-          )}
+
+          <GalleryPreview images={galleryImages} />
 
         </form>
       </div>
