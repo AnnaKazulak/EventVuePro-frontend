@@ -1,21 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
-import PhotoAlbum from "react-photo-album";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
-import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
+import GalleryPreview from "../components/GalleryPreview";
 
 
-function GuestList({ imageDimensions }) {
+function GuestList() {
   const [guests, setGuests] = useState([]);
   const [viewMode, setViewMode] = useState("list");
-  const [index, setIndex] = useState(-1);
 
   const [searchInput, setSearchInput] = useState("");
   const [filteredGuests, setFilteredGuests] = useState([]);
@@ -82,7 +73,7 @@ function GuestList({ imageDimensions }) {
       {viewMode === "list" && (
         <div>
           <h4>Your guest list contains {filteredGuests.length} members</h4>
-          { filteredGuests && filteredGuests.map((guest, index) => {
+          {filteredGuests && filteredGuests.map((guest, index) => {
             return (
               <div key={guest._id}>
                 <ol className="list-group custom-list-group">
@@ -113,36 +104,8 @@ function GuestList({ imageDimensions }) {
           })}
         </div>
       )}
-
       {viewMode === "gallery" && filteredGuests && (
-        <>
-          <PhotoAlbum
-            photos={filteredGuests.map((guest) => {
-              return  {
-              src: guest.imageUrl,
-              width: imageDimensions[guest.imageUrl].width,
-              height: imageDimensions[guest.imageUrl].height,
-            }
-             
-            })}
-            layout="rows"
-            targetRowHeight={150}
-            onClick={({ index }) => setIndex(index)}
-          />
-          <span>Hallo</span>
-
-          <Lightbox
-            slides={filteredGuests.map((guest) => ({
-              src: guest.imageUrl,
-              width: 800,
-              height: 600,
-            }))}
-            open={index >= 0}
-            index={index}
-            close={() => setIndex(-1)}
-            plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
-          />
-        </>
+        <GalleryPreview images={filteredGuests.map((guest) => guest.imageUrl)} />
       )}
     </div>
   );
