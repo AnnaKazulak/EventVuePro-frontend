@@ -10,6 +10,9 @@ const GuestFormContainer = ({ guestId }) => {
     const [imageUrl, setImageUrl] = useState("");
     const [imageLoading, setImageLoading] = useState(false);
 
+    const [email, setEmail] = useState("")
+    const [whatsappNumber, setWhatsappNumber] = useState("")
+
     const token = localStorage.getItem("authToken");
     const navigate = useNavigate();
 
@@ -52,6 +55,8 @@ const GuestFormContainer = ({ guestId }) => {
                     setName(existingGuest.name);
                     setDescription(existingGuest.description);
                     setImageUrl(existingGuest.imageUrl);
+                    setEmail(existingGuest.email);
+                    setWhatsappNumber(existingGuest.whatsappNumber)
                 })
                 .catch((error) => console.log(error));
         }
@@ -63,8 +68,10 @@ const GuestFormContainer = ({ guestId }) => {
 
         const requestBody = {
             name,
+            email,
+            whatsappNumber,
             description,
-            imageUrl
+            imageUrl,
         };
 
         const apiEndpoint = guestId
@@ -86,6 +93,8 @@ const GuestFormContainer = ({ guestId }) => {
                 setName("");
                 setDescription("");
                 setImageUrl("");
+                setEmail(""),
+                    setWhatsappNumber("")
                 navigate("/guests");
             })
             .catch((error) => console.log(error));
@@ -95,11 +104,15 @@ const GuestFormContainer = ({ guestId }) => {
         <>
             <GuestForm
                 name={name}
+                email={email}
+                whatsappNumber={whatsappNumber}
                 description={description}
                 imageUrl={imageUrl}
                 imageLoading={imageLoading}
                 handleFileUpload={handleFileUpload}
                 setName={setName}
+                setEmail={setEmail}
+                setWhatsappNumber={setWhatsappNumber}
                 setDescription={setDescription}
                 handleSubmit={handleSubmit}
             />

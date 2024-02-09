@@ -48,6 +48,8 @@ function GuestDetails() {
           <div className="col-md-6">
             <p className="fs-3">{guest.name}</p>
             <p>{guest.description}</p>
+            <p>{guest.email}</p>
+            <p>{guest.whatsappNumber}</p>
             <div className="mt-5">
               <button className="btn btn-secondary me-5">
                 {" "}

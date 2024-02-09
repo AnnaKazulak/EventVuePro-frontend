@@ -4,10 +4,14 @@ const GuestForm = ({
     name,
     description,
     imageUrl,
+    email,
+    whatsappNumber,
     imageLoading,
     handleFileUpload,
     setName,
     setDescription,
+    setEmail,
+    setWhatsappNumber,
     handleSubmit,
 }) => {
 
@@ -28,6 +32,36 @@ const GuestForm = ({
                             name="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="email" className="form-label">
+                            Email
+                            <span className="text-danger">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="email"
+                            placeholder="email"
+                            name="email"
+                            value={email || ''}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="whatsappNumber" className="form-label">
+                            WhatsappNumber
+                            <span className="text-danger">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="whatsappNumber"
+                            placeholder="whatsappNumber"
+                            name="whatsappNumber"
+                            value={whatsappNumber}
+                            onChange={(e) => setWhatsappNumber(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
@@ -91,11 +125,15 @@ const GuestForm = ({
 GuestForm.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string,
+    email: PropTypes.string,
+    whatsappNumber: PropTypes.string,
     imageUrl: PropTypes.string,
     imageLoading: PropTypes.bool,
     handleFileUpload: PropTypes.func,
     setName: PropTypes.func,
     setDescription: PropTypes.func,
+    setEmail: PropTypes.func,
+    setWhatsappNumber: PropTypes.func,
     handleSubmit: PropTypes.func
 }
 
