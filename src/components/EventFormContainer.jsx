@@ -21,9 +21,6 @@ function EventFormContainer({ eventId }) {
     const [imageLoading, setImageLoading] = useState(false);
     const [galleryImages, setGalleryImages] = useState([]);
 
-    const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
-
-
     const token = localStorage.getItem("authToken");
     const navigate = useNavigate();
 
@@ -56,7 +53,7 @@ function EventFormContainer({ eventId }) {
                     setImageUrl(eventData.imageUrl);
                     setGuests(eventData.guests.map((guest) => guest._id));
                     setGalleryImages(eventData.gallery.map((image) => image.galleryImageUrl));
-                    setMapCenter({ lat: 0, lng: 0 });
+
                 })
                 .catch((error) => {
                     console.error("Error fetching event data: ", error);
@@ -196,32 +193,6 @@ function EventFormContainer({ eventId }) {
     }, [guests]);
 
 
-    useEffect(() => {
-        // Get user's current location
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    setMapCenter({
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    });
-                },
-                (error) => {
-                    console.error("Error getting user's location: ", error);
-                }
-            );
-        } else {
-            console.error("Geolocation is not supported by this browser.");
-        }
-
-    }, []);
-
-    // Handle map click event
-    const handleMapClick = (event) => {
-        // Update the location state with the clicked coordinates
-        setLocation(`${event.latLng.lat()}, ${event.latLng.lng()}`);
-    };
-
     return (
         <>
             <EventForm
@@ -236,10 +207,8 @@ function EventFormContainer({ eventId }) {
                 validationErrors={validationErrors}
                 imageLoading={imageLoading}
                 galleryImages={galleryImages}
-                mapCenter={mapCenter}
                 handleFileUpload={handleFileUpload}
                 handleGalleryFileUpload={handleGalleryFileUpload}
-                handleMapClick={handleMapClick}
                 setTitle={setTitle}
                 setDescription={setDescription}
                 setLocation={setLocation}

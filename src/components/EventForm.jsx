@@ -1,4 +1,3 @@
-import { GoogleMap, Marker } from "@react-google-maps/api";
 import GalleryPreview from "../components/GalleryPreview";
 import PropTypes from 'prop-types';
 import { formatDateShort } from '../utils/dateUtils';
@@ -17,10 +16,8 @@ const EventForm = ({
     validationErrors,
     imageLoading,
     galleryImages,
-    mapCenter,
     handleFileUpload,
     handleGalleryFileUpload,
-    handleMapClick,
     setTitle,
     setDescription,
     setLocation,
@@ -36,7 +33,7 @@ const EventForm = ({
         setFormattedDate(formatDateShort(initialDate));
     }, [initialDate]);
 
-    console.log("formattedDate",formattedDate)
+    console.log("formattedDate", formattedDate)
 
     return (
         <form className="center-form">
@@ -90,25 +87,11 @@ const EventForm = ({
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                 />
-                <GoogleMap
-                    mapContainerStyle={{ height: "300px", width: "100%" }}
-                    center={mapCenter}
-                    zoom={14}
-                    onClick={handleMapClick}
-                >
-                    {/* Marker for user's current location with a custom pin */}
-                    <Marker
-                        position={mapCenter}
-                    // icon={{
-                    //   url: "https://maps.google.com/mapfiles/ms/micons/blue-dot.png",
-                    //   scaledSize: { width: 40, height: 40 },
-                    // }}
-                    />
-                </GoogleMap>
+
             </div>
 
             <div className="mb-3">
-                <label  htmlFor="date" className="form-label me-3">
+                <label htmlFor="date" className="form-label me-3">
                     Date
                     {/* <span className="text-danger">*</span> */}
                 </label>
