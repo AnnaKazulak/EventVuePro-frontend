@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import GalleryPreview from "../components/GalleryPreview";
+import { formatDateShort } from "../utils/dateUtils";
 
 function EventDetails() {
   const { eventId } = useParams();
@@ -23,6 +24,7 @@ function EventDetails() {
   if (!event) {
     return <div>Loading...</div>;
   }
+
 
   const deleteEvent = (e) => {
     e.preventDefault();
@@ -49,6 +51,8 @@ function EventDetails() {
           </div>
           <div className="col-md-6">
             <h5 className="card-title mb-5">{event.title}</h5>
+            <p className="card-text">{event.location}</p>
+            <p className="card-text">{formatDateShort(event.date)}</p>
             <p className="card-text">{event.description}</p>
 
             <div className="accordion" id="accordionExample">
@@ -101,9 +105,6 @@ function EventDetails() {
               </button>
               <button className="btn btn-danger me-5" onClick={deleteEvent}>
                 Delete Event
-              </button>
-              <button className="btn btn-warning me-5" onClick={() => { console.log("Add photos clicked") }}>
-                Add Photos
               </button>
               <a
                 className="btn btn-outline-success "

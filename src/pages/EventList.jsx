@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { formatDateShort } from '../utils/dateUtils';
 
 function EventList() {
   const [events, setEvents] = useState([]);
@@ -14,8 +15,17 @@ function EventList() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        setEvents(response.data);
-        setFilteredEvents(response.data);
+        const eventsData = response.data;
+
+        // Format the date for each event
+        const formattedEvents = eventsData.map(event => {
+          const formattedEventDate = formatDateShort(event.date);
+          return { ...event, formattedDate: formattedEventDate };
+        });
+
+        // Update state with formatted events
+        setEvents(formattedEvents);
+        setFilteredEvents(formattedEvents);
       })
       .catch((error) => console.log(error));
   };
@@ -77,14 +87,14 @@ function EventList() {
           </tr>
         </thead>
         <tbody>
-          {upcomingEvents.map((event, index) => (
+          {upcomingEvents.map((event) => (
             <tr key={event._id}>
               <td>
                 <Link to={`/events/${event._id}`} className="event-link">
                   {event.title}
                 </Link>
               </td>
-              <td>{event.date}</td>
+              <td>{formatDateShort(event.date)}</td>
               <td>
                 <Link
                   to={`/events/edit/${event._id}`}
@@ -111,14 +121,14 @@ function EventList() {
           </tr>
         </thead>
         <tbody>
-          {pastEvents.map((event, index) => (
+          {pastEvents.map((event) => (
             <tr key={event._id}>
               <td>
                 <Link to={`/events/${event._id}`} className="event-link">
                   {event.title}
                 </Link>
               </td>
-              <td>{event.date}</td>
+              <td>{formatDateShort(event.date)}</td>
               <td>
                 <Link
                   to={`/events/edit/${event._id}`}

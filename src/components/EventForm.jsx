@@ -1,12 +1,15 @@
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import GalleryPreview from "../components/GalleryPreview";
 import PropTypes from 'prop-types';
+import { formatDateShort } from '../utils/dateUtils';
+import { useState, useEffect } from "react";
+
 
 const EventForm = ({
     title,
     description,
     location,
-    date,
+    initialDate,
     time,
     imageUrl,
     guests,
@@ -26,6 +29,15 @@ const EventForm = ({
     setGuests,
     handleSubmit,
 }) => {
+    const [formattedDate, setFormattedDate] = useState(formatDateShort(initialDate, 'YYYY.MM.DD')); // Use initialDate
+
+    useEffect(() => {
+        // Update formattedDate whenever initialDate changes
+        setFormattedDate(formatDateShort(initialDate));
+    }, [initialDate]);
+
+    console.log("formattedDate",formattedDate)
+
     return (
         <form className="center-form">
             <div className="mb-3">
@@ -96,18 +108,23 @@ const EventForm = ({
             </div>
 
             <div className="mb-3">
-                <label htmlFor="date" className="form-label">
+                <label  htmlFor="date" className="form-label me-3">
                     Date
                     {/* <span className="text-danger">*</span> */}
                 </label>
+                <span className="fw-bold">{formattedDate}</span>
                 <input
                     type="date"
                     className="form-control"
                     id="date"
                     placeholder="date"
                     name="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
+                    value={formattedDate}
+                    onChange={(e) => {
+                        const newDate = e.target.value;
+                        setFormattedDate(newDate);
+                        setDate(newDate);
+                    }}
                 />
             </div>
             <div className="mb-3">
@@ -221,7 +238,7 @@ EventForm.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
     location: PropTypes.string,
-    date: PropTypes.string,
+    initialDate: PropTypes.string,
     time: PropTypes.string,
     imageUrl: PropTypes.string,
     guests: PropTypes.array,

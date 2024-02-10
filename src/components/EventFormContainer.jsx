@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EventForm from "../components/EventForm";
 import PropTypes from "prop-types";
+import moment from 'moment';
+
 
 function EventFormContainer({ eventId }) {
 
@@ -54,7 +56,7 @@ function EventFormContainer({ eventId }) {
                     setImageUrl(eventData.imageUrl);
                     setGuests(eventData.guests.map((guest) => guest._id));
                     setGalleryImages(eventData.gallery.map((image) => image.galleryImageUrl));
-                    setMapCenter({ lat: 0, lng: 0 }); // Update with actual location data if available
+                    setMapCenter({ lat: 0, lng: 0 });
                 })
                 .catch((error) => {
                     console.error("Error fetching event data: ", error);
@@ -128,10 +130,14 @@ function EventFormContainer({ eventId }) {
             });
     }, []);
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const storedToken = localStorage.getItem("authToken");
+
+        // Format the date using Moment.js before submitting the form
+        const formattedDate = moment(date).format('YYYY.MM.DD');
 
         const apiEndpoint = eventId
             ? `${import.meta.env.VITE_API_URL}/api/events/${eventId}`
@@ -142,7 +148,7 @@ function EventFormContainer({ eventId }) {
         const requestBody = {
             title,
             description,
-            date,
+            date: formattedDate,
             time,
             location,
             imageUrl,
