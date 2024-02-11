@@ -8,7 +8,7 @@ const EventForm = ({
     title,
     description,
     location,
-    initialDate,
+    date,
     time,
     imageUrl,
     guests,
@@ -26,12 +26,11 @@ const EventForm = ({
     setGuests,
     handleSubmit,
 }) => {
-    const [formattedDate, setFormattedDate] = useState(formatDateShort(initialDate, 'YYYY.MM.DD')); // Use initialDate
+    const [formattedDate, setFormattedDate] = useState(formatDateShort(date, 'yyyy-MM-dd')); // Use initialDate
 
     useEffect(() => {
-        // Update formattedDate whenever initialDate changes
-        setFormattedDate(formatDateShort(initialDate));
-    }, [initialDate]);
+        setFormattedDate(formatDateShort(date));
+    }, [date]);
 
     console.log("formattedDate", formattedDate)
 
@@ -221,7 +220,7 @@ EventForm.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
     location: PropTypes.string,
-    initialDate: PropTypes.string,
+    date: PropTypes.string,
     time: PropTypes.string,
     imageUrl: PropTypes.string,
     guests: PropTypes.array,

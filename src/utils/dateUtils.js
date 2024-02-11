@@ -7,6 +7,5 @@ export const formatDateLong = (date) => {
 
 // Format for date like '24.01.2024'
 export const formatDateShort = (date) => {
-    // return moment(date).format('DD.MM.YYYY');
-    return moment(date).format('YYYY.MM.DD');
+    return moment(date).format('yyyy-MM-DD');
 };

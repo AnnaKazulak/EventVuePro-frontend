@@ -25,6 +25,7 @@ function EventFormContainer({ eventId }) {
     const navigate = useNavigate();
 
     console.log("date from EventFormContainer", date)
+    
     useEffect(() => {
         // Fetch guests data
         axios
