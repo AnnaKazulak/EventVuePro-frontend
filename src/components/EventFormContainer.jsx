@@ -24,6 +24,7 @@ function EventFormContainer({ eventId }) {
     const token = localStorage.getItem("authToken");
     const navigate = useNavigate();
 
+    console.log("date from EventFormContainer", date)
     useEffect(() => {
         // Fetch guests data
         axios

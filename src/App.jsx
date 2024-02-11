@@ -16,7 +16,7 @@ import GuestDetails from "./pages/GuestDetails";
 import EditGuest from "./pages/EditGuest";
 import EventDetails from "./pages/EventDetails";
 import EditEvent from "./pages/EditEvent";
-import MapContainer from "./MapContainer";
+
 
 function App() {
   const [imageDimensions, setImageDimensions] = useState({});
@@ -109,18 +109,16 @@ function App() {
         />
 
         <Route path="/events/edit/:eventId" element={
-          <MapContainer>
-            <EditEvent />
-          </MapContainer>
+          <EditEvent />
         } />
 
         <Route
           path="/events/create"
           element={
             <IsPrivate>
-              <MapContainer>
-                <CreateEvent />
-              </MapContainer>
+
+              <CreateEvent />
+
             </IsPrivate>
           }
         />
