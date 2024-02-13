@@ -125,7 +125,7 @@ function EventDetails() {
             </div>
           </div>
         </div>
-        {showEmailForm && <EmailForm />}
+        {showEmailForm && <EmailForm guests={event.guests}/>}
         <GalleryPreview images={event.gallery.map(image => image.galleryImageUrl)} />
       </div>
     </>
