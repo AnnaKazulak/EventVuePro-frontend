@@ -6,16 +6,14 @@ import GalleryPreview from "../components/GalleryPreview";
 import { formatDateShort } from "../utils/dateUtils";
 import EmailForm from "../components/EmailForm";
 
-
 function EventDetails() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
   const [showEmailForm, setShowEmailForm] = useState(false);
-
   const navigate = useNavigate();
 
   const handleSendEmailClick = () => {
-    setShowEmailForm(true);
+    setShowEmailForm(prevState => !prevState); // Toggle showEmailForm state
   };
 
   useEffect(() => {
@@ -31,7 +29,6 @@ function EventDetails() {
   if (!event) {
     return <div>Loading...</div>;
   }
-
 
   const deleteEvent = (e) => {
     e.preventDefault();
@@ -111,7 +108,10 @@ function EventDetails() {
                 </Link>
               </button>
               {/* Button to toggle EmailForm visibility */}
-              <button className="btn btn-primary me-5" onClick={handleSendEmailClick}>Send Email Invitation</button>
+              <button className={showEmailForm ? "btn btn-outline-primary me-5" : "btn btn-primary me-5"} onClick={handleSendEmailClick}>
+                {showEmailForm ? "Close Invitation Form" : "Open Invitation Form"}
+              </button>
+
               <button className="btn btn-danger me-5" onClick={deleteEvent}>
                 Delete Event
               </button>
@@ -125,7 +125,7 @@ function EventDetails() {
             </div>
           </div>
         </div>
-        {showEmailForm && <EmailForm guests={event.guests}/>}
+        {showEmailForm && <EmailForm guests={event.guests} />}
         <GalleryPreview images={event.gallery.map(image => image.galleryImageUrl)} />
       </div>
     </>
