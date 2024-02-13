@@ -4,12 +4,19 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import GalleryPreview from "../components/GalleryPreview";
 import { formatDateShort } from "../utils/dateUtils";
+import EmailForm from "../components/EmailForm";
+
 
 function EventDetails() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
+  const [showEmailForm, setShowEmailForm] = useState(false);
 
   const navigate = useNavigate();
+
+  const handleSendEmailClick = () => {
+    setShowEmailForm(true);
+  };
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
@@ -103,6 +110,8 @@ function EventDetails() {
                   Edit Event
                 </Link>
               </button>
+              {/* Button to toggle EmailForm visibility */}
+              <button className="btn btn-primary me-5" onClick={handleSendEmailClick}>Send Email Invitation</button>
               <button className="btn btn-danger me-5" onClick={deleteEvent}>
                 Delete Event
               </button>
@@ -116,6 +125,7 @@ function EventDetails() {
             </div>
           </div>
         </div>
+        {showEmailForm && <EmailForm />}
         <GalleryPreview images={event.gallery.map(image => image.galleryImageUrl)} />
       </div>
     </>
