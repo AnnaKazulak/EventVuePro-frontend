@@ -8,6 +8,7 @@ const EmailForm = ({ guests }) => {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ const EmailForm = ({ guests }) => {
       setSelectedEmails([]);
       setSubject('');
       setMessage('');
+      setEmailSent(true);
     } catch (error) {
       console.error('Error sending email:', error);
       setError('Error sending email. Please try again.');
@@ -38,6 +40,11 @@ const EmailForm = ({ guests }) => {
   return (
     <div className="card mt-5">
       <div className="card-body">
+        {emailSent && ( // Render success banner if emailSent is true
+          <div className="alert alert-success mb-3">
+            Email(s) sent successfully!
+          </div>
+        )}
         <h3 className="card-title">Send Email</h3>
         {error && <div className="alert alert-danger">{error}</div>}
         <form onSubmit={handleSubmit} className="row">
