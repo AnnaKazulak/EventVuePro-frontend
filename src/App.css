@@ -123,6 +123,18 @@
   margin-bottom: 10px;
   cursor: pointer;
 }
+.pointer {
+  cursor: pointer;
+}
+
+.guest-card {
+  transition: transform 0.3s ease;
+}
+
+.guest-card:hover {
+  transform: scale(1.05);
+}
+
 
 /* Event List */
 .event-link {
