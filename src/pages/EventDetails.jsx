@@ -9,12 +9,8 @@ import EmailForm from "../components/EmailForm";
 function EventDetails() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
-  const [showEmailForm, setShowEmailForm] = useState(false);
   const navigate = useNavigate();
 
-  const handleSendEmailClick = () => {
-    setShowEmailForm(prevState => !prevState); // Toggle showEmailForm state
-  };
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
@@ -70,7 +66,7 @@ function EventDetails() {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    Guest&apos; List
+                    Guest&apos;s List
                   </button>
                 </h2>
                 <div
@@ -107,10 +103,6 @@ function EventDetails() {
                   Edit Event
                 </Link>
               </button>
-              {/* Button to toggle EmailForm visibility */}
-              <button className={showEmailForm ? "btn btn-outline-primary me-5" : "btn btn-primary me-5"} onClick={handleSendEmailClick}>
-                {showEmailForm ? "Close Invitation Form" : "Open Invitation Form"}
-              </button>
 
               <button className="btn btn-danger me-5" onClick={deleteEvent}>
                 Delete Event
@@ -125,8 +117,34 @@ function EventDetails() {
             </div>
           </div>
         </div>
-        {showEmailForm && <EmailForm guests={event.guests} />}
+        <div className="accordion mt-5" id="emailAccordion">
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="headingEmailForm">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseEmailForm"
+                aria-expanded="false"
+                aria-controls="collapseEmailForm"
+              >
+                Open Email Form
+              </button>
+            </h2>
+            <div
+              id="collapseEmailForm"
+              className="accordion-collapse collapse"
+              aria-labelledby="headingEmailForm"
+              data-bs-parent="#emailAccordion"
+            >
+              <div className="accordion-body">
+                <EmailForm guests={event.guests} />
+              </div>
+            </div>
+          </div>
+        </div>
         <GalleryPreview images={event.gallery.map(image => image.galleryImageUrl)} />
+
       </div>
     </>
   );
