@@ -205,7 +205,7 @@ const EventForm = ({
             <a
                 className="btn btn-outline-success mb-5"
                 role="button"
-                href="/guests"
+                href="/events"
             >
                 Cancel
             </a>
