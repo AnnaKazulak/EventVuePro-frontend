@@ -38,18 +38,28 @@ const EmailForm = ({ guests }) => {
   };
 
   return (
-    <div className="card mt-5">
-      <div className="card-body">
+    <div className="card mt-5 border-0">
+      <div className="card-body ">
         {emailSent && ( // Render success banner if emailSent is true
           <div className="alert alert-success mb-3">
             Email(s) sent successfully!
           </div>
         )}
-        <h3 className="card-title">Send Email</h3>
         {error && <div className="alert alert-danger">{error}</div>}
-        <form onSubmit={handleSubmit} className="row">
+        <form onSubmit={handleSubmit} className="row ">
           <div className="col-md-6">
-            <div className="mb-3">
+            <div className="mb-3 ">
+              <div className="mb-3">
+                <label htmlFor="subject" className="form-label">Subject:</label>
+                <input
+                  type="text"
+                  id="subject"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  className="form-control"
+                  required
+                />
+              </div>
               <label htmlFor="email" className="form-label">Recipient Emails:</label>
               <select
                 id="email"
@@ -66,17 +76,7 @@ const EmailForm = ({ guests }) => {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="mb-3">
-              <label htmlFor="subject" className="form-label">Subject:</label>
-              <input
-                type="text"
-                id="subject"
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
-                className="form-control"
-                required
-              />
-            </div>
+
             <div className="mb-3">
               <label htmlFor="message" className="form-label">Message:</label>
               <textarea
@@ -84,15 +84,16 @@ const EmailForm = ({ guests }) => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className="form-control"
-                rows="6"
+                rows="7"
                 required
               ></textarea>
+              <button type="submit" className="btn btn-primary mt-3 me-2" disabled={loading}>
+                {loading ? 'Sending...' : 'Send Email'}
+              </button>
+              <button type="button" className="btn btn-outline-success mt-3" data-bs-toggle="collapse" data-bs-target="#collapseEmailForm">
+                Close
+              </button>
             </div>
-          </div>
-          <div className="col-12">
-            <button type="submit" className="btn btn-primary" disabled={loading}>
-              {loading ? 'Sending...' : 'Send Email'}
-            </button>
           </div>
         </form>
       </div>
