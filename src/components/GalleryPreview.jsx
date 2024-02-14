@@ -17,14 +17,14 @@ const GalleryPreview = ({ images }) => {
 
     return (
         <>
-            <div className="gallery-container mb-3">
+            <div className="gallery-container my-5">
                 <div className="gallery-images-container">
                     {images.map((image, index) => (
                         <img
                             key={index}
                             src={image}
                             alt={`Gallery Image ${index + 1}`}
-                            className="gallery-image"
+                            className="gallery-image me-3"
                             onClick={() => openLightbox(index)}
                         />
                     ))}

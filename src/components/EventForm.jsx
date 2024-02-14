@@ -32,7 +32,6 @@ const EventForm = ({
         setFormattedDate(formatDateShort(date));
     }, [date]);
 
-    console.log("formattedDate", formattedDate)
 
     return (
         <form className="center-form">

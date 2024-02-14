@@ -24,8 +24,7 @@ function EventFormContainer({ eventId }) {
     const token = localStorage.getItem("authToken");
     const navigate = useNavigate();
 
-    console.log("date from EventFormContainer", date)
-    
+
     useEffect(() => {
         // Fetch guests data
         axios
@@ -89,25 +88,28 @@ function EventFormContainer({ eventId }) {
             });
     };
 
-
     const handleGalleryFileUpload = (e) => {
-        const uploadData = new FormData();
+        const uploadDataArray = []; // Array to store upload data for each file
 
-        // Use 'append' to add each file separately to the form data
-        Array.from(e.target.files).forEach((file, index) => {
-            console.log("🚖", file, index)
+        // Iterate over each file selected by the user
+        Array.from(e.target.files).forEach((file) => {
+            const uploadData = new FormData();
+
+            // Append individual file data to FormData object
             uploadData.append("imageType", "galleryImage");
             uploadData.append("imageUrl", file);
+
+            uploadDataArray.push(uploadData); // Store FormData object in array
         });
 
         setImageLoading(true);
 
-        uploadImage(uploadData)
+        // Map over each FormData object and upload them individually
+        Promise.all(uploadDataArray.map(uploadImage))
             .then((responses) => {
-                // Extract file URLs from responses
-                console.log("🚇Server response:", responses);
-                setGalleryImages((prevGalleryImages) => [...prevGalleryImages, ...responses.fileUrl]);
-                console.log("galleryImages:", galleryImages);
+                // Extract file URLs from responses and update galleryImages state
+                const newGalleryImages = responses.flatMap((response) => response.fileUrl);
+                setGalleryImages((prevGalleryImages) => [...prevGalleryImages, ...newGalleryImages]);
             })
             .catch((err) => console.log("Error while uploading the file: ", err))
             .finally(() => {
@@ -129,14 +131,13 @@ function EventFormContainer({ eventId }) {
             });
     }, []);
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const storedToken = localStorage.getItem("authToken");
 
         // Format the date using Moment.js before submitting the form
-        const formattedDate = moment(date).format('YYYY.MM.DD');
+        const formattedDate = moment(date).format('YYYY-MM-DD');
 
         const apiEndpoint = eventId
             ? `${import.meta.env.VITE_API_URL}/api/events/${eventId}`
@@ -172,11 +173,8 @@ function EventFormContainer({ eventId }) {
                 setTime("");
                 setImageUrl("");
                 setGuests([]);
-                navigate("/events");
-                // to do
-                // Invoke the callback function coming through the props
-                // from the EventDetailsPage, to refresh the event details --> does not exist yet
-                // props.refreshProject();
+                setGalleryImages([]); 
+                navigate(`/events/${response.data._id}`);
             })
             .catch((error) => {
                 // Check if the error is a validation error
@@ -190,8 +188,9 @@ function EventFormContainer({ eventId }) {
             });
     };
 
+
     useEffect(() => {
-        console.log(guests);
+        console.log("guests", guests);
     }, [guests]);
 
 
