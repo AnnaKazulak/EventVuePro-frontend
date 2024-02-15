@@ -1,8 +1,11 @@
-
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import GalleryPreview from "../components/GalleryPreview";
+import Tabs from "../components/Tabs";
+import ListItem from "../components/ListItem";
+import DetailCard from "../components/DetailCard";
+import PageHeader from "../components/PageHeader";
+import SortableTable from "../components/SortableTable";
 
 function GuestList() {
   const [guests, setGuests] = useState([]);
@@ -32,6 +35,20 @@ function GuestList() {
     getAllGuests();
   }, []);
 
+  useEffect(() => {
+    // Sort the filtered guests alphabetically only if it's not already sorted
+    const sortedGuests = [...filteredGuests];
+    const isSorted = sortedGuests.every((guest, index) => index === 0 || guest.name >= sortedGuests[index - 1].name);
+    if (!isSorted) {
+      sortedGuests.sort((a, b) => a.name.localeCompare(b.name));
+      // Check if the sortedGuests array has changed
+      if (JSON.stringify(sortedGuests) !== JSON.stringify(filteredGuests)) {
+        setFilteredGuests(sortedGuests);
+      }
+    }
+  }, [filteredGuests]);
+
+
   // Function to handle search input changes
   const handleSearchInput = (event) => {
     const inputValue = event.target.value;
@@ -51,174 +68,50 @@ function GuestList() {
   };
 
   // Function to handle column sorting
-  const sortGuests = (column) => {
-    let newSortDirection = 'asc'; // Default to ascending order if not sorted
-    if (column === sortedColumn) {
-      // If the same column is clicked again, cycle through sort directions
-      newSortDirection = sortDirection === 'asc' ? 'desc' : sortDirection === 'desc' ? 'none' : 'asc';
-    }
+  const sortGuests = (sortedItems, column, direction) => {
+    setFilteredGuests(sortedItems);
     setSortedColumn(column);
-    setSortDirection(newSortDirection);
+    setSortDirection(direction);
   };
 
-  // Function to determine sorting order
-  const sortedGuests = [...filteredGuests].sort((a, b) => {
-    if (sortedColumn === "name") {
-      if (sortDirection === 'asc') {
-        return a.name.localeCompare(b.name);
-      } else if (sortDirection === 'desc') {
-        return b.name.localeCompare(a.name);
-      } else {
-        // No sorting
-        return 0;
-      }
-    } else {
-      return 0;
-    }
-  });
+
+  const guestTabs = [
+    { key: "list", value: "list", label: "Guest List" },
+    { key: "details", value: "details", label: "Guest Details" },
+    { key: "gallery", value: "gallery", label: "Guest Gallery" }
+  ];
+
 
   return (
     <div className="container mt-5">
-      <h1>All my guests</h1>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6"></div>
-          <div className="col-md-6">
-            <h4>Your guest list contains {filteredGuests.length} members</h4>
-            <input
-              type="search"
-              placeholder="Search by guest name"
-              className="form-control mb-3"
-              value={searchInput}
-              onChange={handleSearchInput}
-            />
-          </div>
-        </div>
-      </div>
+      <PageHeader
+        title="All my guests"
+        itemCount={filteredGuests.length}
+        searchInput={searchInput}
+        handleSearchInput={handleSearchInput}
+      />
 
       {/* Nav tabs */}
-      <ul className="nav nav-tabs mb-5">
-        <li className="nav-item">
-          <a
-            className={`nav-link ${activeTab === "list" && "active"}`}
-            aria-current="page"
-            href="#"
-            onClick={() => handleTabClick("list")}
-          >
-            Guest List
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            className={`nav-link ${activeTab === "details" && "active"}`}
-            href="#"
-            onClick={() => handleTabClick("details")}
-          >
-            Guest Details
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            className={`nav-link ${activeTab === "gallery" && "active"}`}
-            href="#"
-            onClick={() => handleTabClick("gallery")}
-          >
-            Guest Gallery
-          </a>
-        </li>
-      </ul>
+      <Tabs activeTab={activeTab} handleTabClick={handleTabClick} tabs={guestTabs} />
 
       {/* Render list view */}
       {viewMode === "list" && (
-        <div>
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Image</th>
-                <th scope="col"  onClick={() => sortGuests("name")} className="pointer">
-                  Name{" "}
-                  {sortedColumn === "name" && (
-                    <i
-                      className={`fas fa-sort-${sortDirection === 'asc' ? 'up' : sortDirection === 'desc' ? 'down' : ''}`}
-                    ></i>
-                  )}
-                </th>
-                <th scope="col">Email</th>
-                <th scope="col">Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sortedGuests.map((guest) => (
-                <tr key={guest._id}>
-                  <td>
-                    <Link
-                      to={`/guests/${guest._id}`}
-                      style={{ textDecoration: "none" }}
-                      className="text-decoration-none text-dark d-flex align-items-center"
-                    >
-                      <div
-                        style={{
-                          width: "70px",
-                          height: "70px",
-                          overflow: "hidden",
-                          borderRadius: "50%",
-                          marginRight: "10px",
-                        }}
-                      >
-                        <img
-                          src={guest.imageUrl}
-                          alt=""
-                          className="rounded-circle"
-                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                        />
-                      </div>
-                    </Link>
-                  </td>
-                  <td>
-                    <Link
-                      to={`/guests/${guest._id}`}
-                      style={{ textDecoration: "none" }}
-                      className="text-decoration-none text-dark d-flex align-items-center"
-                    >
-                      {guest.name}
-                    </Link>
-                  </td>
-                  <td>{guest.email}</td>
-                  <td>
-                    <Link
-                      to={`/guests/edit/${guest._id}`}
-                      className="event-link me-4"
-                    >
-                      <i className="fas fa-pencil-alt icon-link"></i>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <SortableTable
+          items={filteredGuests}
+          sortedColumn={sortedColumn}
+          sortDirection={sortDirection}
+          sortCallback={sortGuests}
+          renderItem={(guest) => (
+            <ListItem key={guest._id} data={guest} basePath="/guests" />
+          )}
+        />
       )}
 
-      {/* Render details view */}
+      {/*  Render details view */}
       {viewMode === "details" && (
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
           {filteredGuests.map((guest) => (
-            <div key={guest._id} className="col">
-              <Link to={`/guests/${guest._id}`} style={{ textDecoration: "none" }}>
-                <div className="card h-100 shadow guest-card">
-                  <img
-                    src={guest.imageUrl}
-                    className="card-img-top"
-                    alt={guest.name}
-                    style={{ objectFit: "cover", height: "200px" }}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{guest.name}</h5>
-                    <p className="card-text">{guest.email}</p>
-                  </div>
-                </div>
-              </Link>
-            </div>
+            <DetailCard key={guest._id} data={guest} basePath="/guests" />
           ))}
         </div>
       )}
