@@ -2,23 +2,24 @@ import PropTypes from "prop-types";
 import ListItem from "./ListItem";
 
 const SortableTable = ({ items, sortedColumn, sortDirection, sortCallback }) => {
+   
     // Function to handle column sorting
-    const sortItems = (column) => {
+       const sortItems = (column) => {
         let newSortDirection = 'asc'; // Default to ascending order if not sorted
         if (column === sortedColumn) {
-            // If the same column is clicked again, cycle through sort directions
-            newSortDirection = sortDirection === 'asc' ? 'desc' : sortDirection === 'desc' ? 'none' : 'asc';
+            // If the same column is clicked again, toggle the sort direction
+            newSortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            // If a different column is clicked, default to descending order
+            newSortDirection = 'desc';
         }
         // Sort the items based on the column and direction
         const sortedItems = [...items].sort((a, b) => {
             if (column === "name") {
                 if (newSortDirection === 'asc') {
                     return a.name.localeCompare(b.name);
-                } else if (newSortDirection === 'desc') {
-                    return b.name.localeCompare(a.name);
                 } else {
-                    // No sorting
-                    return 0;
+                    return b.name.localeCompare(a.name);
                 }
             } else {
                 return 0;
@@ -28,6 +29,7 @@ const SortableTable = ({ items, sortedColumn, sortDirection, sortCallback }) => 
         // and sorting parameters
         sortCallback(sortedItems, column, newSortDirection);
     };
+    
 
     return (
         <table className="table table-hover">

@@ -24,9 +24,10 @@ function GuestList() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        setGuests(response.data);
+        const sortedGuests = [...response.data].sort((a, b) => a.name.localeCompare(b.name));
+        setGuests(sortedGuests);
         // Initialize the filtered list with all guests
-        setFilteredGuests(response.data);
+        setFilteredGuests(sortedGuests);
       })
       .catch((error) => console.log(error));
   };
@@ -34,20 +35,6 @@ function GuestList() {
   useEffect(() => {
     getAllGuests();
   }, []);
-
-  useEffect(() => {
-    // Sort the filtered guests alphabetically only if it's not already sorted
-    const sortedGuests = [...filteredGuests];
-    const isSorted = sortedGuests.every((guest, index) => index === 0 || guest.name >= sortedGuests[index - 1].name);
-    if (!isSorted) {
-      sortedGuests.sort((a, b) => a.name.localeCompare(b.name));
-      // Check if the sortedGuests array has changed
-      if (JSON.stringify(sortedGuests) !== JSON.stringify(filteredGuests)) {
-        setFilteredGuests(sortedGuests);
-      }
-    }
-  }, [filteredGuests]);
-
 
   // Function to handle search input changes
   const handleSearchInput = (event) => {
@@ -80,7 +67,6 @@ function GuestList() {
     { key: "details", value: "details", label: "Guest Details" },
     { key: "gallery", value: "gallery", label: "Guest Gallery" }
   ];
-
 
   return (
     <div className="container mt-5">
