@@ -25,6 +25,7 @@ const EventForm = ({
     setTime,
     setGuests,
     handleSubmit,
+    isEditing
 }) => {
     const [formattedDate, setFormattedDate] = useState(formatDateShort(date, 'yyyy-MM-dd')); // Use initialDate
 
@@ -34,7 +35,7 @@ const EventForm = ({
 
 
     return (
-        <form className="center-form">
+        <form className="center-form" onSubmit={handleSubmit}>
             <div className="mb-3">
                 <label htmlFor="title" className="form-label">
                     Title
@@ -195,12 +196,11 @@ const EventForm = ({
                 />
             </div>
             <button
+                className="btn btn-success me-5 mb-5"
                 type="submit"
-                className="btn btn-success mb-5 me-5"
-                onClick={handleSubmit}
                 disabled={imageLoading}
             >
-                {imageLoading ? "Loading Image..." : "Add Event"}
+                {imageLoading ? "Uploading Image..." : (isEditing ? "Submit Changes" : "Add Guest")}
             </button>
             <a
                 className="btn btn-outline-success mb-5"
@@ -244,6 +244,7 @@ EventForm.propTypes = {
     setTime: PropTypes.func,
     setGuests: PropTypes.func,
     handleSubmit: PropTypes.func,
+    isEditing: PropTypes.bool
 };
 
 export default EventForm;

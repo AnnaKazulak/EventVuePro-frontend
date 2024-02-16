@@ -5,7 +5,6 @@ import EventForm from "../components/EventForm";
 import PropTypes from "prop-types";
 import moment from 'moment';
 
-
 function EventFormContainer({ eventId }) {
 
     const [title, setTitle] = useState("");
@@ -17,7 +16,7 @@ function EventFormContainer({ eventId }) {
     const [guests, setGuests] = useState([]);
     const [guestList, setGuestList] = useState([]);
     const [validationErrors, setValidationErrors] = useState(null);
-
+    const [isEditing, setIsEditing] = useState(false);
 
     const [imageLoading, setImageLoading] = useState(false);
     const [galleryImages, setGalleryImages] = useState([]);
@@ -55,7 +54,7 @@ function EventFormContainer({ eventId }) {
                     setImageUrl(eventData.imageUrl);
                     setGuests(eventData.guests.map((guest) => guest._id));
                     setGalleryImages(eventData.gallery.map((image) => image.galleryImageUrl));
-
+                    setIsEditing(true); 
                 })
                 .catch((error) => {
                     console.error("Error fetching event data: ", error);
@@ -227,6 +226,7 @@ function EventFormContainer({ eventId }) {
                 setTime={setTime}
                 setGuests={setGuests}
                 handleSubmit={handleSubmit}
+                isEditing={isEditing}
             />
         </>
     );

@@ -16,7 +16,9 @@ const GuestForm = ({
     setEmail,
     setWhatsappNumber,
     handleSubmit,
-    validationErrors
+    validationErrors,
+    isEditing
+
 }) => {
 
     const [emailValidationError, setEmailValidationError] = useState(null);
@@ -143,7 +145,7 @@ const GuestForm = ({
                         type="submit"
                         disabled={imageLoading}
                     >
-                        {imageLoading ? "Uploading Image..." : "Add Guest"}
+                        {imageLoading ? "Uploading Image..." : (isEditing ? "Submit Changes" : "Add Guest")}
                     </button>
                     <a
                         className="btn btn-outline-success mb-5"
@@ -171,7 +173,8 @@ GuestForm.propTypes = {
     setEmail: PropTypes.func,
     setWhatsappNumber: PropTypes.func,
     handleSubmit: PropTypes.func,
-    validationErrors: PropTypes.array
+    validationErrors: PropTypes.array,
+    isEditing: PropTypes.bool
 };
 
 export default GuestForm;

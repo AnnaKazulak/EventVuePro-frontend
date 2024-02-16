@@ -12,6 +12,7 @@ const GuestFormContainer = ({ guestId }) => {
     const [email, setEmail] = useState('');
     const [whatsappNumber, setWhatsappNumber] = useState('');
     const [validationErrors, setValidationErrors] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const navigate = useNavigate();
@@ -32,6 +33,7 @@ const GuestFormContainer = ({ guestId }) => {
                     setImageUrl(existingGuest.imageUrl);
                     setEmail(existingGuest.email);
                     setWhatsappNumber(existingGuest.whatsappNumber)
+                    setIsEditing(true); 
                 })
                 .catch((error) => console.log(error));
         }
@@ -132,6 +134,7 @@ const GuestFormContainer = ({ guestId }) => {
                 setDescription={setDescription}
                 handleSubmit={handleSubmit}
                 validationErrors={validationErrors}
+                isEditing={isEditing}
             />
         </>
     );
