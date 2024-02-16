@@ -18,6 +18,7 @@ function EventFormContainer({ eventId }) {
     const [guestList, setGuestList] = useState([]);
     const [validationErrors, setValidationErrors] = useState(null);
 
+
     const [imageLoading, setImageLoading] = useState(false);
     const [galleryImages, setGalleryImages] = useState([]);
 
@@ -137,7 +138,9 @@ function EventFormContainer({ eventId }) {
         const storedToken = localStorage.getItem("authToken");
 
         // Format the date using Moment.js before submitting the form
-        const formattedDate = moment(date).format('YYYY-MM-DD');
+        // const formattedDate = moment(date).format('YYYY-MM-DD');
+        const formattedDate = date ? moment(date).format('YYYY-MM-DD') : null;
+
 
         const apiEndpoint = eventId
             ? `${import.meta.env.VITE_API_URL}/api/events/${eventId}`
@@ -156,6 +159,12 @@ function EventFormContainer({ eventId }) {
             guests,
         };
 
+        // Check if the title field is empty
+        if (!title.trim()) {
+            setValidationErrors(["Event title is required"]);
+            return; // Prevent further submission
+        }
+
         axios
             .request({
                 method: requestMethod,
@@ -173,14 +182,15 @@ function EventFormContainer({ eventId }) {
                 setTime("");
                 setImageUrl("");
                 setGuests([]);
-                setGalleryImages([]); 
+                setGalleryImages([]);
                 navigate(`/events/${response.data._id}`);
             })
             .catch((error) => {
                 // Check if the error is a validation error
                 if (error.response && error.response.status === 400) {
-                    // Display the validation error message
-                    setValidationErrors(error.response.data.error);
+                    const { error: backendErrors } = error.response.data;
+                    // Update validationErrors state with backend errors
+                    setValidationErrors(backendErrors);
                 } else {
                     // Handle other errors
                     console.log(error);

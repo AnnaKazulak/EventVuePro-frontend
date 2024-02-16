@@ -1,45 +1,20 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import GuestForm from "./GuestForm";
-import PropTypes from "prop-types";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import GuestForm from './GuestForm';
+import PropTypes from 'prop-types';
 
 const GuestFormContainer = ({ guestId }) => {
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
     const [imageLoading, setImageLoading] = useState(false);
+    const [email, setEmail] = useState('');
+    const [whatsappNumber, setWhatsappNumber] = useState('');
+    const [validationErrors, setValidationErrors] = useState(null);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const [email, setEmail] = useState("")
-    const [whatsappNumber, setWhatsappNumber] = useState("")
-
-    const token = localStorage.getItem("authToken");
     const navigate = useNavigate();
-
-    const uploadImage = (file) => {
-        return axios
-            .post(`${import.meta.env.VITE_API_URL}/api/upload`, file)
-            .then((res) => res.data)
-            .catch((e) => console.log("Error uploading img ", e));
-    };
-
-    const handleFileUpload = (e) => {
-        const uploadData = new FormData();
-        uploadData.append("imageType", "mainImage");
-        uploadData.append("imageUrl", e.target.files[0]);
-
-        setImageLoading(true);
-
-        uploadImage(uploadData)
-            .then((response) => {
-                console.log('response mainImage', response)
-                setImageUrl(response.fileUrl);
-            })
-            .catch((err) => console.log("Error while uploading the file: ", err))
-            .finally(() => {
-                setImageLoading(false);
-            });
-    };
 
     useEffect(() => {
         // Fetch existing guest data only if guestId is present
@@ -60,11 +35,54 @@ const GuestFormContainer = ({ guestId }) => {
                 })
                 .catch((error) => console.log(error));
         }
-    }, [token, guestId]);
+    }, [guestId]);
+
+    const uploadImage = (file) => {
+        return axios
+            .post(`${import.meta.env.VITE_API_URL}/api/upload`, file)
+            .then((res) => res.data)
+            .catch((e) => console.log('Error uploading img ', e));
+    };
+
+    const handleFileUpload = (e) => {
+        const uploadData = new FormData();
+        uploadData.append('imageType', 'mainImage');
+        uploadData.append('imageUrl', e.target.files[0]);
+        setImageLoading(true);
+
+        uploadImage(uploadData)
+            .then((response) => {
+                setImageUrl(response.fileUrl);
+            })
+            .catch((err) => console.log('Error while uploading the file: ', err))
+            .finally(() => {
+                setImageLoading(false);
+            });
+    };
+
+    const validateForm = () => {
+        const errors = [];
+        if (!name.trim()) {
+            errors.push('Name is required');
+        }
+        if (!email.trim()) {
+            errors.push('Email is required');
+        } else if (!emailRegex.test(email)) {
+            errors.push('Enter email in correct email format');
+        }
+        return errors;
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const storedToken = localStorage.getItem("authToken");
+        const errors = validateForm();
+
+        if (errors.length > 0) {
+            setValidationErrors(errors);
+            return;
+        }
+
+        const storedToken = localStorage.getItem('authToken');
 
         const requestBody = {
             name,
@@ -78,7 +96,7 @@ const GuestFormContainer = ({ guestId }) => {
             ? `${import.meta.env.VITE_API_URL}/api/guests/${guestId}`
             : `${import.meta.env.VITE_API_URL}/api/guests`;
 
-        const requestMethod = guestId ? "PUT" : "POST";
+        const requestMethod = guestId ? 'PUT' : 'POST';
 
         axios
             .request({
@@ -87,15 +105,13 @@ const GuestFormContainer = ({ guestId }) => {
                 data: requestBody,
                 headers: { Authorization: `Bearer ${storedToken}` },
             })
-            .then((response) => {
-                console.log("response", response);
-                // Reset the state to clear the inputs
-                setName("");
-                setDescription("");
-                setImageUrl("");
-                setEmail(""),
-                    setWhatsappNumber("")
-                navigate("/guests");
+            .then(() => {
+                setName('');
+                setDescription('');
+                setImageUrl('');
+                setEmail('');
+                setWhatsappNumber('');
+                navigate('/guests');
             })
             .catch((error) => console.log(error));
     };
@@ -115,14 +131,14 @@ const GuestFormContainer = ({ guestId }) => {
                 setWhatsappNumber={setWhatsappNumber}
                 setDescription={setDescription}
                 handleSubmit={handleSubmit}
+                validationErrors={validationErrors}
             />
         </>
     );
 };
 
-
 GuestFormContainer.propTypes = {
     guestId: PropTypes.string,
-}
-export default GuestFormContainer;
+};
 
+export default GuestFormContainer;

@@ -1,4 +1,7 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const GuestForm = ({
     name,
@@ -13,7 +16,21 @@ const GuestForm = ({
     setEmail,
     setWhatsappNumber,
     handleSubmit,
+    validationErrors
 }) => {
+
+    const [emailValidationError, setEmailValidationError] = useState(null);
+
+    // validation function
+    const validateEmail = (email) => {
+        if (!email.trim()) {
+            setEmailValidationError('Email is required');
+        } else if (!emailRegex.test(email)) {
+            setEmailValidationError('Enter email in correct email format');
+        } else {
+            setEmailValidationError(null);
+        }
+    };
 
     return (
         <>
@@ -33,6 +50,11 @@ const GuestForm = ({
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
+                        {validationErrors && validationErrors.includes('Name is required') && (
+                            <div className="alert alert-danger" role="alert">
+                                Name is required
+                            </div>
+                        )}
                     </div>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">
@@ -45,9 +67,23 @@ const GuestForm = ({
                             id="email"
                             placeholder="email"
                             name="email"
-                            value={email || ''}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            onChange={(e) => {
+                                setEmail(e.target.value);
+                                // Trigger validation when email input changes
+                                validateEmail(e.target.value);
+                            }}
                         />
+                        {validationErrors && validationErrors.includes('Email is required') && (
+                            <div className="alert alert-danger" role="alert">
+                                Email is required
+                            </div>
+                        )}
+                        {validationErrors && validationErrors.includes('Enter email in correct email format') && (
+                            <div className="alert alert-danger" role="alert">
+                                Enter email in correct email format
+                            </div>
+                        )}
                     </div>
                     <div className="mb-3">
                         <label htmlFor="whatsappNumber" className="form-label">
@@ -119,9 +155,9 @@ const GuestForm = ({
                 </form>
             </div>
         </>
-    )
+    );
+};
 
-}
 GuestForm.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string,
@@ -134,7 +170,8 @@ GuestForm.propTypes = {
     setDescription: PropTypes.func,
     setEmail: PropTypes.func,
     setWhatsappNumber: PropTypes.func,
-    handleSubmit: PropTypes.func
-}
+    handleSubmit: PropTypes.func,
+    validationErrors: PropTypes.array
+};
 
-export default GuestForm
+export default GuestForm;
