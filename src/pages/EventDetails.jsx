@@ -5,6 +5,8 @@ import axios from "axios";
 import GalleryPreview from "../components/GalleryPreview";
 import { formatDateShort } from "../utils/dateUtils";
 import EmailForm from "../components/EmailForm";
+import ClickableList from "../components/ClickableList"
+
 
 function EventDetails() {
   const { eventId } = useParams();
@@ -69,6 +71,7 @@ function EventDetails() {
                     Guest&apos;s List
                   </button>
                 </h2>
+
                 <div
                   id="collapseThree"
                   className="accordion-collapse collapse"
@@ -76,18 +79,12 @@ function EventDetails() {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="accordion-body">
-                    {event.guests.map((guest) => {
-                      return (
-                        <div key={guest._id}>
-                          <Link
-                            to={`/guests/${guest._id}`}
-                            style={{ textDecoration: "none" }}
-                          >
-                            {guest.name}
-                          </Link>
-                        </div>
-                      );
-                    })}
+                    <ClickableList
+                      items={event.guests}
+                      baseUrl="/guests"
+                      linkKey="_id"
+                    />
+
                   </div>
                 </div>
               </div>
@@ -138,7 +135,7 @@ function EventDetails() {
               data-bs-parent="#emailAccordion"
             >
               <div className="accordion-body">
-                <EmailForm guests={event.guests} />
+                <EmailForm guests={event.guests} eventId={eventId} />
               </div>
             </div>
           </div>
