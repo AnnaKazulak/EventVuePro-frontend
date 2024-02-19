@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-const EmailForm = ({ guests }) => {
+const EmailForm = ({ guests, eventId }) => {
   const [selectedEmails, setSelectedEmails] = useState([]);
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
@@ -15,15 +15,16 @@ const EmailForm = ({ guests }) => {
     setLoading(true);
 
     try {
-      // Iterate over selectedEmails and send email to each
-      for (const email of selectedEmails) {
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/emails`, {
-          email: email,
-          subject: subject,
-          message: message
-        });
-        console.log(response.data);
-      }
+      const data = {
+        recipients: selectedEmails,
+        subject: subject,
+        message: message,
+        eventId: eventId
+      };
+
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/emails`, data);
+      console.log(response.data);
+
       setLoading(false);
       setError('');
       setSelectedEmails([]);
@@ -37,10 +38,12 @@ const EmailForm = ({ guests }) => {
     }
   };
 
+
+
   return (
     <div className="card mt-5 border-0">
       <div className="card-body ">
-        {emailSent && ( // Render success banner if emailSent is true
+        {emailSent && (
           <div className="alert alert-success mb-3">
             Email(s) sent successfully!
           </div>
@@ -76,7 +79,6 @@ const EmailForm = ({ guests }) => {
             </div>
           </div>
           <div className="col-md-6">
-
             <div className="mb-3">
               <label htmlFor="message" className="form-label">Message:</label>
               <textarea
@@ -89,9 +91,6 @@ const EmailForm = ({ guests }) => {
               ></textarea>
               <button type="submit" className="btn btn-primary mt-3 me-2" disabled={loading}>
                 {loading ? 'Sending...' : 'Send Email'}
-              </button>
-              <button type="button" className="btn btn-outline-success mt-3" data-bs-toggle="collapse" data-bs-target="#collapseEmailForm">
-                Close
               </button>
             </div>
           </div>
@@ -107,7 +106,8 @@ EmailForm.propTypes = {
       _id: PropTypes.string.isRequired,
       email: PropTypes.string.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  eventId: PropTypes.string.isRequired // Add eventId as a required prop
 };
 
 export default EmailForm;
