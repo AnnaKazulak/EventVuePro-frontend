@@ -12,17 +12,28 @@ function EventDetails() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
   const navigate = useNavigate();
-
+  const [guestResponses, setGuestResponses] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${import.meta.env.VITE_API_URL}/api/events/${eventId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
+      .get(`${import.meta.env.VITE_API_URL}/api/events/${eventId}`)
+      .then((response) => {
+        setEvent(response.data);
+        setLoading(false);
       })
-      .then((response) => setEvent(response.data))
+      .catch((error) => console.log(error));
+
+    axios
+      .get(
+        `${import.meta.env.VITE_API_URL}/api/events/${eventId}/guest-responses`
+      )
+      .then((response) => {
+        setGuestResponses(response.data);
+      })
       .catch((error) => console.log(error));
   }, [eventId]);
+
 
   if (!event) {
     return <div>Loading...</div>;
@@ -39,6 +50,10 @@ function EventDetails() {
         console.log(err);
       });
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -83,6 +98,8 @@ function EventDetails() {
                       items={event.guests}
                       baseUrl="/guests"
                       linkKey="_id"
+                      guestResponses={guestResponses}
+                      columnNames={['Name', 'Attending']}
                     />
 
                   </div>

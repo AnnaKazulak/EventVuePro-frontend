@@ -145,3 +145,15 @@
 .icon-link {
   color: rgb(81, 81, 81); 
 }
+
+
+/*  ClickableTable List */
+.col-name {
+  width: 70%; 
+  cursor: pointer;
+}
+
+.col-attending {
+  /* width: 30%;  */
+  cursor: pointer;
+}
