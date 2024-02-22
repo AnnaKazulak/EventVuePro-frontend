@@ -74,9 +74,10 @@ function ClickableTable({ items, baseUrl, linkKey, guestResponses }) {
                                     {item.name}
                                 </Link>
                             </td>
-                            <td>{guestResponses[item.email] || 'No response'}</td>
+                            <td>{guestResponses[item[linkKey]] ? guestResponses[item[linkKey]] : "Not invaited yet"}</td>
                         </tr>
                     ))}
+
                 </tbody>
             </table>
         </div>

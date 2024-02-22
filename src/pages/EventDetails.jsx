@@ -29,7 +29,11 @@ function EventDetails() {
         `${import.meta.env.VITE_API_URL}/api/events/${eventId}/guest-responses`
       )
       .then((response) => {
-        setGuestResponses(response.data);
+        const responsesMap = {};
+        response.data.forEach((item) => {
+          responsesMap[item.invitedGuest] = item.rsvpResponse;
+        });
+        setGuestResponses(responsesMap);
       })
       .catch((error) => console.log(error));
   }, [eventId]);
