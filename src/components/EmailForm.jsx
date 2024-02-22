@@ -16,10 +16,14 @@ const EmailForm = ({ guests, eventId }) => {
 
     try {
       const data = {
-        recipients: selectedEmails,
+        recipients: selectedEmails.map(email => ({ email: email, guestId: getGuestIdByEmail(email) })), // Include guestId for each recipient
         subject: subject,
         message: message,
-        eventId: eventId
+        eventId: eventId,
+        invitedGuests: selectedEmails.map(email => {
+          const guest = guests.find(guest => guest.email === email);
+          return guest ? guest._id : null;
+        })
       };
 
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/emails`, data);
@@ -38,6 +42,11 @@ const EmailForm = ({ guests, eventId }) => {
     }
   };
 
+  // Function to get the guestId by email
+  const getGuestIdByEmail = (email) => {
+    const guest = guests.find(guest => guest.email === email);
+    return guest ? guest._id : null;
+  };
 
 
   return (
