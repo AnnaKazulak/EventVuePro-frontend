@@ -1,41 +1,51 @@
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
+import { formatDateLong } from '../utils/dateUtils';
 
-function Hero({ isLoggedIn, userName, onLogout }) {
+function Hero({ isLoggedIn, userName }) {
+    const currentDate = formatDateLong(new Date());
+
     return (
-        <div className="hero">
-            <div className="container-hero"></div>
-            <div className="hero-content">
-                {isLoggedIn ? (
-                    <>
-                        <h1>Hello {userName}!</h1>
-                        <button className="btn btn-danger" onClick={onLogout}>
-                            Logout
-                        </button>
-                    </>
-                ) : (
-                    <>
-                        <h1>Welcome to EventVuePro</h1>
-                        <p>Your Ultimate Event Planning Companion</p>
-                        <Link to="/auth/signup">
-                            <button className="btn btn-primary">Sign Up</button>
-                        </Link>
-                        <Link to="/auth/login">
-                            <button className="btn btn-success">Login</button>
-                        </Link>
-                    </>
-                )}
+        <div className="hero-section section text-white collapsed-padding ">
+            <div className="container-fluid h-90">
+                <div className="row h-100">
+                    {/* Left half */}
+                    <div className="col-md-6 d-flex align-items-center justify-content-center mt-5">
+                        <img src="/party_people-removebg.png" alt="Party People" className="party-image" />
+                    </div>
+                    {/* Right half */}
+                    <div className="col-md-6 d-flex align-items-center justify-content-center">
+                        <div className="hero-content text-center">
+                            {isLoggedIn ? (
+                                <>
+                                    <h1 className="hero-hello">Hello {userName}!</h1>
+                                    <p className="hero-hello">It&apos;s {currentDate}, </p>
+                                    <p className="hero-hello"> a perfect day to create a <span className="fw-bolder">great</span> event</p>
+                                </>
+                            ) : (
+                                <>
+                                    <h1 className="hero-hello">Welcome to EventVuePro</h1>
+                                    <p>Your Ultimate Event Planning Companion</p>
+                                    <Link to="/auth/signup">
+                                        <button className="btn btn-primary">Sign Up</button>
+                                    </Link>
+                                    <Link to="/auth/login">
+                                        <button className="btn btn-success">Login</button>
+                                    </Link>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
 }
-
 
 Hero.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     userName: PropTypes.string,
     onLogout: PropTypes.func,
 };
+
 export default Hero;
-
-
