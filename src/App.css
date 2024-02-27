@@ -1,3 +1,4 @@
+
 /* HOMEPAGE Apply styles to the hero section */
 .hero {
   background-image: url('/baloons.jpg');
@@ -156,4 +157,27 @@
 .col-attending {
   /* width: 30%;  */
   cursor: pointer;
+}
+
+
+/* Footer */
+.footer {
+  position: relative; 
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #6c757d;
+  text-align: center;
+  padding-top: 20px; 
+}
+
+
+.social-icons {
+  display: flex;
+  justify-content: center; 
+}
+
+.social-icons i {
+  font-size: 24px; 
+  margin: 0 10px; 
 }

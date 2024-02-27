@@ -16,7 +16,7 @@ import GuestDetails from "./pages/GuestDetails";
 import EditGuest from "./pages/EditGuest";
 import EventDetails from "./pages/EventDetails";
 import EditEvent from "./pages/EditEvent";
-
+import Footer from "./components/Footer";
 
 function App() {
   const [imageDimensions, setImageDimensions] = useState({});
@@ -140,6 +140,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer/>
     </div>
   );
 }
