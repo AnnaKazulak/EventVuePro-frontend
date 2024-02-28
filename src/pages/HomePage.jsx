@@ -2,10 +2,13 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import Hero from "../components/Hero";
 import Button from "../components/Button";
-
+import Card from "../components/Card";
+import data from "../assets/data.json";
 
 function HomePage() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { events } = data;
+
   return (
     <>
       <div >
@@ -17,7 +20,7 @@ function HomePage() {
 
       </div>
       {/* Section #2 */}
-      <section className="section bg-dark text-white">
+      <section className="section bg-dark text-white d-flex">
         <div className="container-fluid h-90">
           <div className="row h-100">
             <div className="col-md-6">
@@ -43,9 +46,42 @@ function HomePage() {
           </div>
         </div>
       </section>
+      {/* Section FOR THE CARDS */}
+      <section className="section bg-very-light-grey text-white d-flex">
+        <div className="container-fluid h-90">
+          <div className="row h-100">
+            {/* Left half */}
+            <div className="col-md-6 d-flex align-items-center justify-content-center mt-5">
+              <div className="left-content">
+                <p className="fs-4 text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Sed ut perspiciatis unde omnis iste natus error sit
+                  voluptatem accusantium doloremque laudantium, totam rem aperiam,
+                  eaque ipsa quae ab illo inventore veritatis et quasi architecto
+                  beatae vitae dicta sunt explicabo.</p>
+              </div>
+            </div>
 
-      {/* Section #3 */}
-      <section className="section bg-very-light-blue text-white">
+            {/* Right half with image */}
+            <div className="col-md-6 d-flex align-items-center justify-content-center">
+
+              {events.map((event, index) => (
+                <Card
+                  key={index}
+                  imageSrc={event.image}
+                  title={event.title}
+                  invitedGuests={event.invitedGuests}
+                  attendingGuests={event.attendingGuests}
+                  // eventDate={event.date}
+                />
+              ))}
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section #4 */}
+      <section className="section bg-info text-white">
         <div className="container-fluid h-90">
           <div className="row h-100">
             {/* Left half */}
@@ -66,6 +102,8 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+
     </>
   );
 }

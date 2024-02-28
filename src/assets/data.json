@@ -1,0 +1,44 @@
+{
+    "guests": [
+      {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "avatar": "/man-2-small.jpg"
+      },
+      {
+        "name": "Alice Smith",
+        "email": "alice@example.com",
+        "avatar": "public/man-13.jpg"
+      },
+      {
+        "name": "Bob Johnson",
+        "email": "bob@example.com",
+        "avatar": "/girl_1.png"
+      }
+    ],
+    "events": [
+      {
+        "title": "Conference",
+        "invitedGuests": 20,
+        "attendingGuests": 15,
+        "date": "2024-03-15",
+        "image": "/jumping_people_no_background.png"
+      },
+      {
+        "title": "Greek Wedding",
+        "invitedGuests": 100,
+        "attendingGuests": 80,
+        "date": "2024-05-20",
+        "image": "/many_parties.png"
+      },
+      {
+        
+        "title": "Birthday Party",
+        "invitedGuests": 200,
+        "attendingGuests": 180,
+        "date": "2024-07-10",
+        "image": "/party_people-removebg.png"
+      }
+    ]
+  }
+  

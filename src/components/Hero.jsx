@@ -25,14 +25,18 @@ function Hero({ isLoggedIn, userName }) {
                             ) : (
                                 <>
                                     <h1 className="hero-hello">Welcome to EventVuePro</h1>
-                                    <p>Your Ultimate Event Planning Companion</p>
-                                    <Link to="/auth/signup">
-                                        <button className="btn btn-primary">Sign Up</button>
-                                    </Link>
-                                    <Link to="/auth/login">
-                                        <button className="btn btn-success">Login</button>
-                                    </Link>
+                                    <p className="hero-hello">Your Ultimate Event Planning Companion</p>
+                                    <div className="button-group">
+                                        <Link to="/auth/signup">
+                                            <button className="btn btn-primary">Sign Up</button>
+                                        </Link>
+                                        <span className="btn-spacing"></span> 
+                                        <Link to="/auth/login">
+                                            <button className="btn btn-success">Login</button>
+                                        </Link>
+                                    </div>
                                 </>
+
                             )}
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-// Define your custom pink color
+// Define custom colors
 $pink: #ff69b4;
 $dark_red: #d13038;
 $light_red:#f3514e;
@@ -17,7 +17,8 @@ $dark_pink: #e94793;
 
 // Override Bootstrap's  colors with your custom color
 
-$theme-colors: ("primary": $light_blue,
+$theme-colors: (
+  "primary": $light_blue,
   "secondary": $dark_pink,
   "success": $light_green,
   "info": $light_orange,
@@ -26,7 +27,9 @@ $theme-colors: ("primary": $light_blue,
   "light": $very_light_grey,
   "dark": $very_dark_blue,
   "baby-blue":$baby_blue,
-  "very-light-blue":$very_light_blue);
+  "very-light-blue":$very_light_blue,
+  "very-light-grey":$very_light_grey,
+  );
 
 // Import Bootstrap SCSS
 @import "../node_modules/bootstrap/scss/bootstrap";
@@ -63,9 +66,20 @@ body {
 
 }
 
-.hero-hello {
+.hero-hello  {
   font-family: 'Comic Sans MS', cursive;
+  color: $very_dark_blue;
 }
+
+.button-group {
+  display: flex;
+  justify-content: center
+}
+
+.btn-spacing {
+  margin-right: 10px; /* Adjust as needed */
+}
+
 
 /* Sections */
 
@@ -101,21 +115,361 @@ body {
 }
 
 
+/* Navigation Bar */
+.navbar {
+  background-color: $very_light_grey; 
+  padding: 10px 0; 
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Scrolled state */
+.navbar.scrolled {
+  background-color: #ffffff; /* Change background color when scrolled */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  margin-right: 20px;
+}
+.navbar-brand a{
+  color: $very_dark_blue;
+  text-decoration: none;
+}
+
+.logo {
+  width: 100px; 
+}
+
+.navbar-toggler {
+  display: none; /* Hide by default */
+  background: none;
+  border: none !important;;
+  cursor: pointer;
+  padding: 0;
+}
+.navbar-toggler.open {
+  border-style: none !important; ;
+}
+.navbar-toggler:focus:not(:focus-visible) {
+  outline: none; /* Remove outline on focus */
+}
+
+.navbar-toggler span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: $very_dark_blue; /* Set hamburger button color */
+  margin: 5px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active{
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* Open state for mobile */
+.navbar-toggler.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggler.open span:nth-child(2) {
+  opacity: 0; /* Hide middle line */
+}
+
+.navbar-toggler.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-links li {
+  margin-right: 15px;
+}
+
+.navbar-links a {
+  color: $very_dark_blue; 
+  text-decoration: none;
+}
+
+.navbar-links button {
+  color: #000; /* Set button text color */
+  background-color: $light_red; /* Set button background color */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Mobile navigation */
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block; /* Show for smaller devices */
+  }
+
+  .navbar-links {
+    display: none; /* Hide links by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: $very_light_grey; /* Set background color */
+    padding: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow */
+  }
+
+  .navbar-links.open {
+    display: flex; /* Show links when mobile navigation is open */
+    flex-direction: column; /* Stack links vertically */
+  }
+
+  .navbar-links ul {
+    width: 100%;
+  }
+
+  .navbar-links li {
+    margin: 10px 0; /* Add margin between links */
+  }
+
+  .navbar-links a,
+  .navbar-links button {
+    margin-right: 10px;
+    width: 100%;
+    text-align: center; /* Center align text */
+  }
+}
 
 /* ---------------------- */
 
-/* NAVBAR */
-.custom-navbar {
-  position: sticky;
-  top: 0;
-  z-index: 500;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+// Card NEW
+
+.card {
+  width: calc(50% - 40px); /* Adjust width to occupy 50% of container minus margins */
+  height: 400px; /* Set initial height */
+  margin: 20px;
+  border: none;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+  transition: box-shadow 0.3s ease; /* Add transition for hover effect */
+  display: flex; /* Use Flexbox */
+  flex-direction: column; /* Arrange items vertically */
+  align-items: center;
+  background-color: #f8f9fa;
+  cursor: pointer;
 }
 
-.custom-btn-text {
-  text-decoration: none;
-
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
 }
+
+.card-image {
+  width: 100%;
+  height: 70%; /* Occupy 70% of card's height */
+  object-fit: cover;
+}
+
+.card-text {
+  background-color: #f8f9fa; /* Set background color */
+  border: none;
+  width: 100%;
+  height: 30%; /* Occupy 30% of card's height */
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex; /* Use Flexbox */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+.card-title {
+  margin-bottom: 10px;
+  color:$very_dark_blue;
+  font-size: 18px;
+}
+
+.card-info {
+  color: #000; /* Set text color */
+  display: flex; /* Use Flexbox */
+  flex-direction: row; /* Arrange items horizontally */
+  // justify-content: space-between; /* Add space between items */
+  align-items: center; /* Center content vertically */
+  justify-content: space-around;
+  margin-top: 10px; /* Add margin for spacing */
+}
+
+.card-info > div {
+  margin-bottom: 5px;
+}
+
+.card-info-number{
+  font-size: 14px;
+}
+.card-info-text {
+  font-size: 10px;
+}
+
+@media (max-width: 1200px) {
+  .card {
+    width: calc(100% - 40px); /* Adjust width to occupy full container minus margins */
+    margin-bottom: 20px; /* Add margin between cards */
+  }
+}
+
+@media (max-width: 1200px) {
+  .card {
+    width: 100%; /* Set width to occupy full container */
+  }
+}
+
+
+// .card {
+//   width: 300px; /* Set initial width */
+//   height: 350px; /* Set initial height */
+//   margin: 20px;
+//   border: none;
+//   overflow: hidden;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+//   transition: box-shadow 0.3s ease; /* Add transition for hover effect */
+//   display: flex; /* Use Flexbox */
+//   flex-direction: column; /* Arrange items vertically */
+// }
+
+// .card:hover {
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+// }
+
+// .card-image {
+//   width: 100%;
+//   height: 75%; /* Occupy 75% of card's height */
+//   object-fit: cover;
+// }
+
+// .card-text {
+//   background-color: $very_light_blue; /* Semi-transparent background */
+//   border: none;
+//   width: 100%;
+//   padding: 10px;
+//   box-sizing: border-box;
+//   flex-grow: 1; /* Allow text container to expand */
+//   display: flex; /* Use Flexbox */
+//   flex-direction: column; /* Arrange items vertically */
+//   justify-content: center; /* Center content vertically */
+//   align-items: stretch; /* Center content horizontally */
+// }
+
+// .card-title {
+//   margin-bottom: 10px;
+//   color: $light_blue;
+// }
+
+// .card-info {
+//   color: $very_dark_blue; /* Set text color */
+//   display: flex; /* Use Flexbox */
+//   flex-direction: row; /* Arrange items horizontally */
+//   justify-content: space-between; /* Add space between items */
+//   align-items: center; /* Center content vertically */
+//   margin-top: 10px; /* Add margin for spacing */
+// }
+
+// .card-info > div {
+//   margin-bottom: 5px;
+// }
+
+// .card-info-number,
+// .card-info-text {
+//   font-size: 14px;
+// }
+
+
+// .card {
+//   width: 300px; /* Set initial width */
+//   height: 350px; /* Set initial height */
+//   margin: 20px;
+//   border: none;
+//   // border-radius: 10px;
+//   overflow: hidden;
+//   // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+//   transition: box-shadow 0.3s ease; /* Add transition for hover effect */
+// }
+
+// .card:hover {
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+// }
+
+// .card-image {
+//   width: 100%;
+//   height: 75%; /* Occupy 90% of card's height */
+//   // height: 100%; /* Occupy 90% of card's height */
+//   object-fit: cover;
+// }
+
+// .card-text {
+//   background-color: $very_light_blue; /* Semi-transparent background */
+//   border: none;
+//   width: 100%;
+//   height: 20vh; /* Occupy 30% of card's height */
+//   position: relative; /* Change to relative */
+//   padding: 10px;
+//   box-sizing: border-box;
+//   padding-left: 10px;
+//   padding-right: 10px;
+// }
+
+
+// .card-title {
+//   margin-bottom: 10px;
+//   color: $light_blue;
+// }
+
+// .card-info {
+//   color: $very_dark_blue; /* Set text color */
+//   // background-color: #d13038;
+//   display: flex; /* Use Flexbox */
+//   flex-direction: row; /* Arrange items horizontally */
+//   justify-content: space-between; /* Add space between items */
+// }
+
+// .card-info > div {
+//   margin-bottom: 5px;
+// }
+
+// .card-info > div > div {
+//   margin-top: 5px;
+// }
+// .card-info-number {
+// font-size: 14px;
+// }
+// .card-info-text {
+//   font-size: 10px;
+// }
+
+
+/* ---------------------- */
+
+
 
 .custom-img-details {
   width: auto;
@@ -233,7 +587,7 @@ body {
 }
 
 .col-attending {
-  /* width: 30%;  */
+  width: 30%;  
   cursor: pointer;
 }
 
@@ -243,8 +597,10 @@ body {
   position: relative;
   bottom: 0;
   width: 100%;
-  background-color: #f8f9fa;
-  color: #6c757d;
+  // background-color: #f8f9fa;
+  // color: #6c757d; 
+  background-color: $dark_green;
+  color: $very_light_grey;
   text-align: center;
   padding-top: 20px;
 }

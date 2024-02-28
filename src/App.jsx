@@ -17,6 +17,8 @@ import EditGuest from "./pages/EditGuest";
 import EventDetails from "./pages/EventDetails";
 import EditEvent from "./pages/EditEvent";
 import Footer from "./components/Footer";
+import NavigationBar from "./components/NavigationBar";
+
 
 function App() {
   const [imageDimensions, setImageDimensions] = useState({});
@@ -58,7 +60,8 @@ function App() {
 
   return (
     <div className="App">
-      <CustomNavbar />
+      {/* <CustomNavbar /> */}
+      <NavigationBar/>
       <Routes>
         <Route path="/" element={<HomePage />} />
 

@@ -40,7 +40,7 @@ function LoginPage(props) {
 
   return (
     <div className="container custom-container mt-5">
-      <form onSubmit={handleLoginSubmit} className="center-form">
+      <form onSubmit={handleLoginSubmit} className="center-form mt-5">
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Username<span className="text-danger">*</span>
