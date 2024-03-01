@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import ListItem from "./ListItem";
 
 const SortableTable = ({ items, sortedColumn, sortDirection, sortCallback }) => {
-   
+
     // Function to handle column sorting
-       const sortItems = (column) => {
+    const sortItems = (column) => {
         let newSortDirection = 'asc'; // Default to ascending order if not sorted
         if (column === sortedColumn) {
             // If the same column is clicked again, toggle the sort direction
@@ -29,7 +29,7 @@ const SortableTable = ({ items, sortedColumn, sortDirection, sortCallback }) => 
         // and sorting parameters
         sortCallback(sortedItems, column, newSortDirection);
     };
-    
+
 
     return (
         <table className="table table-hover">
