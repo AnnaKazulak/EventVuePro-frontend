@@ -7,13 +7,18 @@ const EditGuest = () => {
 
   return (
     <>
-      <div className="container custom-container mt-5">
-        <h2>Edit Guest</h2>
-        {guestId ? (
-          <GuestFormContainer guestId={guestId} />
-        ) : (
-          <p>Error: Guest ID not provided</p>
-        )}
+      <div className="container mt-5 row">
+        <div className="col-md-1 "></div>
+        <div className="col-md-2 mt-3">
+          <h2>Edit Guest</h2>
+        </div>
+        <div className="col-md-8">
+          {guestId ? (
+            <GuestFormContainer guestId={guestId} />
+          ) : (
+            <p>Error: Guest ID not provided</p>
+          )}
+        </div>
       </div>
     </>
   );

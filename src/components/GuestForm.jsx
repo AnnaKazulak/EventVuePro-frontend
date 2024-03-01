@@ -36,21 +36,18 @@ const GuestForm = ({
 
     return (
         <>
-            <div className="container custom-container mt-5">
-                <form className="center-form" onSubmit={handleSubmit}>
+            <div className="login-container">
+                <form className="login-form" onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="name" className="form-label">
-                            Name
-                            <span className="text-danger">*</span>
-                        </label>
                         <input
                             type="text"
                             className="form-control"
                             id="name"
-                            placeholder="name"
+                            placeholder="name&#42;"
                             name="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
+                            required
                         />
                         {validationErrors && validationErrors.includes('Name is required') && (
                             <div className="alert alert-danger" role="alert">
@@ -59,17 +56,14 @@ const GuestForm = ({
                         )}
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="email" className="form-label">
-                            Email
-                            <span className="text-danger">*</span>
-                        </label>
                         <input
                             type="text"
                             className="form-control"
                             id="email"
-                            placeholder="email"
+                            placeholder="email&#42;"
                             name="email"
                             value={email}
+                            required
                             onChange={(e) => {
                                 setEmail(e.target.value);
                                 // Trigger validation when email input changes
@@ -88,10 +82,6 @@ const GuestForm = ({
                         )}
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="whatsappNumber" className="form-label">
-                            WhatsappNumber
-                            <span className="text-danger">*</span>
-                        </label>
                         <input
                             type="text"
                             className="form-control"
@@ -103,9 +93,6 @@ const GuestForm = ({
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="description" className="form-label">
-                            Description
-                        </label>
                         <textarea
                             className="form-control"
                             id="description"
@@ -130,7 +117,7 @@ const GuestForm = ({
                     {/* Main Image Input */}
                     <div className="mb-3">
                         <label htmlFor="image" className="form-label">
-                            Main Image
+                            Image
                         </label>
                         <input
                             type="file"
