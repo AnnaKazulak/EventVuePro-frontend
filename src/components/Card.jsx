@@ -32,7 +32,7 @@ Card.propTypes = {
     title: PropTypes.string.isRequired,
     invitedGuests: PropTypes.number.isRequired,
     attendingGuests: PropTypes.number.isRequired,
-    eventDate: PropTypes.string.isRequired
+    eventDate: PropTypes.string
 };
 
 export default Card;
