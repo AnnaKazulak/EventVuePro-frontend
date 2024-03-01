@@ -47,7 +47,7 @@ function HomePage() {
         </div>
       </section>
       {/* Section FOR THE CARDS */}
-      <section className="section bg-very-light-grey text-white d-flex">
+      <section className="section bg-very-light-grey d-flex">
         <div className="container-fluid h-90">
           <div className="row h-100">
             {/* Left half */}

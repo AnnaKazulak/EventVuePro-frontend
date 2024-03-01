@@ -36,7 +36,13 @@ $theme-colors: ("primary": $light_blue,
 /* Global styles */
 body {
   font-family: 'Comic Sans MS', cursive;
-  color: "dark"
+  color: "dark";
+  overflow-x: hidden;
+}
+
+
+.icon-link.active {
+  color: $dark_pink !important; 
 }
 
 /* Homepage*/
@@ -45,7 +51,7 @@ body {
 }
 
 .section {
-  height: 70vh;
+  min-height: 75vh;
 }
 
 .content {
@@ -615,23 +621,21 @@ body {
 }
 
 
-// ___________________
+// Event list
 
-
-
-.custom-img-details {
-  width: auto;
-  max-height: 20vw;
+.header{
+  margin-top: 100px;
 }
+
 
 // ---------------
 
+// Guest list
+
 .custom-img-details {
   width: auto;
   max-height: 20vw;
 }
-
-
 
 
 .custom-img {
@@ -639,9 +643,21 @@ body {
   max-height: auto;
 }
 
-.custom-list-group {
-  max-height: 12vh;
+// DetailCard
+
+.guest-card {
+  width: 100%;
+
+  .card-img-top {
+      object-fit: cover;
+      height: 200px;
+  }
 }
+.guest-card-link {
+  text-decoration: none;
+}
+
+
 
 .custom-select {
   width: 30vw;
@@ -763,3 +779,5 @@ body {
   font-size: 24px;
   margin: 0 10px;
 }
+
+
