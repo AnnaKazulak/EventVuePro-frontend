@@ -66,19 +66,32 @@ function EventList() {
     );
 
     return (
-        <div className="container mt-5">
-
-            <PageHeader
-                title="All my Events"
-                itemCount={filteredEvents.length}
-                searchInput={searchInput}
-                handleSearchInput={(e) => setSearchInput(e.target.value)}
-            />
-
-            <EventTable title="Upcoming Events" events={upcomingEvents} deleteEvent={deleteEvent} />
-            <EventTable title="Past Events" events={pastEvents} deleteEvent={deleteEvent} />
-
-        </div>
+        <>
+            <section className="section bg-light section-event-list text-dark">
+                <div className="row">
+                    <div className="col-md-1 "></div>
+                    <div className="col-md-10 ">
+                        <PageHeader
+                            title=""
+                            pageTitle="Event"
+                            itemCount={filteredEvents.length}
+                            searchInput={searchInput}
+                            handleSearchInput={(e) => setSearchInput(e.target.value)}
+                        /></div>
+                    <div className="col-md-1 "></div>
+                </div>
+                <div className="row">
+                    <div className="col-md-1 "></div>
+                    <div className="col-md-10 "> <EventTable title="" events={upcomingEvents} deleteEvent={deleteEvent} /></div>
+                    <div className="col-md-1 "></div>
+                </div>
+                <div className="row">
+                    <div className="col-md-1"></div>
+                    <div className="col-md-10 "> <EventTable title="" events={pastEvents} deleteEvent={deleteEvent} /></div>
+                    <div className="col-md-1"></div>
+                </div>
+            </section>
+        </>
     );
 }
 
