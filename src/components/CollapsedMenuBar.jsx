@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
@@ -21,26 +21,25 @@ const CollapsedMenuBar = ({ onExpand, isExpanded }) => {
                 </div>
             )}
             <div className="menu-section">
-                <Link to="/">
+                <NavLink exact to="/" activeClassName="active" className="icon-link">
                     <i className="fa-solid fa-house"></i>
-                </Link>
-
+                </NavLink>
             </div>
             <div className="menu-section">
-                <Link to="/events">
+                <NavLink exact to="/events" activeClassName="active" className="icon-link">
                     <i className="fa-regular fa-calendar"></i>
-                </Link>
-                <Link to="/events/create">
+                </NavLink>
+                <NavLink exact to="/events/create" activeClassName="active" className="icon-link">
                     <i className="fa-solid fa-plus"></i>
-                </Link>
+                </NavLink>
             </div>
             <div className="menu-section">
-                <Link to="/guests">
+                <NavLink exact to="/guests" activeClassName="active" className="icon-link">
                     <i className="fa-solid fa-person"></i>
-                </Link>
-                <Link to="/guests/create">
+                </NavLink>
+                <NavLink exact to="/guests/create" activeClassName="active" className="icon-link">
                     <i className="fa-solid fa-person-circle-plus"></i>
-                </Link>
+                </NavLink>
             </div>
         </div>
     );
