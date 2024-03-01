@@ -1,112 +1,45 @@
-import { useState, useContext } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
+import Login from '../components/Login';
+import axios from 'axios';
 
-function LoginPage(props) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function LoginPage() {
 
-  const [errorMessage, setErrorMessage] = useState(undefined);
   const { storeToken, authenticateUser } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
 
-  const handleName = (e) => setName(e.target.value);
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handlePassword = (e) => setPassword(e.target.value);
-
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    const requestBody = { email, password, name };
-    console.log(requestBody);
-
+  const handleLoginSubmit = (formData) => {
     axios
-      .post(`${import.meta.env.VITE_API_URL}/auth/login`, requestBody)
+      .post(`${import.meta.env.VITE_API_URL}/auth/login`, formData)
       .then((response) => {
-        console.log("JWT token", response.data.authToken);
-
+        console.log('JWT token', response.data.authToken);
         storeToken(response.data.authToken);
-
         authenticateUser();
-        navigate("/");
+        navigate('/');
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
+        setErrorMessage(errorDescription)
+        console.log("errorMessage", errorMessage)
+        console.error('Login failed:', error);
       });
   };
 
   return (
-    <div className="container custom-container mt-5">
-      <form onSubmit={handleLoginSubmit} className="center-form mt-5">
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            Username<span className="text-danger">*</span>
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="name"
-            name="name"
-            value={name}
-            onChange={handleName}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email address<span className="text-danger">*</span>
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            name="email"
-            aria-describedby="emailHelp"
-            value={email}
-            onChange={handleEmail}
-          />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
+    <section className='bg-very-light-grey'>
+      <div className="container custom-container mt-5 position-relative">
+        <Login onSubmit={handleLoginSubmit} />
+        {errorMessage &&
+          <div className="alert alert-danger position-absolute start-50 translate-middle-x alert-custom" >
+            {errorMessage}
           </div>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password<span className="text-danger">*</span>
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            name="password"
-            aria-describedby="passwordHelp"
-            value={password}
-            onChange={handlePassword}
-          />
-          <div id="passwordHelp" className="form-text">
-            Password must be longer than 6 characters.
-          </div>
-        </div>
-        {errorMessage && (
-          <p className="error-message text-danger">{errorMessage}</p>
-        )}
+        }
+      </div>
+    </section >
 
-        <p>You'll be redirected to the homepage</p>
-
-        <button type="submit" className="btn btn-success mb-3">
-          Log in
-        </button>
-      </form>
-      <p>Don't have an account yet?</p>
-      <button className="btn btn-primary">
-        {" "}
-        <Link to={"/auth/signup"} className="text-white custom-btn-text">
-          {" "}
-          Sign Up
-        </Link>
-      </button>
-    </div>
   );
 }
 

@@ -17,8 +17,7 @@ $dark_pink: #e94793;
 
 // Override Bootstrap's  colors with your custom color
 
-$theme-colors: (
-  "primary": $light_blue,
+$theme-colors: ("primary": $light_blue,
   "secondary": $dark_pink,
   "success": $light_green,
   "info": $light_orange,
@@ -29,15 +28,15 @@ $theme-colors: (
   "baby-blue":$baby_blue,
   "very-light-blue":$very_light_blue,
   "very-light-grey":$very_light_grey,
-  );
+);
 
 // Import Bootstrap SCSS
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 /* Global styles */
 body {
-  font-family: 'Comic Sans MS', cursive; 
-  color:"dark"
+  font-family: 'Comic Sans MS', cursive;
+  color: "dark"
 }
 
 /* Homepage*/
@@ -66,7 +65,7 @@ body {
 
 }
 
-.hero-hello  {
+.hero-hello {
   font-family: 'Comic Sans MS', cursive;
   color: $very_dark_blue;
 }
@@ -77,7 +76,8 @@ body {
 }
 
 .btn-spacing {
-  margin-right: 10px; /* Adjust as needed */
+  margin-right: 10px;
+  /* Adjust as needed */
 }
 
 
@@ -91,45 +91,54 @@ body {
 
 @media (max-width: 768px) {
   .section {
-    height: auto; /* Remove fixed height */
-    min-height: 70vh; /* Set minimum height */
+    height: auto;
+    /* Remove fixed height */
+    min-height: 70vh;
+    /* Set minimum height */
   }
 
   .col-md-6 {
-    flex: 0 0 100%; /* Make columns full width on smaller devices */
+    flex: 0 0 100%;
+    /* Make columns full width on smaller devices */
   }
 
   .left-content {
     padding: 20px;
-    text-align: center; /* Center align text */
+    text-align: center;
+    /* Center align text */
   }
 
   .section-image {
-    max-width: 100%; /* Make images responsive */
+    max-width: 100%;
+    /* Make images responsive */
     height: auto;
   }
 
   .hero-hello {
-    font-size: 1.5rem; /* Adjust font size */
+    font-size: 1.5rem;
+    /* Adjust font size */
   }
 }
 
 
 /* Navigation Bar */
 .navbar {
-  background-color: $very_light_grey; 
-  padding: 10px 0; 
-  position: fixed; 
-  top: 0; 
-  width: 100%; 
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; 
-  z-index: 1000; /* Ensure it's above other content */
+  background-color: $very_light_grey;
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+  /* Ensure it's above other content */
 }
 
 /* Scrolled state */
 .navbar.scrolled {
-  background-color: #ffffff; /* Change background color when scrolled */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  background-color: #ffffff;
+  /* Change background color when scrolled */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  /* Add subtle shadow effect */
 }
 
 .container {
@@ -141,44 +150,52 @@ body {
 .navbar-brand {
   margin-right: 20px;
 }
-.navbar-brand a{
+
+.navbar-brand a {
   color: $very_dark_blue;
   text-decoration: none;
 }
 
 .logo {
-  width: 100px; 
+  width: 100px;
 }
 
 .navbar-toggler {
-  display: none; /* Hide by default */
+  display: none;
+  /* Hide by default */
   background: none;
-  border: none !important;;
+  border: none !important;
+  ;
   cursor: pointer;
   padding: 0;
 }
+
 .navbar-toggler.open {
-  border-style: none !important; ;
+  border-style: none !important;
+  ;
 }
+
 .navbar-toggler:focus:not(:focus-visible) {
-  outline: none; /* Remove outline on focus */
+  outline: none;
+  /* Remove outline on focus */
 }
 
 .navbar-toggler span {
   display: block;
   width: 25px;
   height: 3px;
-  background-color: $very_dark_blue; /* Set hamburger button color */
+  background-color: $very_dark_blue;
+  /* Set hamburger button color */
   margin: 5px;
   transition: transform 0.3s ease-in-out;
 }
 
 .navbar-toggler,
 .navbar-toggler:focus,
-.navbar-toggler:active{
-    outline: none;
-    border: none;
-    box-shadow: none;
+.navbar-toggler:active {
+  outline: none;
+  border: none;
+  box-shadow: none;
 }
 
 /* Open state for mobile */
@@ -187,7 +204,8 @@ body {
 }
 
 .navbar-toggler.open span:nth-child(2) {
-  opacity: 0; /* Hide middle line */
+  opacity: 0;
+  /* Hide middle line */
 }
 
 .navbar-toggler.open span:nth-child(3) {
@@ -211,13 +229,15 @@ body {
 }
 
 .navbar-links a {
-  color: $very_dark_blue; 
+  color: $very_dark_blue;
   text-decoration: none;
 }
 
 .navbar-links button {
-  color: #000; /* Set button text color */
-  background-color: $light_red; /* Set button background color */
+  color: #000;
+  /* Set button text color */
+  background-color: $light_red;
+  /* Set button background color */
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
@@ -227,23 +247,29 @@ body {
 /* Mobile navigation */
 @media (max-width: 768px) {
   .navbar-toggler {
-    display: block; /* Show for smaller devices */
+    display: block;
+    /* Show for smaller devices */
   }
 
   .navbar-links {
-    display: none; /* Hide links by default */
+    display: none;
+    /* Hide links by default */
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: $very_light_grey; /* Set background color */
+    background-color: $very_light_grey;
+    /* Set background color */
     padding: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Add shadow */
   }
 
   .navbar-links.open {
-    display: flex; /* Show links when mobile navigation is open */
-    flex-direction: column; /* Stack links vertically */
+    display: flex;
+    /* Show links when mobile navigation is open */
+    flex-direction: column;
+    /* Stack links vertically */
   }
 
   .navbar-links ul {
@@ -251,14 +277,16 @@ body {
   }
 
   .navbar-links li {
-    margin: 10px 0; /* Add margin between links */
+    margin: 10px 0;
+    /* Add margin between links */
   }
 
   .navbar-links a,
   .navbar-links button {
     margin-right: 10px;
     width: 100%;
-    text-align: center; /* Center align text */
+    text-align: center;
+    /* Center align text */
   }
 }
 
@@ -269,19 +297,23 @@ body {
 
 // All pages
 .App {
-  display: flex; 
+  display: flex;
   flex-direction: column;
 }
 
 .Content {
-  flex: 1; /* Allow content to take up remaining space */
-  margin-left: 7%; /* Adjusted to account for the width of the collapsed menu */
+  flex: 1;
+  /* Allow content to take up remaining space */
+  margin-left: 7%;
+  /* Adjusted to account for the width of the collapsed menu */
 }
 
 // Menubar
 .collapsed-menu-bar {
-  width: 7%; /* Adjusted width for the collapsed menu */
-  min-width: 70px; /* Minimum width to prevent it from collapsing too much */
+  width: 7%;
+  /* Adjusted width for the collapsed menu */
+  min-width: 70px;
+  /* Minimum width to prevent it from collapsing too much */
   height: 100vh;
   background-color: #010a35;
   position: fixed;
@@ -292,8 +324,9 @@ body {
   align-items: center;
   justify-content: flex-start;
   transition: width 0.3s ease;
-  z-index: 1008; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add box shadow */
+  z-index: 1008;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* Add box shadow */
 
   .expand-button {
     color: white;
@@ -309,7 +342,7 @@ body {
     align-items: center;
 
     a {
-      color: #e5eeff; 
+      color: #e5eeff;
       text-decoration: none;
       margin-bottom: 10px;
 
@@ -321,8 +354,10 @@ body {
 }
 
 .expanded-menu-bar {
-  width: 15%; /* Adjusted width for the expanded menu */
-  min-width: 230px; /* Minimum width to prevent it from collapsing too much */
+  width: 15%;
+  /* Adjusted width for the expanded menu */
+  min-width: 230px;
+  /* Minimum width to prevent it from collapsing too much */
   // background-color: #e5eeff;
   background-color: rgba(229, 238, 255, 0.95);
   color: #010a35;
@@ -336,8 +371,10 @@ body {
   align-items: center;
   justify-content: flex-start;
   z-index: 1005;
-  opacity: 0.95; /* Set opacity to 95% */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add box shadow */
+  opacity: 0.95;
+  /* Set opacity to 95% */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* Add box shadow */
 
   .menu-section {
     margin-top: 67px;
@@ -360,29 +397,35 @@ body {
 // Responsive adjustments
 @media (max-width: 768px) {
   .collapsed-menu-bar {
-    width: 20%; /* Adjusted width for smaller screens */
+    width: 20%;
+    /* Adjusted width for smaller screens */
   }
 
   .expanded-menu-bar {
-    width: 30%; /* Adjusted width for smaller screens */
+    width: 30%;
+    /* Adjusted width for smaller screens */
   }
 
   .Content {
-    margin-left: 20%; /* Adjusted margin for smaller screens */
+    margin-left: 20%;
+    /* Adjusted margin for smaller screens */
   }
 }
 
 @media (max-width: 576px) {
   .collapsed-menu-bar {
-    width: 30%; /* Further adjusted width for even smaller screens */
+    width: 30%;
+    /* Further adjusted width for even smaller screens */
   }
 
   .expanded-menu-bar {
-    width: 40%; /* Further adjusted width for even smaller screens */
+    width: 40%;
+    /* Further adjusted width for even smaller screens */
   }
 
   .Content {
-    margin-left: 30%; /* Further adjusted margin for even smaller screens */
+    margin-left: 30%;
+    /* Further adjusted margin for even smaller screens */
   }
 }
 
@@ -390,82 +433,187 @@ body {
 // Card 
 
 .card {
-  width: calc(50% - 40px); /* Adjust width to occupy 50% of container minus margins */
-  height: 400px; /* Set initial height */
+  width: calc(50% - 40px);
+  /* Adjust width to occupy 50% of container minus margins */
+  height: 400px;
+  /* Set initial height */
   margin: 20px;
   border: none;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
-  transition: box-shadow 0.3s ease; /* Add transition for hover effect */
-  display: flex; /* Use Flexbox */
-  flex-direction: column; /* Arrange items vertically */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Add shadow */
+  transition: box-shadow 0.3s ease;
+  /* Add transition for hover effect */
+  display: flex;
+  /* Use Flexbox */
+  flex-direction: column;
+  /* Arrange items vertically */
   align-items: center;
   background-color: #f8f9fa;
   cursor: pointer;
 }
 
 .card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Enhance shadow on hover */
 }
 
 .card-image {
   width: 100%;
-  height: 70%; /* Occupy 70% of card's height */
+  height: 70%;
+  /* Occupy 70% of card's height */
   object-fit: cover;
 }
 
 .card-text {
-  background-color: #f8f9fa; /* Set background color */
+  background-color: #f8f9fa;
+  /* Set background color */
   border: none;
   width: 100%;
-  height: 30%; /* Occupy 30% of card's height */
+  height: 30%;
+  /* Occupy 30% of card's height */
   padding: 10px;
   box-sizing: border-box;
-  display: flex; /* Use Flexbox */
-  flex-direction: column; /* Arrange items vertically */
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
+  display: flex;
+  /* Use Flexbox */
+  flex-direction: column;
+  /* Arrange items vertically */
+  justify-content: center;
+  /* Center content vertically */
+  align-items: center;
+  /* Center content horizontally */
 }
 
 .card-title {
   margin-bottom: 10px;
-  color:$very_dark_blue;
+  color: $very_dark_blue;
   font-size: 18px;
 }
 
 .card-info {
-  color: #000; /* Set text color */
-  display: flex; /* Use Flexbox */
-  flex-direction: row; /* Arrange items horizontally */
+  color: #000;
+  /* Set text color */
+  display: flex;
+  /* Use Flexbox */
+  flex-direction: row;
+  /* Arrange items horizontally */
   // justify-content: space-between; /* Add space between items */
-  align-items: center; /* Center content vertically */
+  align-items: center;
+  /* Center content vertically */
   justify-content: space-around;
-  margin-top: 10px; /* Add margin for spacing */
+  margin-top: 10px;
+  /* Add margin for spacing */
 }
 
-.card-info > div {
+.card-info>div {
   margin-bottom: 5px;
 }
 
-.card-info-number{
+.card-info-number {
   font-size: 14px;
 }
+
 .card-info-text {
   font-size: 10px;
 }
 
 @media (max-width: 1200px) {
   .card {
-    width: calc(100% - 40px); /* Adjust width to occupy full container minus margins */
-    margin-bottom: 20px; /* Add margin between cards */
+    width: calc(100% - 40px);
+    /* Adjust width to occupy full container minus margins */
+    margin-bottom: 20px;
+    /* Add margin between cards */
   }
 }
 
 @media (max-width: 1200px) {
   .card {
-    width: 100%; /* Set width to occupy full container */
+    width: 100%;
+    /* Set width to occupy full container */
   }
 }
+
+
+/* Login.css */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.login-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 500px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  border-radius: 0;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-success {
+  background-color: $light_green;
+}
+
+.btn-primary {
+  background-color: $light_blue;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-primary a {
+  text-decoration: none !important;
+}
+
+/* Remove default focus styling */
+.form-control:focus {
+  box-shadow: none;
+}
+
+
+.form-control:focus {
+  border-bottom-color: $baby_blue;
+}
+
+
+.form-control::placeholder {
+  font-size: 0.8rem; 
+}
+
+// Login page
+.alert-custom {
+  top: 18vh;
+  transform: translateY(-50%);
+}
+
 
 // ___________________
 
@@ -587,7 +735,7 @@ body {
 }
 
 .col-attending {
-  width: 30%;  
+  width: 30%;
   cursor: pointer;
 }
 
