@@ -41,12 +41,12 @@ const EventTable = ({ title, events, deleteEvent }) => {
 
   return (
     <>
-      <h2>{title}</h2>
+      <h4>{title}</h4>
       <table className="table">
         <thead>
           <tr>
             <th scope="col" style={{ width: "60%" }} className="pointer" onClick={() => sortEvents('title')}>
-              Event Name {sortConfig.key === 'title' && (
+            <span className='text-dark'>Event Name</span>   {sortConfig.key === 'title' && (
                 <i className={`fas fa-caret-${sortConfig.direction === 'asc' ? 'up' : 'down'}`}></i>
               )}
             </th>
@@ -63,7 +63,7 @@ const EventTable = ({ title, events, deleteEvent }) => {
             <tr key={event._id}>
               <td>
                 <Link to={`/events/${event._id}`} className="event-link">
-                  {event.title}
+                 <span className='text-dark fw-lighter'>{event.title}</span> 
                 </Link>
               </td>
               <td>{formatDateShort(event.date)}</td>
