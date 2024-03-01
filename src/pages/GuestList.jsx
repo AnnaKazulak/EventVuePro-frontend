@@ -69,44 +69,59 @@ function GuestList() {
   ];
 
   return (
-    <div className="container mt-5">
-      <PageHeader
-        title="All my guests"
-        itemCount={filteredGuests.length}
-        searchInput={searchInput}
-        handleSearchInput={handleSearchInput}
-      />
 
-      {/* Nav tabs */}
-      <Tabs activeTab={activeTab} handleTabClick={handleTabClick} tabs={guestTabs} />
+    <section className="section bg-light section-event-list text-dark">
+      <div className="row">
+        <div className="col-md-1 "></div>
+        <div className="col-md-10 ">
+          <PageHeader
+            title=""
+            pageTitle="Guest"
+            itemCount={filteredGuests.length}
+            searchInput={searchInput}
+            handleSearchInput={handleSearchInput}
+          /></div>
+        <div className="col-md-1 "></div>
+      </div>
+      <div className="row">
+        <div className="col-md-1 "></div>
+        <div className="col-md-10 ">
+          {/* Nav tabs */}
+          <Tabs activeTab={activeTab} handleTabClick={handleTabClick} tabs={guestTabs} />
 
-      {/* Render list view */}
-      {viewMode === "list" && (
-        <SortableTable
-          items={filteredGuests}
-          sortedColumn={sortedColumn}
-          sortDirection={sortDirection}
-          sortCallback={sortGuests}
-          renderItem={(guest) => (
-            <ListItem key={guest._id} data={guest} basePath="/guests" />
+          {/* Render list view */}
+          {viewMode === "list" && (
+            <SortableTable
+              items={filteredGuests}
+              sortedColumn={sortedColumn}
+              sortDirection={sortDirection}
+              sortCallback={sortGuests}
+              renderItem={(guest) => (
+                <ListItem key={guest._id} data={guest} basePath="/guests" />
+              )}
+            />
           )}
-        />
-      )}
 
-      {/*  Render details view */}
-      {viewMode === "details" && (
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-          {filteredGuests.map((guest) => (
-            <DetailCard key={guest._id} data={guest} basePath="/guests" />
-          ))}
+          {/*  Render details view */}
+          {viewMode === "details" && (
+            <div className="row justify-content-center">
+              {filteredGuests.map((guest) => (
+                <DetailCard key={guest._id} data={guest} basePath="/guests" />
+              ))}
+
+            </div>
+          )}
+
+          {/* Render gallery view */}
+          {viewMode === "gallery" && (
+            <GalleryPreview images={filteredGuests.map((guest) => guest.imageUrl)} />
+          )}
+
         </div>
-      )}
+        <div className="col-md-1 "></div>
+      </div>
 
-      {/* Render gallery view */}
-      {viewMode === "gallery" && (
-        <GalleryPreview images={filteredGuests.map((guest) => guest.imageUrl)} />
-      )}
-    </div>
+    </section>
   );
 }
 
