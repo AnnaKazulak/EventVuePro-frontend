@@ -68,102 +68,99 @@ function App() {
   };
 
   return (
-    <div className="App">
-
+    <div className={isLoggedIn ? "App Content" : "App"}>
       {isLoggedIn && (
         <>
-          <CollapsedMenuBar onExpand={handleToggleExpand} isExpanded={isExpanded} />
+          <CollapsedMenuBar
+            onExpand={handleToggleExpand}
+            isExpanded={isExpanded}
+          />
           {isExpanded && <ExpandedMenuBar />}
         </>
       )}
-      <div className="Content">
-        <NavigationBar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+      <NavigationBar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
 
-          <Route
-            path="/guests"
-            element={
-              <IsPrivate>
-                <GuestList imageDimensions={imageDimensions} />
-              </IsPrivate>
-            }
-          />
-          <Route
-            path="/guests/create"
-            element={
-              <IsPrivate>
-                <CreateGuest updateImageDimensions={updateImageDimensions} />
-              </IsPrivate>
-            }
-          />
-          <Route
-            path="/guests/:guestId"
-            element={
-              <IsPrivate>
-                <GuestDetails />
-              </IsPrivate>
-            }
-          />
-          <Route
-            path="/guests/edit/:guestId"
-            element={<EditGuest updateImageDimensions={updateImageDimensions} />}
-          />
+        <Route
+          path="/guests"
+          element={
+            <IsPrivate>
+              <GuestList imageDimensions={imageDimensions} />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/guests/create"
+          element={
+            <IsPrivate>
+              <CreateGuest updateImageDimensions={updateImageDimensions} />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/guests/:guestId"
+          element={
+            <IsPrivate>
+              <GuestDetails />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/guests/edit/:guestId"
+          element={<EditGuest updateImageDimensions={updateImageDimensions} />}
+        />
 
-          <Route
-            path="/events"
-            element={
-              <IsPrivate>
-                <EventList />
-              </IsPrivate>
-            }
-          />
-          <Route
-            path="/events/:eventId"
-            element={
-              <IsPrivate>
-                <EventDetails />
-              </IsPrivate>
-            }
-          />
+        <Route
+          path="/events"
+          element={
+            <IsPrivate>
+              <EventList />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/events/:eventId"
+          element={
+            <IsPrivate>
+              <EventDetails />
+            </IsPrivate>
+          }
+        />
 
-          <Route path="/events/edit/:eventId" element={
-            <EditEvent />
-          } />
+        <Route path="/events/edit/:eventId" element={<EditEvent />} />
 
-          <Route
-            path="/events/create"
-            element={
-              <IsPrivate>
+        <Route
+          path="/events/create"
+          element={
+            <IsPrivate>
+              <CreateEvent />
+            </IsPrivate>
+          }
+        />
 
-                <CreateEvent />
+        <Route
+          path="/auth/signup"
+          element={
+            <IsAnon>
+              <SignupPage />
+            </IsAnon>
+          }
+        />
+        <Route
+          path="/auth/login"
+          element={
+            <IsAnon>
+              <LoginPage />
+            </IsAnon>
+          }
+        />
+      </Routes>
 
-              </IsPrivate>
-            }
-          />
-
-          <Route
-            path="/auth/signup"
-            element={
-              <IsAnon>
-                <SignupPage />
-              </IsAnon>
-            }
-          />
-          <Route
-            path="/auth/login"
-            element={
-              <IsAnon>
-                <LoginPage />
-              </IsAnon>
-            }
-          />
-        </Routes>
-
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
+
 }
 
 export default App;
