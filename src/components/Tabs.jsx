@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const Tabs = ({ activeTab, handleTabClick, tabs }) => {
     return (
-        <ul className="nav nav-tabs mb-5">
+        <ul className="nav nav-tabs mb-3">
             {tabs.map((tab) => (
                 <li className="nav-item" key={tab.key}>
                     <a
