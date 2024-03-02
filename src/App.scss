@@ -632,6 +632,36 @@ body {
 }
 
 
+// Edit Guest
+
+.custom-btn {
+  padding: 0.5rem 1rem; 
+  margin-bottom: 0.5rem; 
+  width: 150px;
+}
+
+.custom-btn-text {
+  text-decoration: none; 
+}
+
+
+// Event details
+
+
+
+.custom-img-details {
+  width: 100%; 
+}
+
+.custom-btn-text {
+  text-decoration: none; 
+}
+
+
+.test {
+  width: 100%;
+}
+
 // ---------------
 
 // Guest list
@@ -660,7 +690,6 @@ body {
 .guest-card-link {
   text-decoration: none;
 }
-
 
 
 .custom-select {
@@ -765,8 +794,6 @@ body {
   position: relative;
   bottom: 0;
   width: 100%;
-  // background-color: #f8f9fa;
-  // color: #6c757d; 
   background-color: $dark_green;
   color: $very_light_grey;
   text-align: center;
