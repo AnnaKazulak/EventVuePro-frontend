@@ -1,13 +1,15 @@
 import EventFormContainer from "../components/EventFormContainer";
 
 function CreateEvent() {
-
-
   return (
     <>
-      <div className="container custom-container mt-5">
-        <h2>Create an Event</h2>
-        <EventFormContainer />
+      <div className="container mt-5 row">
+        <div className="col-md-1 "></div>
+        <div className="col-md-2 mt-3">
+        </div>
+        <div className="col-md-8">
+          <EventFormContainer />
+        </div>
       </div>
     </>
   );

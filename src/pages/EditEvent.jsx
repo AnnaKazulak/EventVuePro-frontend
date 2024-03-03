@@ -8,7 +8,6 @@ function EditEvent() {
   return (
     <>
       <div className="container custom-container mt-5">
-        <h2>Edit Event</h2>
         {eventId ? (
           <EventFormContainer eventId={eventId} />
         ) : (

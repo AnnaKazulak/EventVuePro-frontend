@@ -54,7 +54,7 @@ function EventFormContainer({ eventId }) {
                     setImageUrl(eventData.imageUrl);
                     setGuests(eventData.guests.map((guest) => guest._id));
                     setGalleryImages(eventData.gallery.map((image) => image.galleryImageUrl));
-                    setIsEditing(true); 
+                    setIsEditing(true);
                 })
                 .catch((error) => {
                     console.error("Error fetching event data: ", error);
@@ -204,31 +204,29 @@ function EventFormContainer({ eventId }) {
 
 
     return (
-        <>
-            <EventForm
-                title={title}
-                description={description}
-                location={location}
-                date={date}
-                time={time}
-                imageUrl={imageUrl}
-                guests={guests}
-                guestList={guestList}
-                validationErrors={validationErrors}
-                imageLoading={imageLoading}
-                galleryImages={galleryImages}
-                handleFileUpload={handleFileUpload}
-                handleGalleryFileUpload={handleGalleryFileUpload}
-                setTitle={setTitle}
-                setDescription={setDescription}
-                setLocation={setLocation}
-                setDate={setDate}
-                setTime={setTime}
-                setGuests={setGuests}
-                handleSubmit={handleSubmit}
-                isEditing={isEditing}
-            />
-        </>
+        <EventForm
+            title={title}
+            description={description}
+            location={location}
+            date={date}
+            time={time}
+            imageUrl={imageUrl}
+            guests={guests}
+            guestList={guestList}
+            validationErrors={validationErrors}
+            imageLoading={imageLoading}
+            galleryImages={galleryImages}
+            handleFileUpload={handleFileUpload}
+            handleGalleryFileUpload={handleGalleryFileUpload}
+            setTitle={setTitle}
+            setDescription={setDescription}
+            setLocation={setLocation}
+            setDate={setDate}
+            setTime={setTime}
+            setGuests={setGuests}
+            handleSubmit={handleSubmit}
+            isEditing={isEditing}
+        />
     );
 }
 

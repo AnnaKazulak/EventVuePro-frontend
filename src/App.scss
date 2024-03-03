@@ -33,6 +33,14 @@ $theme-colors: ("primary": $light_blue,
 // Import Bootstrap SCSS
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+.test{
+  height: 50px;
+  background: #000;
+}
+  
+
+
+
 /* Global styles */
 body {
   font-family: 'Comic Sans MS', cursive;
@@ -658,9 +666,39 @@ body {
 }
 
 
-.test {
+// Evend Form
+
+.event-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100%;
+  max-width: 900px;
+  flex-grow: 1;
 }
+.event-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Ensure container fills available height */
+}
+.event-form {
+  flex-grow: 1; /* Allow form to grow to fill remaining space */
+}
+
+
+.main-image-preview {
+  max-width: 100%;
+  height: auto;
+}
+
+.description-textarea {
+  max-width: 100%; // Ensure textarea fits within its column
+  width: 100%; // Adjust width to fill the column
+}
+
+
 
 // ---------------
 
@@ -798,6 +836,18 @@ body {
   color: $very_light_grey;
   text-align: center;
   padding-top: 20px;
+}
+
+
+/* Add these styles to the container of your page */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the container takes at least the height of the viewport */
+}
+
+.main-content {
+  flex-grow: 1; /* Allow the main content to grow and fill remaining space */
 }
 
 

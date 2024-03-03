@@ -10,7 +10,6 @@ const EditGuest = () => {
       <div className="container mt-5 row">
         <div className="col-md-1 "></div>
         <div className="col-md-2 mt-3">
-          <h2>Edit Guest</h2>
         </div>
         <div className="col-md-8">
           {guestId ? (

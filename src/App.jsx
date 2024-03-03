@@ -79,85 +79,89 @@ function App() {
         </>
       )}
       <NavigationBar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      <div className="page-container">
+        <div className="main-content">
 
-        <Route
-          path="/guests"
-          element={
-            <IsPrivate>
-              <GuestList imageDimensions={imageDimensions} />
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/guests/create"
-          element={
-            <IsPrivate>
-              <CreateGuest updateImageDimensions={updateImageDimensions} />
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/guests/:guestId"
-          element={
-            <IsPrivate>
-              <GuestDetails />
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/guests/edit/:guestId"
-          element={<EditGuest updateImageDimensions={updateImageDimensions} />}
-        />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
 
-        <Route
-          path="/events"
-          element={
-            <IsPrivate>
-              <EventList />
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/events/:eventId"
-          element={
-            <IsPrivate>
-              <EventDetails />
-            </IsPrivate>
-          }
-        />
+            <Route
+              path="/guests"
+              element={
+                <IsPrivate>
+                  <GuestList imageDimensions={imageDimensions} />
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/guests/create"
+              element={
+                <IsPrivate>
+                  <CreateGuest updateImageDimensions={updateImageDimensions} />
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/guests/:guestId"
+              element={
+                <IsPrivate>
+                  <GuestDetails />
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/guests/edit/:guestId"
+              element={<EditGuest updateImageDimensions={updateImageDimensions} />}
+            />
 
-        <Route path="/events/edit/:eventId" element={<EditEvent />} />
+            <Route
+              path="/events"
+              element={
+                <IsPrivate>
+                  <EventList />
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/events/:eventId"
+              element={
+                <IsPrivate>
+                  <EventDetails />
+                </IsPrivate>
+              }
+            />
 
-        <Route
-          path="/events/create"
-          element={
-            <IsPrivate>
-              <CreateEvent />
-            </IsPrivate>
-          }
-        />
+            <Route path="/events/edit/:eventId" element={<EditEvent />} />
 
-        <Route
-          path="/auth/signup"
-          element={
-            <IsAnon>
-              <SignupPage />
-            </IsAnon>
-          }
-        />
-        <Route
-          path="/auth/login"
-          element={
-            <IsAnon>
-              <LoginPage />
-            </IsAnon>
-          }
-        />
-      </Routes>
+            <Route
+              path="/events/create"
+              element={
+                <IsPrivate>
+                  <CreateEvent />
+                </IsPrivate>
+              }
+            />
 
-      <Footer />
+            <Route
+              path="/auth/signup"
+              element={
+                <IsAnon>
+                  <SignupPage />
+                </IsAnon>
+              }
+            />
+            <Route
+              path="/auth/login"
+              element={
+                <IsAnon>
+                  <LoginPage />
+                </IsAnon>
+              }
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </div>
   );
 
