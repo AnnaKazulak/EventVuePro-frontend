@@ -33,10 +33,7 @@ $theme-colors: ("primary": $light_blue,
 // Import Bootstrap SCSS
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-.test{
-  height: 50px;
-  background: #000;
-}
+
   
 
 
@@ -656,7 +653,6 @@ body {
 // Event details
 
 
-
 .custom-img-details {
   width: 100%; 
 }
@@ -698,6 +694,12 @@ body {
   width: 100%; // Adjust width to fill the column
 }
 
+
+// EntityDetails
+
+.container-wrapper {
+  margin-top: 8rem; 
+}
 
 
 // ---------------

@@ -6,7 +6,7 @@ function Footer() {
     const { isLoggedIn } = useContext(AuthContext);
 
     return (
-        <div className="mt-5">
+        <div>
             <footer className="footer">
                 <div className="container mt-5">
                     <div className="row">
