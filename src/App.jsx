@@ -22,6 +22,7 @@ import { AuthContext } from "./context/auth.context";
 import CollapsedMenuBar from "./components/CollapsedMenuBar";
 import ExpandedMenuBar from "./components/ExpandedMenuBar";
 import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 function App() {
   const [imageDimensions, setImageDimensions] = useState({});
@@ -83,6 +84,7 @@ function App() {
       <div className="page-container">
         <div className="main-content">
           <ScrollToTop />
+          <ScrollToTopButton />
           <Routes>
             <Route path="/" element={<HomePage />} />
 
