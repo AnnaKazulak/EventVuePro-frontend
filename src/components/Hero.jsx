@@ -7,7 +7,7 @@ function Hero({ isLoggedIn, userName }) {
 
     return (
         <div className="hero-section section text-white collapsed-padding ">
-            <div className="container-fluid h-90">
+            <div className="container-fluid h-90 mt-5">
                 <div className="row h-100">
                     {/* Left half */}
                     <div className="col-md-6 d-flex align-items-center justify-content-center mt-5">
@@ -26,7 +26,7 @@ function Hero({ isLoggedIn, userName }) {
                                 <>
                                     <h1 className="hero-hello">Welcome to EventVuePro</h1>
                                     <p className="hero-hello">Your Ultimate Event Planning Companion</p>
-                                    <div className="button-group">
+                                    <div className="d-flex justify-content-center">
                                         <Link to="/auth/signup">
                                             <button className="btn btn-primary">Sign Up</button>
                                         </Link>

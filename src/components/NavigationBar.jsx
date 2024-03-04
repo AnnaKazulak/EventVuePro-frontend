@@ -28,7 +28,8 @@ const NavigationBar = () => {
       <div className="container">
         <div className="navbar-brand">
           <Link to="/">
-            EventVuePro
+            <span>EventVuePro</span>
+            <img src="/balooon-1-removebg.png" alt="logo baloon"  className='img-logo'/>
           </Link>
         </div>
         <button

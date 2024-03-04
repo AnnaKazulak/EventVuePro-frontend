@@ -34,15 +34,15 @@ $theme-colors: ("primary": $light_blue,
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 
-  
-
-
-
 /* Global styles */
 body {
   font-family: 'Comic Sans MS', cursive;
   color: "dark";
   overflow-x: hidden;
+}
+
+.checkbox-custom:checked {
+  background-color: $dark_blue;
 }
 
 
@@ -55,6 +55,13 @@ body {
 }
 
 /* Homepage*/
+
+.img-logo {
+height: 50px;
+width: auto;
+position: absolute;
+top: 0;
+}
 .home-page {
   height: 90vh;
 }
@@ -85,6 +92,11 @@ body {
   color: $very_dark_blue;
 }
 
+// .btn-homepage {
+// background: $dark_orange !important;
+// color: $very_light_grey !important;
+// }
+
 .button-group {
   display: flex;
   justify-content: center
@@ -97,9 +109,18 @@ body {
 
 
 /* Sections */
+.section {
+  flex-grow: 1; 
+}
 
 .left-content {
   padding: 20px;
+}
+
+.btn-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*  media queries for smaller devices */
@@ -588,7 +609,7 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: $light_blue;
   color: #fff;
 }
 
@@ -700,6 +721,8 @@ body {
 .container-wrapper {
   margin-top: 8rem; 
 }
+
+
 
 
 // ---------------
@@ -850,6 +873,8 @@ body {
 
 .main-content {
   flex-grow: 1; /* Allow the main content to grow and fill remaining space */
+  padding-bottom: 100px;
+  background-color: $very_light_grey;
 }
 
 

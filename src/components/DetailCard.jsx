@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const DetailCard = ({ data, basePath }) => {
     return (
-        <div className="col">
+        <div className="col m-2">
             <Link to={`${basePath}/${data._id}`} className="guest-card-link">
                 <div className="card h-100 shadow guest-card">
                     <img

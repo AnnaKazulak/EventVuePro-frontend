@@ -98,6 +98,7 @@ const GuestForm = ({
                             id="description"
                             rows="3"
                             name="description"
+                            placeholder='description'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         ></textarea>
