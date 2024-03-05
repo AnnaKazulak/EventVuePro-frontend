@@ -41,11 +41,6 @@ function GuestDetails() {
       <EntityDetails
         imageUrl={guest.imageUrl}
         name={guest.name}
-        // title=""
-        // locationLabel=""
-        // location=""
-        // dateLabel=""
-        // date=""
         descriptionLabel="Description"
         description={guest.description}
       />
