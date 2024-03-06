@@ -176,7 +176,7 @@ const EventForm = ({
                         type="submit"
                         disabled={imageLoading}
                     >
-                        {imageLoading ? "Uploading Image..." : (isEditing ? "Submit Changes" : "Add Guest")}
+                        {imageLoading ? "Uploading Image..." : (isEditing ? "Submit Changes" : "Add Event")}
                     </button>
                     <a
                         className="btn btn-outline-success"
