@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
@@ -72,13 +71,13 @@ function EventDetails() {
 
       {/* buttons */}
       <div className="row mx-4 mb-3">
-        <div className="col-md-12">
+        <div className="col-md-12 d-flex flex-column flex-md-row justify-content-md-start">
           <button className="btn btn-secondary me-md-3 mb-2 mb-md-0">
             <Link to={`/events/edit/${eventId}`} className="text-white custom-btn-text">
               Edit
             </Link>
           </button>
-          <button className="btn btn-danger me-md-3" onClick={() => setShowDeleteModal(true)}>
+          <button className="btn btn-danger me-md-3 mb-2 mb-md-0" onClick={() => setShowDeleteModal(true)}>
             Delete
           </button>
           <a className="btn btn-outline-success mb-2 mb-md-0" role="button" href={`/events`}>
@@ -86,6 +85,7 @@ function EventDetails() {
           </a>
         </div>
       </div>
+
       <div className="row mx-4">
         <div className="col-md-6 mb-3 mb-md-0">
           <Accordion id="guestListAccordion" title="Guest's List">
