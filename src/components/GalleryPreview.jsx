@@ -24,7 +24,7 @@ const GalleryPreview = ({ images }) => {
                             key={index}
                             src={image}
                             alt={`Gallery Image ${index + 1}`}
-                            className="gallery-image me-3"
+                            className="gallery-image mx-1"
                             onClick={() => openLightbox(index)}
                         />
                     ))}

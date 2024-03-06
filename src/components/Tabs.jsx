@@ -1,4 +1,6 @@
+
 import PropTypes from "prop-types";
+
 
 const Tabs = ({ activeTab, handleTabClick, tabs }) => {
     return (
@@ -6,7 +8,7 @@ const Tabs = ({ activeTab, handleTabClick, tabs }) => {
             {tabs.map((tab) => (
                 <li className="nav-item" key={tab.key}>
                     <a
-                        className={`nav-link ${activeTab === tab.value && "active"}`}
+                        className={`nav-link ${activeTab === tab.value ? 'active active-tab' : ''}`}
                         href="#"
                         onClick={() => handleTabClick(tab.value)}
                     >

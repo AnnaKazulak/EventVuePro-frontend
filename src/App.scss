@@ -765,7 +765,19 @@ top: 0;
 }
 
 
+/* Tabs.css */
 
+.nav.nav-tabs {
+  border: none;
+}
+
+.nav.nav-tabs .nav-item .nav-link {
+  border: none;
+}
+
+a.nav-link.active.active-tab {
+  background-color: $baby_blue;
+}
 
 // ---------------
 
@@ -826,6 +838,13 @@ top: 0;
   /* opacity for the previous image*/
 }
 
+
+
+
+
+
+
+
 /* lightbox */
 
 .lightbox-overlay {
@@ -855,6 +874,7 @@ top: 0;
   max-height: 200px;
   margin-right: 10px;
   margin-bottom: 10px;
+  border: 10px pink;
   cursor: pointer;
 }
 
@@ -869,6 +889,8 @@ top: 0;
 .guest-card:hover {
   transform: scale(1.05);
 }
+
+
 
 
 /* Event List */
@@ -891,6 +913,42 @@ top: 0;
 .col-attending {
   width: 30%;
   cursor: pointer;
+}
+
+
+
+// ListItem
+
+.list-item-link {
+  text-decoration: none;
+  color: "dark";
+}
+
+.item-image-container {
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-link {
+  text-decoration: none;
+  color: $very_dark_blue;
+}
+
+.item-edit-link {
+  margin-right: 4px; 
+}
+
+.table tr {
+  border-bottom: 10px solid $very_light_grey;
 }
 
 

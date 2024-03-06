@@ -9,6 +9,7 @@ import EntityDetails from "../components/EntityDetails ";
 import Accordion from "./Accordion";
 import DeleteModal from "../components/DeleteModal";
 
+
 function EventDetails() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);

@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { formatDateShort } from '../utils/dateUtils';
@@ -42,20 +42,20 @@ const EventTable = ({ title, events, deleteEvent }) => {
   return (
     <>
       <h4>{title}</h4>
-      <table className="table">
+      <table className="table table-hover">
         <thead>
           <tr>
             <th scope="col" style={{ width: "60%" }} className="pointer" onClick={() => sortEvents('title')}>
-            <span className='text-dark'>Event Name</span>   {sortConfig.key === 'title' && (
+              <span className='text-dark'>Event Title</span>   {sortConfig.key === 'title' && (
                 <i className={`fas fa-caret-${sortConfig.direction === 'asc' ? 'up' : 'down'}`}></i>
               )}
             </th>
-            <th scope="col" style={{ width: "20%" }} className="pointer" onClick={() => sortEvents('date')}>
+            <th scope="col" style={{ width: "30%" }} className="pointer" onClick={() => sortEvents('date')}>
               Date {sortConfig.key === 'date' && (
                 <i className={`fas fa-caret-${sortConfig.direction === 'asc' ? 'up' : 'down'}`}></i>
               )}
             </th>
-            <th scope="col" style={{ width: "20%" }}>Action</th>
+            <th scope="col" style={{ width: "10%" }}>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -63,10 +63,15 @@ const EventTable = ({ title, events, deleteEvent }) => {
             <tr key={event._id}>
               <td>
                 <Link to={`/events/${event._id}`} className="event-link">
-                 <span className='text-dark fw-lighter'>{event.title}</span> 
+                  <span className='text-dark fw-lighter'>{event.title}</span>
                 </Link>
               </td>
-              <td>{formatDateShort(event.date)}</td>
+              <td>
+                <Link to={`/events/${event._id}`} className="event-link">
+                  <span className='text-dark fw-lighter'>{formatDateShort(event.date)}</span>
+                </Link>
+
+              </td>
               <td>
                 <Link
                   to={`/events/edit/${event._id}`}

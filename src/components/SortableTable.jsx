@@ -32,6 +32,7 @@ const SortableTable = ({ items, sortedColumn, sortDirection, sortCallback }) => 
 
 
     return (
+        
         <table className="table table-hover">
             <thead>
                 <tr>
