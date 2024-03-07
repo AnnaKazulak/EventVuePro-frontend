@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Login from '../components/Login';
+import LoginForm from '../../components/forms/LoginForm';
 
 function SignupPage() {
 
@@ -23,7 +23,7 @@ function SignupPage() {
   return (
     <section className='bg-very-light-grey'>
       <div className="container custom-container mt-5">
-        <Login onSubmit={handleSignupSubmit} isSignup errorMessage={errorMessage} />
+        <LoginForm onSubmit={handleSignupSubmit} isSignup errorMessage={errorMessage} />
         <p>You&#39;ll be redirected to the login page</p>
       </div>
     </section>

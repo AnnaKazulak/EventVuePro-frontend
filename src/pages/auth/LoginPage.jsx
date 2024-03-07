@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from "react";
-import { AuthContext } from "../context/auth.context";
-import Login from '../components/Login';
+import { AuthContext } from "../../context/auth.context";
+import LoginForm from '../../components/forms/LoginForm';
 import axios from 'axios';
 
 function LoginPage() {
@@ -31,7 +31,7 @@ function LoginPage() {
   return (
     <section className='bg-very-light-grey'>
       <div className="container custom-container mt-5 position-relative">
-        <Login onSubmit={handleLoginSubmit} />
+        <LoginForm onSubmit={handleLoginSubmit} />
         {errorMessage &&
           <div className="alert alert-danger position-absolute start-50 translate-middle-x alert-custom" >
             {errorMessage}

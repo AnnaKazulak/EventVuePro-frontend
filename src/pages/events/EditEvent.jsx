@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import EventFormContainer from "../components/EventFormContainer";
+import EventFormContainer from "../../components/forms/EventFormContainer";
 
 
 function EditEvent() {

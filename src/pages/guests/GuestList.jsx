@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import GalleryPreview from "../components/GalleryPreview";
-import Tabs from "../components/Tabs";
-import ListItem from "../components/ListItem";
-import DetailCard from "../components/DetailCard";
-import PageHeader from "../components/PageHeader";
-import SortableTable from "../components/SortableTable";
+import GalleryPreview from "../../components/GalleryPreview";
+import Tabs from "../../components/Tabs";
+import ListItem from "../../components/lists/ListItem";
+import DetailCard from "../../components/cards/DetailCard";
+import PageHeader from "../../components/headers/PageHeader";
+import SortableTable from "../../components/tables/SortableTable";
 
 function GuestList() {
   const [guests, setGuests] = useState([]);
   const [viewMode, setViewMode] = useState("list");
-  const [activeTab, setActiveTab] = useState("list"); // Track active tab
+  const [activeTab, setActiveTab] = useState("list");
 
   const [searchInput, setSearchInput] = useState("");
   const [filteredGuests, setFilteredGuests] = useState([]);

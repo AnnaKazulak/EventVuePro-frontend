@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { formatDateShort } from '../utils/dateUtils';
-import PageHeader from "../components/PageHeader";
-import EventTable from "../components/EventTable";
+import { formatDateShort } from '../../utils/dateUtils';
+import PageHeader from "../../components/headers/PageHeader";
+import EventTable from "../../components/tables/EventTable";
 
 function EventList() {
     const [events, setEvents] = useState([]);

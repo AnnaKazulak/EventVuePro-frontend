@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Link } from "react-router-dom";
-import Hero from "../components/Hero";
-import Button from "../components/Button";
-import Card from "../components/Card";
+import Hero from "../components/headers/Hero";
+import Button from "../components/buttons/Button";
+import Card from "../components/cards/Card";
 import data from "../assets/data.json";
 
 function HomePage() {

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const Login = ({ onSubmit, isSignup, errorMessage }) => {
+const LoginForm = ({ onSubmit, isSignup, errorMessage }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -80,10 +80,10 @@ const Login = ({ onSubmit, isSignup, errorMessage }) => {
     );
 };
 
-Login.propTypes = {
+LoginForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     isSignup: PropTypes.bool,
     errorMessage: PropTypes.string
 };
 
-export default Login;
+export default LoginForm;

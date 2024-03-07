@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import EventForm from "../components/EventForm";
+import EventForm from "./EventForm";
 import PropTypes from "prop-types";
 import moment from 'moment';
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { formatDateShort } from '../utils/dateUtils';
+import { formatDateShort } from '../../utils/dateUtils';
 
 const EventTable = ({ title, events, deleteEvent }) => {
   const [sortedEvents, setSortedEvents] = useState([]);

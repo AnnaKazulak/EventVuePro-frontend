@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import GuestFormContainer from "../components/GuestFormContainer";
+import GuestFormContainer from "../../components/forms/GuestFormContainer";
 
 
 const EditGuest = () => {

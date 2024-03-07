@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import ListItem from "./ListItem";
+import ListItem from "../lists/ListItem";
 
 const SortableTable = ({ items, sortedColumn, sortDirection, sortCallback }) => {
 

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-import { formatDateLong } from '../utils/dateUtils';
+import { formatDateLong } from '../../utils/dateUtils';
 
 function Hero({ isLoggedIn, userName }) {
     const currentDate = formatDateLong(new Date());

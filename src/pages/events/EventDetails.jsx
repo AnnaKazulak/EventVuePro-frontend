@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import GalleryPreview from "../components/GalleryPreview";
-import { formatDateShort } from "../utils/dateUtils";
-import EmailForm from "../components/EmailForm";
-import ClickableList from "../components/ClickableList";
-import EntityDetails from "../components/EntityDetails ";
-import Accordion from "./Accordion";
-import DeleteModal from "../components/DeleteModal";
+import GalleryPreview from "../../components/GalleryPreview";
+import { formatDateShort } from "../../utils/dateUtils";
+import EmailForm from "../../components/forms/EmailForm";
+import ClickableTable from "../../components/tables/ClickableTable";
+import PageDetailsHeader from "../../components/headers/PageDetailsHeader";
+import Accordion from "../../components/Accordion";
+import DeleteModal from "../../components/modals/DeleteModal";
 
 
 function EventDetails() {
@@ -58,7 +58,7 @@ function EventDetails() {
 
   return (
     <section className="section mt-5">
-      <EntityDetails
+      <PageDetailsHeader
         imageUrl={event.imageUrl}
         name={event.name}
         title={event.title}
@@ -90,7 +90,7 @@ function EventDetails() {
       <div className="row mx-4">
         <div className="col-md-6 mb-3 mb-md-0">
           <Accordion id="guestListAccordion" title="Guest's List">
-            <ClickableList
+            <ClickableTable
               items={event.guests}
               baseUrl="/guests"
               linkKey="_id"

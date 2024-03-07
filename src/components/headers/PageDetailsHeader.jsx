@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const EntityDetails = ({
+const PageDetailsHeader = ({
     imageUrl,
     name,
     title,
@@ -52,7 +52,7 @@ const EntityDetails = ({
     );
 };
 
-EntityDetails.propTypes = {
+PageDetailsHeader.propTypes = {
     imageUrl: PropTypes.string,
     name: PropTypes.string,
     title: PropTypes.string,
@@ -64,4 +64,4 @@ EntityDetails.propTypes = {
     description: PropTypes.string,
 };
 
-export default EntityDetails;
+export default PageDetailsHeader;

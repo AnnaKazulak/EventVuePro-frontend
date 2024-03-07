@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import EntityDetails from '../components/EntityDetails ';
-import DeleteModal from '../components/DeleteModal';
+import PageDetailsHeader from '../../components/headers/PageDetailsHeader';
+import DeleteModal from '../../components/modals/DeleteModal';
 
 function GuestDetails() {
   const { guestId } = useParams();
@@ -38,7 +38,7 @@ function GuestDetails() {
 
   return (
     <section className="section mt-5">
-      <EntityDetails
+      <PageDetailsHeader
         imageUrl={guest.imageUrl}
         name={guest.name}
         descriptionLabel="Description"

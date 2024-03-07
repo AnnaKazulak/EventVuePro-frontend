@@ -1,42 +1,22 @@
-import EventFormContainer from "../components/EventFormContainer";
+import GuestFormContainer from "../../components/forms/GuestFormContainer";
 
-function CreateEvent() {
+function CreateGuest() {
+
+
   return (
     <>
       <div className="container mt-5 row">
         <div className="col-md-1 "></div>
         <div className="col-md-2 mt-3">
+          
         </div>
         <div className="col-md-8">
-          <EventFormContainer />
+          <GuestFormContainer />
         </div>
       </div>
     </>
   );
 }
 
-export default CreateEvent;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default CreateGuest;
 

@@ -1,6 +1,6 @@
-import GalleryPreview from "../components/GalleryPreview";
+import GalleryPreview from "../GalleryPreview";
 import PropTypes from 'prop-types';
-import { formatDateShort } from '../utils/dateUtils';
+import { formatDateShort } from '../../utils/dateUtils';
 import { useState, useEffect } from "react";
 
 
