@@ -25,7 +25,10 @@ const EventForm = ({
     setTime,
     setGuests,
     handleSubmit,
-    isEditing
+    isEditing,
+    deleteImage,
+    deleteGalleryImage
+
 }) => {
     const [formattedDate, setFormattedDate] = useState(formatDateShort(date, 'yyyy-MM-dd')); // Use initialDate
 
@@ -134,18 +137,27 @@ const EventForm = ({
                         </div>
                     </div>
 
+
                     {/* Main Image Preview */}
                     {imageUrl && (
-                        <div className="mb-3">
+                        <div className="mb-3 main-image-container"                         >
                             <img
                                 src={imageUrl}
                                 alt="Main Event"
-                                style={{ maxWidth: '200px', height: 'auto' }}
-                            />
+                                className="main-image" />
+                            <button
+                                className="btn btn-danger btn-sm delete-button-main-image"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    deleteImage();
+                                }}
+                            >
+                                Delete Image
+                            </button>
                         </div>
                     )}
 
-                    {/* Main Image Input */}
+                    {/* Gallery Image Input */}
                     <div className="mb-3">
                         <label htmlFor="image" className="form-label">
                             Main Image
@@ -186,7 +198,7 @@ const EventForm = ({
                         Cancel
                     </a>
 
-                    <GalleryPreview images={galleryImages} />
+                    <GalleryPreview images={galleryImages} deleteGalleryImage={deleteGalleryImage} showDeleteButton={true} />
 
                 </form>
             </div>
@@ -224,6 +236,8 @@ EventForm.propTypes = {
     setTime: PropTypes.func,
     setGuests: PropTypes.func,
     handleSubmit: PropTypes.func,
+    deleteImage: PropTypes.func,
+    deleteGalleryImage: PropTypes.func,
     isEditing: PropTypes.bool
 };
 

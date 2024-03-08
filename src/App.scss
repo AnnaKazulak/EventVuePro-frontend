@@ -851,6 +851,7 @@ a.nav-link.active.active-tab {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 99999;
 }
 
 .lightbox-image {
@@ -884,8 +885,42 @@ a.nav-link.active.active-tab {
   transform: scale(1.05);
 }
 
+/* GalleryPreview.css */
 
+.gallery-images-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.gallery-image-container {
+  position: relative;
+  margin: 0  7px 13px; 
+}
+
+.delete-button-image {
+  position: absolute;
+  bottom: 15px;
+  right: 11px;
+  z-index: 9999;
+}
+
+// Main Image Preview 
+
+.main-image-container {
+position: relative;
+display: inline-block;
+}
+
+.main-image{
+max-width: 200px;
+height: auto;
+}
+
+.delete-button-main-image{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
 
 /* Event List */
 .event-link {

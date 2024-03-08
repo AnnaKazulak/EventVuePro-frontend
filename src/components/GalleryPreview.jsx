@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const GalleryPreview = ({ images }) => {
+const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton }) => {
     const [lightboxIndex, setLightboxIndex] = useState(null);
     const [isLightboxOpen, setLightboxOpen] = useState(false);
 
@@ -20,18 +20,29 @@ const GalleryPreview = ({ images }) => {
             <div className="gallery-container my-5">
                 <div className="gallery-images-container">
                     {images.map((image, index) => (
-                        <img
-                            key={index}
-                            src={image}
-                            alt={`Gallery Image ${index + 1}`}
-                            className="gallery-image mx-1"
-                            onClick={() => openLightbox(index)}
-                        />
+                        <div className="gallery-image-container" key={index}>
+                            <img
+                                src={image}
+                                alt={`Gallery Image ${index + 1}`}
+                                className="gallery-image mx-1"
+                                onClick={() => openLightbox(index)}
+                            />
+                            {showDeleteButton && (
+                                <button
+                                    className="btn btn-danger btn-sm delete-button-image"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        deleteGalleryImage(index);
+                                    }}
+                                >
+                                    Delete Image
+                                </button>
+                            )}
+                        </div>
                     ))}
                 </div>
             </div>
 
-            {/* Lightbox */}
             {isLightboxOpen && (
                 <div className="lightbox-overlay" onClick={closeLightbox}>
                     <img
@@ -45,9 +56,15 @@ const GalleryPreview = ({ images }) => {
     );
 };
 
-//  PropTypes validation
+// PropTypes validation
 GalleryPreview.propTypes = {
     images: PropTypes.array.isRequired,
+    deleteGalleryImage: PropTypes.func,
+    showDeleteButton: PropTypes.bool
+};
+
+GalleryPreview.defaultProps = {
+    showDeleteButton: false // By default, don't show the delete button
 };
 
 export default GalleryPreview;

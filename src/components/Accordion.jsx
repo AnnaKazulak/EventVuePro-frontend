@@ -33,7 +33,7 @@ function Accordion({ id, title, children }) {
 
 Accordion.propTypes = {
     id: PropTypes.string,
-    title: PropTypes,
+    title: PropTypes.string,
     children: PropTypes.node
 };
 

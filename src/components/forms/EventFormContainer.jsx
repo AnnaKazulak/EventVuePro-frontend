@@ -117,20 +117,6 @@ function EventFormContainer({ eventId }) {
             });
     };
 
-
-    useEffect(() => {
-        axios
-            .get(`${import.meta.env.VITE_API_URL}/api/guests`, {
-                headers: { Authorization: `Bearer ${token}` },
-            })
-            .then((response) => {
-                setGuestList(response.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching guests: ", error);
-            });
-    }, []);
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -197,6 +183,43 @@ function EventFormContainer({ eventId }) {
             });
     };
 
+    // Delete image
+    const deleteImage = async () => {
+        try {
+            if (!imageUrl) {
+                console.error('No imageUrl provided');
+                return;
+            }
+
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/images`, {
+                data: { imageUrl } // Send imageUrl in request body
+            });
+
+            // Check if the response indicates success
+            if (response.data.message === 'Image deleted successfully') {
+                console.log('Image deletion response:', response.data);
+                // Update the imageUrl state to clear the image
+                setImageUrl('');
+            } else {
+                console.error('Error deleting image:', response.data.message);
+            }
+        } catch (error) {
+            console.error('Error deleting image:', error);
+            // Handle error here
+        }
+    };
+
+    // Delete a gallery image by index
+    const deleteGalleryImage = (index) => {
+        // Create a copy of the gallery images array
+        const updatedGalleryImages = [...galleryImages];
+        // Remove the image at the specified index
+        updatedGalleryImages.splice(index, 1);
+        // Update the state with the new gallery images array
+        setGalleryImages(updatedGalleryImages);
+    };
+
+
 
     useEffect(() => {
         console.log("guests", guests);
@@ -226,6 +249,8 @@ function EventFormContainer({ eventId }) {
             setGuests={setGuests}
             handleSubmit={handleSubmit}
             isEditing={isEditing}
+            deleteImage={deleteImage}
+            deleteGalleryImage={deleteGalleryImage}
         />
     );
 }
