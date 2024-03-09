@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import GalleryPreview from "../../components/GalleryPreview";
+import GalleryPreview from "../../components/gallery/GalleryPreview";
 import { formatDateShort } from "../../utils/dateUtils";
 import EmailForm from "../../components/forms/EmailForm";
 import ClickableTable from "../../components/tables/ClickableTable";

@@ -1,0 +1,20 @@
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: $dark_green;
+    color: $very_light_grey;
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .social-icons i {
+    font-size: 24px;
+    margin: 0 10px;
+  }

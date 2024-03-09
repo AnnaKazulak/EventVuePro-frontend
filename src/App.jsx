@@ -15,7 +15,7 @@ import GuestDetails from "./pages/guests/GuestDetails";
 import EditGuest from "./pages/guests/EditGuest";
 import EventDetails from "./pages/events/EventDetails";
 import EditEvent from "./pages/events/EditEvent";
-import Footer from "./components/Footer";
+import Footer from "./components/footer/Footer";
 import NavigationBar from "./components/navigation/NavigationBar";
 import { useContext } from "react";
 import { AuthContext } from "./context/auth.context";

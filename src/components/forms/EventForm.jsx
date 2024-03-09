@@ -1,4 +1,4 @@
-import GalleryPreview from "../GalleryPreview";
+import GalleryPreview from "../gallery/GalleryPreview";
 import PropTypes from 'prop-types';
 import { formatDateShort } from '../../utils/dateUtils';
 import { useState, useEffect } from "react";

@@ -45,72 +45,46 @@ body {
   background-color: $dark_blue;
 }
 
-
 .icon-link.active {
   color: $dark_pink !important; 
 }
 .nav-link{
   color:$dark_blue;
-  // color: red;
 }
 
 
-// ScrollToTopButton
-.scroll-to-top-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.scroll-to-top-button.show {
-  opacity: 1;
-}
-
-.scroll-to-top-button button {
-  background-color: $dark_blue;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
+// All pages
+.App {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  flex-direction: column;
 }
 
-.scroll-to-top-button button:hover {
-  background-color: $baby_blue;
+.Content {
+  flex: 1;
+  /* Allow content to take up remaining space */
+  margin-left: 7%;
+  /* Adjusted to account for the width of the collapsed menu */
 }
 
 
 // Delete Modal
-
 .custom-modal-dialog{
   margin-top: 300px;
 }
 
 
 /* Homepage*/
-
 .img-logo {
 height: 50px;
 width: auto;
 position: absolute;
 top: 0;
 }
+
 .home-page {
   height: 90vh;
 }
 
-.section {
-  min-height: 75vh;
-}
 
 .content {
   text-align: center;
@@ -126,7 +100,6 @@ top: 0;
   z-index: 1;
   /* Ensure the content is above the background */
   padding: 20px;
-
 }
 
 .hero-hello {
@@ -134,24 +107,10 @@ top: 0;
   color: $very_dark_blue;
 }
 
-// .btn-homepage {
-// background: $dark_orange !important;
-// color: $very_light_grey !important;
-// }
-
-.button-group {
-  display: flex;
-  justify-content: center
-}
-
-.btn-spacing {
-  margin-right: 10px;
-  /* Adjust as needed */
-}
-
 
 /* Sections */
 .section {
+  min-height: 75vh;
   flex-grow: 1; 
 }
 
@@ -199,493 +158,6 @@ top: 0;
 }
 
 
-/* Navigation Bar */
-.navbar {
-  background-color: $very_light_grey;
-  padding: 10px 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  z-index: 1000;
-  /* Ensure it's above other content */
-}
-
-/* Scrolled state */
-.navbar.scrolled {
-  background-color: #ffffff;
-  /* Change background color when scrolled */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  /* Add subtle shadow effect */
-}
-
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-brand {
-  margin-right: 20px;
-}
-
-.navbar-brand a {
-  color: $very_dark_blue;
-  text-decoration: none;
-}
-
-.logo {
-  width: 100px;
-}
-
-.navbar-toggler {
-  display: none;
-  /* Hide by default */
-  background: none;
-  border: none !important;
-  ;
-  cursor: pointer;
-  padding: 0;
-}
-
-.navbar-toggler.open {
-  border-style: none !important;
-  ;
-}
-
-.navbar-toggler:focus:not(:focus-visible) {
-  outline: none;
-  /* Remove outline on focus */
-}
-
-.navbar-toggler span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: $very_dark_blue;
-  /* Set hamburger button color */
-  margin: 5px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.navbar-toggler,
-.navbar-toggler:focus,
-.navbar-toggler:active {
-  outline: none;
-  border: none;
-  box-shadow: none;
-}
-
-/* Open state for mobile */
-.navbar-toggler.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.navbar-toggler.open span:nth-child(2) {
-  opacity: 0;
-  /* Hide middle line */
-}
-
-.navbar-toggler.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-.navbar-links {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-links ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-.navbar-links li {
-  margin-right: 15px;
-}
-
-.navbar-links a {
-  color: $very_dark_blue;
-  text-decoration: none;
-}
-
-.navbar-links button {
-  color: #000;
-  /* Set button text color */
-  background-color: $light_red;
-  /* Set button background color */
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Mobile navigation */
-@media (max-width: 768px) {
-  .navbar-toggler {
-    display: block;
-    /* Show for smaller devices */
-  }
-
-  .navbar-links {
-    display: none;
-    /* Hide links by default */
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: $very_light_grey;
-    /* Set background color */
-    padding: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    /* Add shadow */
-  }
-
-  .navbar-links.open {
-    display: flex;
-    /* Show links when mobile navigation is open */
-    flex-direction: column;
-    /* Stack links vertically */
-  }
-
-  .navbar-links ul {
-    width: 100%;
-  }
-
-  .navbar-links li {
-    margin: 10px 0;
-    /* Add margin between links */
-  }
-
-  .navbar-links a,
-  .navbar-links button {
-    margin-right: 10px;
-    width: 100%;
-    text-align: center;
-    /* Center align text */
-  }
-}
-
-/* ---------------------- */
-
-
-
-
-// All pages
-.App {
-  display: flex;
-  flex-direction: column;
-}
-
-.Content {
-  flex: 1;
-  /* Allow content to take up remaining space */
-  margin-left: 7%;
-  /* Adjusted to account for the width of the collapsed menu */
-}
-
-// Menubar
-.collapsed-menu-bar {
-  width: 7%;
-  /* Adjusted width for the collapsed menu */
-  min-width: 70px;
-  /* Minimum width to prevent it from collapsing too much */
-  height: 100vh;
-  background-color: #010a35;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  transition: width 0.3s ease;
-  z-index: 1008;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  /* Add box shadow */
-
-  .expand-button {
-    color: white;
-    margin-top: 10px;
-    margin-bottom: 100px;
-    cursor: pointer;
-  }
-
-  .menu-section {
-    margin-top: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    a {
-      color: #e5eeff;
-      text-decoration: none;
-      margin-bottom: 10px;
-
-      &:hover {
-        color: #74c2f2;
-      }
-    }
-  }
-}
-
-.expanded-menu-bar {
-  width: 15%;
-  /* Adjusted width for the expanded menu */
-  min-width: 230px;
-  /* Minimum width to prevent it from collapsing too much */
-  // background-color: #e5eeff;
-  background-color: rgba(229, 238, 255, 0.95);
-  color: #010a35;
-  padding-top: 122px;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  z-index: 1005;
-  opacity: 0.95;
-  /* Set opacity to 95% */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  /* Add box shadow */
-
-  .menu-section {
-    margin-top: 67px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      margin-bottom: 10px;
-
-      &:hover {
-        color: #74c2f2;
-      }
-    }
-  }
-}
-
-// Responsive adjustments
-@media (max-width: 768px) {
-  .collapsed-menu-bar {
-    width: 20%;
-    /* Adjusted width for smaller screens */
-  }
-
-  .expanded-menu-bar {
-    width: 30%;
-    /* Adjusted width for smaller screens */
-  }
-
-  .Content {
-    margin-left: 20%;
-    /* Adjusted margin for smaller screens */
-  }
-}
-
-@media (max-width: 576px) {
-  .collapsed-menu-bar {
-    width: 30%;
-    /* Further adjusted width for even smaller screens */
-  }
-
-  .expanded-menu-bar {
-    width: 40%;
-    /* Further adjusted width for even smaller screens */
-  }
-
-  .Content {
-    margin-left: 30%;
-    /* Further adjusted margin for even smaller screens */
-  }
-}
-
-
-// Card 
-
-.card {
-  width: calc(50% - 40px);
-  /* Adjust width to occupy 50% of container minus margins */
-  height: 400px;
-  /* Set initial height */
-  margin: 20px;
-  border: none;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Add shadow */
-  transition: box-shadow 0.3s ease;
-  /* Add transition for hover effect */
-  display: flex;
-  /* Use Flexbox */
-  flex-direction: column;
-  /* Arrange items vertically */
-  align-items: center;
-  background-color: #f8f9fa;
-  cursor: pointer;
-}
-
-.card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  /* Enhance shadow on hover */
-}
-
-.card-image {
-  width: 100%;
-  height: 70%;
-  /* Occupy 70% of card's height */
-  object-fit: cover;
-}
-
-.card-text {
-  background-color: #f8f9fa;
-  /* Set background color */
-  border: none;
-  width: 100%;
-  height: 30%;
-  /* Occupy 30% of card's height */
-  padding: 10px;
-  box-sizing: border-box;
-  display: flex;
-  /* Use Flexbox */
-  flex-direction: column;
-  /* Arrange items vertically */
-  justify-content: center;
-  /* Center content vertically */
-  align-items: center;
-  /* Center content horizontally */
-}
-
-.card-title {
-  margin-bottom: 10px;
-  color: $very_dark_blue;
-  font-size: 18px;
-}
-
-.card-info {
-  color: #000;
-  /* Set text color */
-  display: flex;
-  /* Use Flexbox */
-  flex-direction: row;
-  /* Arrange items horizontally */
-  // justify-content: space-between; /* Add space between items */
-  align-items: center;
-  /* Center content vertically */
-  justify-content: space-around;
-  margin-top: 10px;
-  /* Add margin for spacing */
-}
-
-.card-info>div {
-  margin-bottom: 5px;
-}
-
-.card-info-number {
-  font-size: 14px;
-}
-
-.card-info-text {
-  font-size: 10px;
-}
-
-@media (max-width: 1200px) {
-  .card {
-    width: calc(100% - 40px);
-    /* Adjust width to occupy full container minus margins */
-    margin-bottom: 20px;
-    /* Add margin between cards */
-  }
-}
-
-@media (max-width: 1200px) {
-  .card {
-    width: 100%;
-    /* Set width to occupy full container */
-  }
-}
-
-
-/* Login.css */
-
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
-}
-
-.login-form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 500px;
-}
-
-.form-control {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: none;
-  border-bottom: 1px solid #ccc;
-  outline: none;
-  border-radius: 0;
-}
-
-.button-group {
-  display: flex;
-  justify-content: space-between;
-}
-
-.btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: $light_blue;
-  color: #fff;
-}
-
-.btn-success {
-  background-color: $light_green;
-}
-
-.btn-primary {
-  background-color: $light_blue;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-.btn-primary a {
-  text-decoration: none !important;
-}
-
-/* Remove default focus styling */
-.form-control:focus {
-  box-shadow: none;
-}
-
-
-.form-control:focus {
-  border-bottom-color: $baby_blue;
-}
-
-
-.form-control::placeholder {
-  font-size: 0.8rem; 
-}
-
 // Login page
 .alert-custom {
   top: 18vh;
@@ -693,15 +165,7 @@ top: 0;
 }
 
 
-// Event list
-
-.header{
-  margin-top: 100px;
-}
-
-
-// Edit Guest
-
+// EventDetails GuestDetails Pages
 .custom-btn {
   padding: 0.5rem 1rem; 
   margin-bottom: 0.5rem; 
@@ -712,288 +176,31 @@ top: 0;
   text-decoration: none; 
 }
 
+// PageHeader
+.header{
+  margin-top: 100px;
+}
 
-// Event details
-
-
+// PageDetailsHeader
 .custom-img-details {
   width: 100%; 
 }
 
-.custom-btn-text {
-  text-decoration: none; 
-}
-
-
-// Evend Form
-
-.event-form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 900px;
-  flex-grow: 1;
-}
-.event-form-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%; /* Ensure container fills available height */
-}
-.event-form {
-  flex-grow: 1; /* Allow form to grow to fill remaining space */
-}
-
-
-.main-image-preview {
-  max-width: 100%;
-  height: auto;
-}
-
-.description-textarea {
-  max-width: 100%; // Ensure textarea fits within its column
-  width: 100%; // Adjust width to fill the column
-}
-
-
-// EntityDetails
-
 .container-wrapper {
   margin-top: 8rem; 
 }
-
-
-/* Tabs.css */
-
-.nav.nav-tabs {
-  border: none;
-}
-
-.nav.nav-tabs .nav-item .nav-link {
-  border: none;
-}
-
-a.nav-link.active.active-tab {
-  background-color: $baby_blue;
-}
-
-// ---------------
-
-// Guest list
 
 .custom-img-details {
   width: auto;
   max-height: 20vw;
 }
 
-
 .custom-img {
   width: 15vh;
   max-height: auto;
 }
 
-// DetailCard
 
-.guest-card {
-  width: 100%;
-
-  .card-img-top {
-      object-fit: cover;
-      height: 200px;
-  }
-}
-.guest-card-link {
-  text-decoration: none;
-}
-
-
-.custom-select {
-  width: 30vw;
-}
-
-.custom-container {
-  max-width: 100vw;
-}
-
-@media (min-width: 576px) {
-  .custom-container {
-    max-width: 60vw;
-  }
-}
-
-/* edit Guest */
-.image-preview {
-  transition: opacity 0.3s ease-in-out;
-}
-
-.updated-image {
-  opacity: 1;
-  /* Full opacity for the updated image */
-}
-
-.current-image {
-  opacity: 0.5;
-  /* opacity for the previous image*/
-}
-
-
-/* lightbox */
-
-.lightbox-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 99999;
-}
-
-.lightbox-image {
-  max-width: 80%;
-  max-height: 80%;
-  cursor: pointer;
-}
-
-.gallery-container {
-  margin-bottom: 1rem;
-}
-
-.gallery-image {
-  max-width: 100%;
-  max-height: 200px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  border: 10px pink;
-  cursor: pointer;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
-.guest-card {
-  transition: transform 0.3s ease;
-}
-
-.guest-card:hover {
-  transform: scale(1.05);
-}
-
-/* GalleryPreview.css */
-
-.gallery-images-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.gallery-image-container {
-  position: relative;
-  margin: 0  7px 13px; 
-}
-
-.delete-button-image {
-  position: absolute;
-  bottom: 15px;
-  right: 11px;
-  z-index: 9999;
-}
-
-// Main Image Preview 
-
-.main-image-container {
-position: relative;
-display: inline-block;
-}
-
-.main-image{
-max-width: 200px;
-height: auto;
-}
-
-.delete-button-main-image{
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-}
-
-/* Event List */
-.event-link {
-  color: black;
-  text-decoration: none;
-}
-
-.icon-link {
-  color: rgb(81, 81, 81);
-}
-
-
-/*  ClickableTable List */
-.col-name {
-  width: 70%;
-  cursor: pointer;
-}
-
-.col-attending {
-  width: 30%;
-  cursor: pointer;
-}
-
-
-
-// ListItem
-
-.list-item-link {
-  text-decoration: none;
-  color: "dark";
-}
-
-.item-image-container {
-  width: 70px;
-  height: 70px;
-  overflow: hidden;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.item-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.item-link {
-  text-decoration: none;
-  color: $very_dark_blue;
-}
-
-.item-edit-link {
-  margin-right: 4px; 
-}
-
-.table tr {
-  border-bottom: 10px solid $very_light_grey;
-}
-
-
-/* Footer */
-.footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  background-color: $dark_green;
-  color: $very_light_grey;
-  text-align: center;
-  padding-top: 20px;
-}
-
-
-/* Add these styles to the container of your page */
 .page-container {
   display: flex;
   flex-direction: column;
@@ -1006,15 +213,44 @@ height: auto;
   background-color: $very_light_grey;
 }
 
-
-.social-icons {
-  display: flex;
-  justify-content: center;
+.pointer {
+  cursor: pointer;
 }
 
-.social-icons i {
-  font-size: 24px;
-  margin: 0 10px;
-}
+// Buttons
+@import "../src/components/buttons/\ button";
+
+// Card and DetailCard
+@import "../src/components/cards/\ card";
+
+// ClickableTable
+@import "../src/components/tables/\ tables";
+
+// Evend Form
+@import "../src/components/forms/\ event-form";
+
+// Footer
+@import "../src/components/footer/\ footer";
+
+// Forms
+@import "../src/components/forms/\ login-form";
+
+// Gallery
+@import "../src/components/gallery/\ gallery";
+
+// ListItem
+@import "../src/components/lists/\ list";
+
+// Menubar
+@import "../src/components/menus/\ menu";
+
+// Navigation Bar
+@import "../src/components/navigation/\ navigation";
+
+// ScrollToTopButton
+@import "../src/components/buttons/\ button";
+
+// Tabs
+@import "../src/components/tabs/\ tabs";
 
 

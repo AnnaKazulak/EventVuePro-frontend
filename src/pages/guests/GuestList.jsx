@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import GalleryPreview from "../../components/GalleryPreview";
-import Tabs from "../../components/Tabs";
+import GalleryPreview from "../../components/gallery/GalleryPreview";
+import Tabs from "../../components/tabs/Tabs";
 import ListItem from "../../components/lists/ListItem";
 import DetailCard from "../../components/cards/DetailCard";
 import PageHeader from "../../components/headers/PageHeader";
