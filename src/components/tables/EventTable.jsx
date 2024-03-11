@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { formatDateShort } from '../../utils/dateUtils';
+import Pagination from '../pagination/Pagination';
 
 const EventTable = ({ title, events, deleteEvent }) => {
   const [sortedEvents, setSortedEvents] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'asc' });
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3; // Number of items per page
 
   useEffect(() => {
     // Sort events initially
@@ -37,7 +40,23 @@ const EventTable = ({ title, events, deleteEvent }) => {
     });
 
     setSortedEvents(sorted);
+    setCurrentPage(1);
   };
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = sortedEvents.slice(indexOfFirstItem, indexOfLastItem);
+
+
+  const totalPages = Math.ceil(sortedEvents.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    console.log("handlePageChange clicked pagination");
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    setCurrentPage(pageNumber);
+    console.log("Current Page:", pageNumber); // Add this line to log the updated currentPage
+  };
+
 
   return (
     <>
@@ -59,7 +78,7 @@ const EventTable = ({ title, events, deleteEvent }) => {
           </tr>
         </thead>
         <tbody>
-          {sortedEvents.map((event) => (
+          {currentItems.map((event) => (
             <tr key={event._id}>
               <td>
                 <Link to={`/events/${event._id}`} className="event-link">
@@ -87,6 +106,11 @@ const EventTable = ({ title, events, deleteEvent }) => {
           ))}
         </tbody>
       </table>
+      {/* Pagination */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange} />
     </>
   );
 }
