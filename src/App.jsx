@@ -19,10 +19,9 @@ import Footer from "./components/footer/Footer";
 import NavigationBar from "./components/navigation/NavigationBar";
 import { useContext } from "react";
 import { AuthContext } from "./context/auth.context";
-import CollapsedMenuBar from "./components/menus/CollapsedMenuBar";
-import ExpandedMenuBar from "./components/menus/ExpandedMenuBar";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/buttons/ScrollToTopButton";
+import CollapsibleMenu from "./components/menus/CollapsibleMenu";
 
 function App() {
   const [imageDimensions, setImageDimensions] = useState({});
@@ -73,13 +72,14 @@ function App() {
     <div className={isLoggedIn ? "App Content" : "App"}>
       {isLoggedIn && (
         <>
-          <CollapsedMenuBar
+          <CollapsibleMenu
             onExpand={handleToggleExpand}
             isExpanded={isExpanded}
           />
-          {isExpanded && <ExpandedMenuBar />}
+         
         </>
       )}
+
       <NavigationBar />
       <div className="page-container">
         <div className="main-content">

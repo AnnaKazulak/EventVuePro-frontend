@@ -62,7 +62,7 @@ body {
 .Content {
   flex: 1;
   /* Allow content to take up remaining space */
-  margin-left: 7%;
+  margin-left: 5%;
   /* Adjusted to account for the width of the collapsed menu */
 }
 
@@ -127,6 +127,10 @@ top: 0;
 /*  media queries for smaller devices */
 
 @media (max-width: 768px) {
+  .Content {
+    margin-left: 5%;
+    /* Adjusted margin for smaller screens */
+  }
   .section {
     height: auto;
     /* Remove fixed height */
