@@ -14,18 +14,3 @@ $dark_orange: #fea94f;
 $light_orange: #ffc271;
 $very_light_grey:#f8f9fa;
 $dark_pink: #e94793;
-
-// Override Bootstrap's colors with custom color
-
-$theme-colors: ("primary": $light_blue,
-  "secondary": $dark_pink,
-  "success": $light_green,
-  "info": $light_orange,
-  "warning": $dark_orange,
-  "danger": $dark_red,
-  "light": $very_light_grey,
-  "dark": $very_dark_blue,
-  "baby-blue":$baby_blue,
-  "very-light-blue":$very_light_blue,
-  "very-light-grey":$very_light_grey,
-);
