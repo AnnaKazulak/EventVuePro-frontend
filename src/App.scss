@@ -1,263 +1,263 @@
-// Define custom colors
-$pink: #ff69b4;
-$dark_red: #d13038;
-$light_red:#f3514e;
-$very_light_red:#ffc8bf;
-$very_dark_blue:#012a3e;
-$dark_blue:#010a35;
-$light_blue: #252c62;
-$baby_blue: #74c2f2;
-$very_light_blue:#e5eeff;
-$dark_green:#237988;
-$light_green:#3ba1a3;
-$dark_orange: #fea94f;
-$light_orange: #ffc271;
-$very_light_grey:#f8f9fa;
-$dark_pink: #e94793;
+// // Define custom colors
+// $pink: #ff69b4;
+// $dark_red: #d13038;
+// $light_red:#f3514e;
+// $very_light_red:#ffc8bf;
+// $very_dark_blue:#012a3e;
+// $dark_blue:#010a35;
+// $light_blue: #252c62;
+// $baby_blue: #74c2f2;
+// $very_light_blue:#e5eeff;
+// $dark_green:#237988;
+// $light_green:#3ba1a3;
+// $dark_orange: #fea94f;
+// $light_orange: #ffc271;
+// $very_light_grey:#f8f9fa;
+// $dark_pink: #e94793;
 
-// Override Bootstrap's  colors with your custom color
+// // Override Bootstrap's  colors with your custom color
 
-$theme-colors: ("primary": $light_blue,
-  "secondary": $dark_pink,
-  "success": $light_green,
-  "info": $light_orange,
-  "warning": $dark_orange,
-  "danger": $dark_red,
-  "light": $very_light_grey,
-  "dark": $very_dark_blue,
-  "baby-blue":$baby_blue,
-  "very-light-blue":$very_light_blue,
-  "very-light-grey":$very_light_grey,
-);
+// $theme-colors: ("primary": $light_blue,
+//   "secondary": $dark_pink,
+//   "success": $light_green,
+//   "info": $light_orange,
+//   "warning": $dark_orange,
+//   "danger": $dark_red,
+//   "light": $very_light_grey,
+//   "dark": $very_dark_blue,
+//   "baby-blue":$baby_blue,
+//   "very-light-blue":$very_light_blue,
+//   "very-light-grey":$very_light_grey,
+// );
 
-// Import Bootstrap SCSS
-@import "../node_modules/bootstrap/scss/bootstrap";
-
-
-/* Global styles */
-body {
-  font-family: 'Comic Sans MS', cursive;
-  color: "dark";
-  overflow-x: hidden;
-}
-
-.checkbox-custom:checked {
-  background-color: $dark_blue;
-}
-
-.icon-link.active {
-  color: $dark_pink !important; 
-}
-.nav-link{
-  color:$dark_blue;
-}
+// // Import Bootstrap SCSS
+// @import "../node_modules/bootstrap/scss/bootstrap";
 
 
-// All pages
-.App {
-  display: flex;
-  flex-direction: column;
-}
+// /* Global styles */
+// body {
+//   font-family: 'Comic Sans MS', cursive;
+//   color: "dark";
+//   overflow-x: hidden;
+// }
 
-.Content {
-  flex: 1;
-  /* Allow content to take up remaining space */
-  margin-left: 5%;
-  /* Adjusted to account for the width of the collapsed menu */
-}
+// .checkbox-custom:checked {
+//   background-color: $dark_blue;
+// }
 
-
-// Delete Modal
-.custom-modal-dialog{
-  margin-top: 300px;
-}
-
-
-/* Homepage*/
-.img-logo {
-height: 50px;
-width: auto;
-position: absolute;
-top: 0;
-}
-
-.home-page {
-  height: 90vh;
-}
+// .icon-link.active {
+//   color: $dark_pink !important; 
+// }
+// .nav-link{
+//   color:$dark_blue;
+// }
 
 
-.content {
-  text-align: center;
-}
+// // All pages
+// .App {
+//   display: flex;
+//   flex-direction: column;
+// }
 
-.hero-section {
-  position: relative;
-  background-color: #f8f9fa;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  /* Ensure the content is above the background */
-  padding: 20px;
-}
-
-.hero-hello {
-  font-family: 'Comic Sans MS', cursive;
-  color: $very_dark_blue;
-}
+// .Content {
+//   flex: 1;
+//   /* Allow content to take up remaining space */
+//   margin-left: 5%;
+//   /* Adjusted to account for the width of the collapsed menu */
+// }
 
 
-/* Sections */
-.section {
-  min-height: 75vh;
-  flex-grow: 1; 
-}
-
-.left-content {
-  padding: 20px;
-}
-
-.btn-text-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/*  media queries for smaller devices */
-
-@media (max-width: 768px) {
-  .Content {
-    margin-left: 5%;
-    /* Adjusted margin for smaller screens */
-  }
-  .section {
-    height: auto;
-    /* Remove fixed height */
-    min-height: 70vh;
-    /* Set minimum height */
-  }
-
-  .col-md-6 {
-    flex: 0 0 100%;
-    /* Make columns full width on smaller devices */
-  }
-
-  .left-content {
-    padding: 20px;
-    text-align: center;
-    /* Center align text */
-  }
-
-  .section-image {
-    max-width: 100%;
-    /* Make images responsive */
-    height: auto;
-  }
-
-  .hero-hello {
-    font-size: 1.5rem;
-    /* Adjust font size */
-  }
-}
+// // Delete Modal
+// .custom-modal-dialog{
+//   margin-top: 300px;
+// }
 
 
-// Login page
-.alert-custom {
-  top: 18vh;
-  transform: translateY(-50%);
-}
+// /* Homepage*/
+// .img-logo {
+// height: 50px;
+// width: auto;
+// position: absolute;
+// top: 0;
+// }
+
+// .home-page {
+//   height: 90vh;
+// }
 
 
-// EventDetails GuestDetails Pages
-.custom-btn {
-  padding: 0.5rem 1rem; 
-  margin-bottom: 0.5rem; 
-  width: 150px;
-}
+// .content {
+//   text-align: center;
+// }
 
-.custom-btn-text {
-  text-decoration: none; 
-}
+// .hero-section {
+//   position: relative;
+//   background-color: #f8f9fa;
+// }
 
-// PageHeader
-.header{
-  margin-top: 100px;
-}
+// .hero-content {
+//   position: relative;
+//   z-index: 1;
+//   /* Ensure the content is above the background */
+//   padding: 20px;
+// }
 
-// PageDetailsHeader
-.custom-img-details {
-  width: 100%; 
-}
-
-.container-wrapper {
-  margin-top: 8rem; 
-}
-
-.custom-img-details {
-  width: auto;
-  max-height: 20vw;
-}
-
-.custom-img {
-  width: 15vh;
-  max-height: auto;
-}
+// .hero-hello {
+//   font-family: 'Comic Sans MS', cursive;
+//   color: $very_dark_blue;
+// }
 
 
-.page-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensure the container takes at least the height of the viewport */
-}
+// /* Sections */
+// .section {
+//   min-height: 75vh;
+//   flex-grow: 1; 
+// }
 
-.main-content {
-  flex-grow: 1; /* Allow the main content to grow and fill remaining space */
-  padding-bottom: 100px;
-  background-color: $very_light_grey;
-}
+// .left-content {
+//   padding: 20px;
+// }
 
-.pointer {
-  cursor: pointer;
-}
+// .btn-text-container {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
 
-// Buttons
-@import "../src/components/buttons/\ button";
+// /*  media queries for smaller devices */
 
-// Card and DetailCard
-@import "../src/components/cards/\ card";
+// @media (max-width: 768px) {
+//   .Content {
+//     margin-left: 5%;
+//     /* Adjusted margin for smaller screens */
+//   }
+//   .section {
+//     height: auto;
+//     /* Remove fixed height */
+//     min-height: 70vh;
+//     /* Set minimum height */
+//   }
 
-// ClickableTable
-@import "../src/components/tables/\ tables";
+//   .col-md-6 {
+//     flex: 0 0 100%;
+//     /* Make columns full width on smaller devices */
+//   }
 
-// Evend Form
-@import "../src/components/forms/\ event-form";
+//   .left-content {
+//     padding: 20px;
+//     text-align: center;
+//     /* Center align text */
+//   }
 
-// Footer
-@import "../src/components/footer/\ footer";
+//   .section-image {
+//     max-width: 100%;
+//     /* Make images responsive */
+//     height: auto;
+//   }
 
-// Forms
-@import "../src/components/forms/\ login-form";
+//   .hero-hello {
+//     font-size: 1.5rem;
+//     /* Adjust font size */
+//   }
+// }
 
-// Gallery
-@import "../src/components/gallery/\ gallery";
 
-// ListItem
-@import "../src/components/lists/\ list";
+// // Login page
+// .alert-custom {
+//   top: 18vh;
+//   transform: translateY(-50%);
+// }
 
-// Menubar
-@import "../src/components/menus/\ menu";
 
-// Navigation Bar
-@import "../src/components/navigation/\ navigation";
+// // EventDetails GuestDetails Pages
+// .custom-btn {
+//   padding: 0.5rem 1rem; 
+//   margin-bottom: 0.5rem; 
+//   width: 150px;
+// }
 
-// Pagination
-@import "../src/components/pagination/\ pagination";
+// .custom-btn-text {
+//   text-decoration: none; 
+// }
 
-// ScrollToTopButton
-@import "../src/components/buttons/\ button";
+// // PageHeader
+// .header{
+//   margin-top: 100px;
+// }
 
-// Tabs
-@import "../src/components/tabs/\ tabs";
+// // PageDetailsHeader
+// .custom-img-details {
+//   width: 100%; 
+// }
+
+// .container-wrapper {
+//   margin-top: 8rem; 
+// }
+
+// .custom-img-details {
+//   width: auto;
+//   max-height: 20vw;
+// }
+
+// .custom-img {
+//   width: 15vh;
+//   max-height: auto;
+// }
+
+
+// .page-container {
+//   display: flex;
+//   flex-direction: column;
+//   min-height: 100vh; /* Ensure the container takes at least the height of the viewport */
+// }
+
+// .main-content {
+//   flex-grow: 1; /* Allow the main content to grow and fill remaining space */
+//   padding-bottom: 100px;
+//   background-color: $very_light_grey;
+// }
+
+// .pointer {
+//   cursor: pointer;
+// }
+
+// // Buttons
+// @import "../src/components/buttons/\ button";
+
+// // Card and DetailCard
+// @import "../src/components/cards/\ card";
+
+// // ClickableTable
+// @import "../src/components/tables/\ tables";
+
+// // Evend Form
+// @import "../src/components/forms/\ event-form";
+
+// // Footer
+// @import "../src/components/footer/\ footer";
+
+// // Forms
+// @import "../src/components/forms/\ login-form";
+
+// // Gallery
+// @import "../src/components/gallery/\ gallery";
+
+// // ListItem
+// @import "../src/components/lists/\ list";
+
+// // Menubar
+// @import "../src/components/menus/\ menu";
+
+// // Navigation Bar
+// @import "../src/components/navigation/\ navigation";
+
+// // Pagination
+// @import "../src/components/pagination/\ pagination";
+
+// // ScrollToTopButton
+// @import "../src/components/buttons/\ button";
+
+// // Tabs
+// @import "../src/components/tabs/\ tabs";
 
 
