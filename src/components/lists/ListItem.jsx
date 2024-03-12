@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
+import "./list.css"
 
 const ListItem = ({ data, basePath }) => {
   return (

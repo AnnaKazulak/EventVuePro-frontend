@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from "../../context/auth.context";
+import "./navigation.css"
 
 
 const NavigationBar = () => {

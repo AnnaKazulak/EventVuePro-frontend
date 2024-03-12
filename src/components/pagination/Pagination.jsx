@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import "./pagination.css"
 
 const Pagination = ({ currentPage, totalPages, handlePageChange }) => {
   return (

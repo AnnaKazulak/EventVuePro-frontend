@@ -1,6 +1,5 @@
-
 import PropTypes from "prop-types";
-
+import "./tabs.css"
 
 const Tabs = ({ activeTab, handleTabClick, tabs }) => {
     return (

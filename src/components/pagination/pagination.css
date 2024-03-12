@@ -1,0 +1,27 @@
+.pagination {
+    display: flex;
+    justify-content: center; /* Center pagination horizontally */
+    margin-top: 20px;
+  }
+  
+  .pagination .page-link {
+    border: none;
+    background-color: transparent;
+    color: #012a3e; 
+  
+  }
+  
+  .pagination .page-link:hover {
+    background-color: transparent;
+  }
+  
+  .pagination .page-link:focus {
+    box-shadow: none;
+  }
+  
+  .pagination .page-item.active .page-link {
+    background-color: #e94793;
+    border-color: #e94793;
+    color: #fff;
+  }
+  

@@ -4,7 +4,7 @@
   }
 
   .Content {
-     margin-left: 15%; /* Adjusted margin for smaller screens */
+    margin-left: 15%; /* Adjusted margin for smaller screens */
   }
 }
 
@@ -18,13 +18,14 @@
   }
 }
 
+/* Collapsible Menu */
 .collapsible-menu {
   position: fixed;
   top: 0;
   left: 0;
   min-width: 5%;
   height: 100vh;
-  background-color: $dark_blue;
+  background-color: #012a3e;
   transition: width 0.3s;
   z-index: 99998;
 }
@@ -34,6 +35,7 @@
   opacity: 0.95;
 }
 
+/* Menu Toggle */
 .menu-toggle {
   background: none;
   border: none;
@@ -42,6 +44,7 @@
   cursor: pointer;
 }
 
+/* Menu Content */
 .menu-content {
   display: flex;
   flex-direction: column;
@@ -49,6 +52,7 @@
   padding-top: 20px;
 }
 
+/* Icon Link Menu */
 .icon-link-menu {
   display: flex;
   align-items: center;
@@ -61,13 +65,15 @@
 }
 
 .icon-link-menu:hover {
-  background-color: $pink;
+  background-color: #ff69b4; 
 }
 
+/* Active */
 .active {
-  background-color: $pink;
+  background-color: #ff69b4; 
 }
 
+/* Text Menu */
 .text-menu {
   margin-left: 10px;
 }

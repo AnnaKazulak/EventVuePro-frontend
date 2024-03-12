@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import "./gallery.css"
 
 const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton }) => {
     const [lightboxIndex, setLightboxIndex] = useState(null);
