@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import './card.css';
 
 const Card = ({ imageSrc, title, invitedGuests, attendingGuests, eventDate }) => {
 

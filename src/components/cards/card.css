@@ -1,5 +1,4 @@
-// Card 
-
+/* Card */
 .card {
     width: calc(50% - 40px);
     /* Adjust width to occupy 50% of container minus margins */
@@ -19,21 +18,21 @@
     align-items: center;
     background-color: #f8f9fa;
     cursor: pointer;
-}
-
-.card:hover {
+  }
+  
+  .card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     /* Enhance shadow on hover */
-}
-
-.card-image {
+  }
+  
+  .card-image {
     width: 100%;
     height: 70%;
     /* Occupy 70% of card's height */
     object-fit: cover;
-}
-
-.card-text {
+  }
+  
+  .card-text {
     background-color: #f8f9fa;
     /* Set background color */
     border: none;
@@ -50,90 +49,65 @@
     /* Center content vertically */
     align-items: center;
     /* Center content horizontally */
-}
-
-.card-title {
+  }
+  
+  .card-title {
     margin-bottom: 10px;
-    color: $very_dark_blue;
+    color: #012a3e;
     font-size: 18px;
-}
-
-.card-info {
+  }
+  
+  .card-info {
     color: #000;
     /* Set text color */
     display: flex;
     /* Use Flexbox */
     flex-direction: row;
     /* Arrange items horizontally */
-    // justify-content: space-between; /* Add space between items */
     align-items: center;
     /* Center content vertically */
     justify-content: space-around;
     margin-top: 10px;
     /* Add margin for spacing */
-}
-
-.card-info>div {
+  }
+  
+  .card-info>div {
     margin-bottom: 5px;
-}
-
-.card-info-number {
+  }
+  
+  .card-info-number {
     font-size: 14px;
-}
-
-.card-info-text {
+  }
+  
+  .card-info-text {
     font-size: 10px;
-}
-
-@media (max-width: 1200px) {
+  }
+  
+  @media (max-width: 1200px) {
     .card {
-        width: calc(100% - 40px);
-        /* Adjust width to occupy full container minus margins */
-        margin-bottom: 20px;
-        /* Add margin between cards */
+      width: calc(100% - 40px);
+      /* Adjust width to occupy full container minus margins */
+      margin-bottom: 20px;
+      /* Add margin between cards */
     }
-}
-
-@media (max-width: 1200px) {
+  }
+  
+  @media (max-width: 576px) {
     .card {
-        width: 100%;
-        /* Set width to occupy full container */
+      width: calc(100% - 40px);
+      /* Adjust width to occupy full container minus margins */
+      margin-bottom: 20px;
+      /* Add margin between cards */
     }
-}
-
-// DetailCard
-
-.guest-card {
+  }
+  
+  /* DetailCard */
+  .guest-card {
     width: 100%;
-
-    .card-img-top {
-        object-fit: cover;
-        height: 200px;
-    }
-}
-
-.guest-card-link {
-    text-decoration: none;
-}
-
-.custom-select {
-    width: 30vw;
-}
-
-.custom-container {
-    max-width: 100vw;
-}
-
-@media (min-width: 576px) {
-    .custom-container {
-        max-width: 60vw;
-    }
-}
-
-.guest-card {
     transition: transform 0.3s ease;
   }
   
   .guest-card:hover {
     transform: scale(1.05);
   }
+  
