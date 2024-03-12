@@ -1,0 +1,64 @@
+/* Button Group */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Button Styles */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #74c2f2; 
+  color: #fff;
+}
+
+.btn-success {
+  background-color: #3ba1a3; 
+}
+
+.btn-primary {
+  background-color: #74c2f2; 
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-primary a {
+  text-decoration: none !important;
+}
+
+/* Scroll To Top Button */
+.scroll-to-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.scroll-to-top-button.show {
+  opacity: 1;
+}
+
+.scroll-to-top-button button {
+  background-color: #010a35; 
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.scroll-to-top-button button:hover {
+  background-color: #74c2f2; 
+}
