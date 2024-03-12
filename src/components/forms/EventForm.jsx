@@ -2,6 +2,7 @@ import GalleryPreview from "../gallery/GalleryPreview";
 import PropTypes from 'prop-types';
 import { formatDateShort } from '../../utils/dateUtils';
 import { useState, useEffect } from "react";
+import  './event-form.css';
 
 
 const EventForm = ({

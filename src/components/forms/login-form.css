@@ -1,21 +1,24 @@
+/* Login Container */
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100%;
-}
-
-.login-form {
+  }
+  
+  /* Login Form */
+  .login-form {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 500px;
-}
-
-.form-control {
+  }
+  
+  /* Form Control */
+  .form-control {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -23,19 +26,20 @@
     border-bottom: 1px solid #ccc;
     outline: none;
     border-radius: 0;
-}
-
-/* Remove default focus styling */
-.form-control:focus {
+  }
+  
+  /* Remove default focus styling */
+  .form-control:focus {
     box-shadow: none;
-}
-
-
-.form-control:focus {
-    border-bottom-color: $baby_blue;
-}
-
-
-.form-control::placeholder {
+  }
+  
+  /* Modify focus styling */
+  .form-control:focus {
+    border-bottom-color: #74c2f2; 
+  }
+  
+  /* Placeholder Text */
+  .form-control::placeholder {
     font-size: 0.8rem;
-}
+  }
+  

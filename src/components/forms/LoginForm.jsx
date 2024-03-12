@@ -1,7 +1,8 @@
-
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import './login-form.css';
+
 
 const LoginForm = ({ onSubmit, isSignup, errorMessage }) => {
     const [email, setEmail] = useState("");
