@@ -1,31 +1,40 @@
-import "./App.css";
+import "./App.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import HomePage from "./pages/HomePage";
-import GuestList from "./pages/GuestList";
-import EventList from "./pages/EventList";
-import CreateGuest from "./pages/CreateGuest";
-import CreateEvent from "./pages/CreateEvent";
+import GuestList from "./pages/guests/GuestList";
+import EventList from "./pages/events/EventList";
+import CreateGuest from "./pages/guests/CreateGuest";
+import CreateEvent from "./pages/events/CreateEvent";
 import { Route, Routes } from "react-router-dom";
-import SignupPage from "./pages/SignupPage";
-import LoginPage from "./pages/LoginPage";
-import CustomNavbar from "./components/Navbar";
-import IsPrivate from "./components/IsPrivate";
-import IsAnon from "./components/IsAnon";
-import GuestDetails from "./pages/GuestDetails";
-import EditGuest from "./pages/EditGuest";
-import EventDetails from "./pages/EventDetails";
-import EditEvent from "./pages/EditEvent";
+import SignupPage from "./pages/auth/SignupPage";
+import LoginPage from "./pages/auth/LoginPage";
+import IsPrivate from "./components/others/IsPrivate";
+import IsAnon from "./components/others/IsAnon";
+import GuestDetails from "./pages/guests/GuestDetails";
+import EditGuest from "./pages/guests/EditGuest";
+import EventDetails from "./pages/events/EventDetails";
+import EditEvent from "./pages/events/EditEvent";
+import Footer from "./components/footer/Footer";
+import NavigationBar from "./components/navigation/NavigationBar";
+import { useContext } from "react";
+import { AuthContext } from "./context/auth.context";
+import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTopButton from "./components/buttons/ScrollToTopButton";
+import CollapsibleMenu from "./components/menus/CollapsibleMenu";
 
 function App() {
   const [imageDimensions, setImageDimensions] = useState({});
+  const [isExpanded, setIsExpanded] = useState(false);
+  const { isLoggedIn } = useContext(AuthContext);
 
   const updateImageDimensions = (imageUrl, width, height) => {
-    console.log("💪💪💪",imageDimensions)
     setImageDimensions(prev =>
-    ( { ...prev,
-      [imageUrl]: { width, height }})
-  );
+    ({
+      ...prev,
+      [imageUrl]: { width, height }
+    })
+    );
   };
 
   useEffect(() => {
@@ -54,88 +63,111 @@ function App() {
     fetchGuests();
   }, []);
 
+
+  const handleToggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <div className="App">
-      <CustomNavbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+    <div className={isLoggedIn ? "App Content" : "App"}>
+      {isLoggedIn && (
+        <>
+          <CollapsibleMenu
+            onExpand={handleToggleExpand}
+            isExpanded={isExpanded}
+          />
+         
+        </>
+      )}
 
-        <Route
-          path="/guests"
-          element={
-            <IsPrivate>
-              <GuestList imageDimensions={imageDimensions} />
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/guests/create"
-          element={
-            <IsPrivate>
-              <CreateGuest updateImageDimensions={updateImageDimensions} />
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/guests/:guestId"
-          element={
-            <IsPrivate>
-              <GuestDetails />
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/guests/edit/:guestId"
-          element={<EditGuest updateImageDimensions={updateImageDimensions} />}
-        />
+      <NavigationBar />
+      <div className="page-container">
+        <div className="main-content">
+          <ScrollToTop />
+          <ScrollToTopButton />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
 
-        <Route
-          path="/events"
-          element={
-            <IsPrivate>
-              <EventList />
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/events/:eventId"
-          element={
-            <IsPrivate>
-              <EventDetails />
-            </IsPrivate>
-          }
-        />
+            <Route
+              path="/guests"
+              element={
+                <IsPrivate>
+                  <GuestList imageDimensions={imageDimensions} />
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/guests/create"
+              element={
+                <IsPrivate>
+                  <CreateGuest updateImageDimensions={updateImageDimensions} />
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/guests/:guestId"
+              element={
+                <IsPrivate>
+                  <GuestDetails />
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/guests/edit/:guestId"
+              element={<EditGuest updateImageDimensions={updateImageDimensions} />}
+            />
 
-        <Route path="/events/edit/:eventId" element={<EditEvent />} />
+            <Route
+              path="/events"
+              element={
+                <IsPrivate>
+                  <EventList />
+                </IsPrivate>
+              }
+            />
+            <Route
+              path="/events/:eventId"
+              element={
+                <IsPrivate>
+                  <EventDetails />
+                </IsPrivate>
+              }
+            />
 
-        <Route
-          path="/events/create"
-          element={
-            <IsPrivate>
-              <CreateEvent />
-            </IsPrivate>
-          }
-        />
+            <Route path="/events/edit/:eventId" element={<EditEvent />} />
 
-        <Route
-          path="/auth/signup"
-          element={
-            <IsAnon>
-              <SignupPage />
-            </IsAnon>
-          }
-        />
-        <Route
-          path="/auth/login"
-          element={
-            <IsAnon>
-              <LoginPage />
-            </IsAnon>
-          }
-        />
-      </Routes>
+            <Route
+              path="/events/create"
+              element={
+                <IsPrivate>
+                  <CreateEvent />
+                </IsPrivate>
+              }
+            />
+
+            <Route
+              path="/auth/signup"
+              element={
+                <IsAnon>
+                  <SignupPage />
+                </IsAnon>
+              }
+            />
+            <Route
+              path="/auth/login"
+              element={
+                <IsAnon>
+                  <LoginPage />
+                </IsAnon>
+              }
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </div>
   );
+
 }
 
 export default App;
