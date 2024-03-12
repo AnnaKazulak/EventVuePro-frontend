@@ -34,7 +34,7 @@
 
 /* Global styles */
 body {
-  font-family: 'Comic Sans MS', cursive;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
   color: var(--dark);
   overflow-x: hidden;
 }
@@ -44,11 +44,15 @@ body {
 }
 
 .icon-link.active {
-  color: var(--dark_pink) !important; 
+  color: var(--dark_pink) !important;
 }
 
 .nav-link {
   color: var(--dark_blue);
+}
+
+.text-pink {
+  color: var(--dark_pink);
 }
 
 /* All pages */
@@ -105,6 +109,15 @@ body {
   flex-grow: 1;
 }
 
+.bg-baby-blue {
+  background-color: var(--baby_blue);
+  ;
+}
+
+.bg-very-light-grey {
+  background-color: var(--very_light_grey);
+}
+
 .left-content {
   padding: 20px;
 }
@@ -120,21 +133,26 @@ body {
   .Content {
     margin-left: 5%;
   }
+
   .section {
     height: auto;
     min-height: 70vh;
   }
+
   .col-md-6 {
     flex: 0 0 100%;
   }
+
   .left-content {
     padding: 20px;
     text-align: center;
   }
+
   .section-image {
     max-width: 100%;
     height: auto;
   }
+
   .hero-hello {
     font-size: 1.5rem;
   }
@@ -148,13 +166,13 @@ body {
 
 /* EventDetails GuestDetails Pages */
 .custom-btn {
-  padding: 0.5rem 1rem; 
-  margin-bottom: 0.5rem; 
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
   width: 150px;
 }
 
 .custom-btn-text {
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 /* PageHeader */
@@ -164,11 +182,11 @@ body {
 
 /* PageDetailsHeader */
 .custom-img-details {
-  width: 100%; 
+  width: 100%;
 }
 
 .container-wrapper {
-  margin-top: 8rem; 
+  margin-top: 8rem;
 }
 
 .custom-img-details {

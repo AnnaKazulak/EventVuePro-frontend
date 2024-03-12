@@ -17,7 +17,7 @@ const DeleteModal = ({ itemName, show, onDelete, onClose }) => {
             </button>
           </div>
           <div className="modal-body">
-            <p>Are you sure you want to delete <strong className='text-secondary'>{itemName}</strong>?</p>
+            <p>Are you sure you want to delete <strong className='text-pink'>{itemName}</strong>?</p>
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-danger" onClick={onDelete}>Delete</button>

@@ -10,7 +10,7 @@ const PageHeader = ({ title, itemCount, pageTitle, searchInput, handleSearchInpu
             <div className="col-md-8">
                 <div className="row">
                     <div className="col-md-6">
-                        <h4>Your <span className="text-secondary">{pageTitle}</span> list contains {itemCount} items</h4>
+                        <h4>Your <span className="text-pink">{pageTitle}</span> list contains {itemCount} items</h4>
                         <input
                             type="search"
                             placeholder="Search"

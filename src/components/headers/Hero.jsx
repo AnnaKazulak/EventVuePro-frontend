@@ -20,7 +20,8 @@ function Hero({ isLoggedIn, userName }) {
                                 <>
                                     <h1 className="hero-hello">Hello {userName}!</h1>
                                     <p className="hero-hello">It&apos;s {currentDate}, </p>
-                                    <p className="hero-hello"> a perfect day to create a <span className="fw-bolder">great</span> event</p>
+                                    <p className="hero-hello"> a perfect day to create a 
+                                    <span className="fw-bolder text-pink"> great</span> event</p>
                                 </>
                             ) : (
                                 <>

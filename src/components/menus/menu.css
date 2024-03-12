@@ -25,7 +25,7 @@
   left: 0;
   min-width: 5%;
   height: 100vh;
-  background-color: #012a3e;
+  background-color: #010a35;
   transition: width 0.3s;
   z-index: 99998;
 }
