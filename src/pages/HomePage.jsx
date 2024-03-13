@@ -144,7 +144,7 @@ function HomePage() {
                   <h1 className="hero-hello mb-3">Join us today!</h1>
                   <div className="d-flex justify-content-center">
                     <Link to="/auth/signup">
-                      <button className="btn btn-primary">Sign Up</button>
+                      <button className="btn btn-primary me-2">Sign Up</button>
                     </Link>
                     <span className="btn-spacing"></span>
                     <Link to="/auth/login">

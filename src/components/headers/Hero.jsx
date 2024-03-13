@@ -29,7 +29,7 @@ function Hero({ isLoggedIn, userName }) {
                                     <p className="hero-hello">Your Ultimate Event Planning Companion</p>
                                     <div className="d-flex justify-content-center">
                                         <Link to="/auth/signup">
-                                            <button className="btn btn-primary">Sign Up</button>
+                                            <button className="btn btn-primary me-2">Sign Up</button>
                                         </Link>
                                         <span className="btn-spacing"></span> 
                                         <Link to="/auth/login">
