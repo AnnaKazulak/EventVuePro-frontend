@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./gallery.css";
 
-const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton }) => {
+const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton, showSlideshowControls }) => {
     const [lightboxIndex, setLightboxIndex] = useState(null);
     const [isLightboxOpen, setLightboxOpen] = useState(false);
     const [isSlideshowOn, setSlideshowOn] = useState(false);
@@ -39,14 +39,17 @@ const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton }) => {
 
     return (
         <>
-            <div className="slideshow-controls">
-                <button
-                    className={`btn mt-1 ${isSlideshowOn ? "btn-secondary" : ""}`}
-                    onClick={toggleSlideshow}
-                >
-                    {isSlideshowOn ? "Stop Slideshow" : "Start Slideshow"}
-                </button>
-            </div>
+            {/* Conditionally render slideshow controls based on showSlideshowControls prop */}
+            {showSlideshowControls && (
+                <div className="slideshow-controls">
+                    <button
+                        className={`btn mt-1 btn-secondary ${isSlideshowOn ? "btn-pink" : ""}`}
+                        onClick={toggleSlideshow}
+                    >
+                        {isSlideshowOn ? "Stop Slideshow" : "Start Slideshow"}
+                    </button>
+                </div>
+            )}
             <div className="gallery-container my-5">
                 <div className="gallery-images-container">
                     {images.map((image, index) => (
@@ -101,10 +104,12 @@ GalleryPreview.propTypes = {
     images: PropTypes.array.isRequired,
     deleteGalleryImage: PropTypes.func,
     showDeleteButton: PropTypes.bool,
+    showSlideshowControls: PropTypes.bool
 };
 
 GalleryPreview.defaultProps = {
     showDeleteButton: false, // By default, don't show the delete button
+    showSlideshowControls: true, // By default, show slideshow controls
 };
 
 export default GalleryPreview;

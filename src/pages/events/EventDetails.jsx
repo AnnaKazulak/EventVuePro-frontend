@@ -107,7 +107,10 @@ function EventDetails() {
         </div>
       </div>
       <div className="row mx-4">
-        <GalleryPreview images={event.gallery.map(image => image.galleryImageUrl)} />
+        <GalleryPreview 
+        images={event.gallery.map(image => image.galleryImageUrl)} 
+        showSlideshowControls={true}
+        />
       </div>
 
       {/* Delete Confirmation Modal */}

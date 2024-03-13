@@ -114,7 +114,8 @@ function GuestList() {
 
           {/* Render gallery view */}
           {viewMode === "gallery" && (
-            <GalleryPreview images={filteredGuests.map((guest) => guest.imageUrl)} />
+            <GalleryPreview 
+            images={filteredGuests.map((guest) => guest.imageUrl)} />
           )}
 
         </div>

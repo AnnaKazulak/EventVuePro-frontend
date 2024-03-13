@@ -2,7 +2,7 @@ import GalleryPreview from "../gallery/GalleryPreview";
 import PropTypes from 'prop-types';
 import { formatDateShort } from '../../utils/dateUtils';
 import { useState, useEffect } from "react";
-import  './event-form.css';
+import './event-form.css';
 
 
 const EventForm = ({
@@ -199,7 +199,12 @@ const EventForm = ({
                         Cancel
                     </a>
 
-                    <GalleryPreview images={galleryImages} deleteGalleryImage={deleteGalleryImage} showDeleteButton={true} />
+                    <GalleryPreview
+                        images={galleryImages}
+                        deleteGalleryImage={deleteGalleryImage}
+                        showDeleteButton={true}
+                        showSlideshowControls={false}
+                    />
 
                 </form>
             </div>
@@ -239,7 +244,8 @@ EventForm.propTypes = {
     handleSubmit: PropTypes.func,
     deleteImage: PropTypes.func,
     deleteGalleryImage: PropTypes.func,
-    isEditing: PropTypes.bool
+    isEditing: PropTypes.bool,
+    showSlideshowControls: PropTypes.bool
 };
 
 export default EventForm;
