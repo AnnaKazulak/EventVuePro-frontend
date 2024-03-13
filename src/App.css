@@ -34,7 +34,7 @@
 
 /* Global styles */
 body {
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Lucida Sans Unicode', "Monaco", monospace, sans-serif;
   color: var(--dark);
   overflow-x: hidden;
 }
@@ -99,7 +99,6 @@ body {
 }
 
 .hero-hello {
-  font-family: 'Comic Sans MS', cursive;
   color: var(--very_dark_blue);
 }
 
