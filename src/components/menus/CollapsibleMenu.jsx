@@ -1,10 +1,13 @@
-import  { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import "./menu.css"
+import { useContext, useState } from 'react';
+import { AuthContext } from "../../context/auth.context";
+import PropTypes from 'prop-types';
 
+import "./menu.css";
 
 const CollapsibleMenu = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { logOutUser } = useContext(AuthContext);
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -12,12 +15,12 @@ const CollapsibleMenu = () => {
 
   return (
     <div className={`collapsible-menu ${isExpanded ? 'expanded' : 'collapsed'}`}>
-      <button onClick={toggleExpand} className="menu-toggle">
-        <i className={`fa-solid ${isExpanded ? 'fa-angle-left' : 'fa-angle-right'}`}></i>
-      </button>
       <div className="menu-content">
+        <button onClick={toggleExpand} className="menu-toggle mb-5">
+          <i className={`fa-solid ${isExpanded ? 'fa-angle-left' : 'fa-angle-right'}`}></i>
+        </button>
         <NavLink exact to="/" activeClassName="active" className="icon-link-menu">
-        <i className="fa-solid fa-house"></i>
+          <i className="fa-solid fa-house"></i>
           {isExpanded && <span className="text-menu">Home</span>}
         </NavLink>
         <NavLink exact to="/events" activeClassName="active" className="icon-link-menu">
@@ -36,9 +39,25 @@ const CollapsibleMenu = () => {
           <i className="fa-solid fa-person-circle-plus"></i>
           {isExpanded && <span className="text-menu">Add Guest</span>}
         </NavLink>
+
+        {!isExpanded ? (
+          <button onClick={logOutUser} className="icon-logout-menu mt-5">
+            <i className="fa-solid fa-power-off"></i>
+          </button>
+        ) : (
+          <button onClick={logOutUser} className="icon-logout-menu mt-5">
+            <i className="fa-solid fa-power-off"></i>
+            <span className='text-menu'>Logout</span>
+          </button>
+
+        )}
       </div>
     </div>
   );
+};
+
+CollapsibleMenu.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default CollapsibleMenu;

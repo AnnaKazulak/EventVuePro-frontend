@@ -20,33 +20,35 @@ function HomePage() {
         />
 
       </div>
-      {/* Section #2 */}
+
       <section className="section bg-baby-blue text-white d-flex">
         <div className="container-fluid h-90">
           <div className="row h-100">
             <div className="col-md-6">
-
               <div className="d-flex justify-content-center mt-5">
-                <h1 className="hero-hello mt-5">Let us heaving fun together!</h1>
+                <h1 className="hero-hello mt-5">Let us have fun together!</h1>
               </div>
 
               {isLoggedIn && (
                 <div className="d-flex justify-content-center">
-                  <Button label="Guests" to="/guests" className="btn btn-info m-3 " />
-                  <Button label="Create Guest" to="/guests/create" className="btn btn-info  m-3" />
-                  <Button label="Events" to="/events" className="btn btn-warning m-3 " />
-                  <Button label="Create Event" to="/events/create" className="btn btn-warning m-3 " />
+                  <div className="button-container">
+                    <Button label="Guests" to="/guests" className="btn btn-info m-3 " />
+                    <Button label="Create Guest" to="/guests/create" className="btn btn-info  m-3" />
+                    <Button label="Events" to="/events" className="btn btn-warning m-3 " />
+                    <Button label="Create Event" to="/events/create" className="btn btn-warning m-3 " />
+                  </div>
                 </div>
               )}
             </div>
+
             {/* Right half with image */}
             <div className="col-md-6 d-flex align-items-center justify-content-center">
               <img src="/dancing-party-group-removebg.png" alt="Image" className="section-image" />
             </div>
-
           </div>
         </div>
       </section>
+
       {/* Section FOR THE CARDS */}
       <section className="section bg-very-light-grey d-flex">
         <div className="container-fluid h-90">
@@ -133,10 +135,12 @@ function HomePage() {
 
             {isLoggedIn ? (
               <div className="d-flex justify-content-center mt-5">
-                <Button label="Guests" to="/guests" className="btn btn-info m-3 " />
-                <Button label="Create Guest" to="/guests/create" className="btn btn-info  m-3" />
-                <Button label="Events" to="/events" className="btn btn-warning m-3 " />
-                <Button label="Create Event" to="/events/create" className="btn btn-warning m-3 " />
+                <div className="button-container">
+                  <Button label="Guests" to="/guests" className="btn btn-info m-3 " />
+                  <Button label="Create Guest" to="/guests/create" className="btn btn-info  m-3" />
+                  <Button label="Events" to="/events" className="btn btn-warning m-3 " />
+                  <Button label="Create Event" to="/events/create" className="btn btn-warning m-3 " />
+                </div>
               </div>
             ) : (
               <>

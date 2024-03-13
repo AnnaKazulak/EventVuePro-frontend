@@ -1,11 +1,12 @@
 .navbar {
-  background-color: #f8f9fa; /* Assuming $very_light_grey is #f8f9fa */
+  background-color: #f8f9fa; 
   padding: 10px 0;
   position: fixed;
   top: 0;
   width: 100%;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   z-index: 1000;
+  height: 70px;
 }
 
 /* Scrolled state */
@@ -25,7 +26,7 @@
 }
 
 .navbar-brand a {
-  color: #252c62; /* Assuming $very_dark_blue is #252c62 */
+  color: #252c62; 
   text-decoration: none;
 }
 
@@ -96,13 +97,13 @@
 }
 
 .navbar-links a {
-  color: #252c62; /* Assuming $very_dark_blue is #252c62 */
+  color: #252c62; 
   text-decoration: none;
 }
 
 .navbar-links button {
   color: #000;
-  background-color: #f3514e; /* Assuming $light_red is #f3514e */
+  background-color: #f3514e; 
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
@@ -111,6 +112,7 @@
 
 /* Mobile navigation */
 @media (max-width: 768px) {
+ 
   .navbar-toggler {
     display: block; /* Show for smaller devices */
   }
@@ -145,4 +147,14 @@
     width: 100%;
     text-align: center;
   }
+}
+.icon-logout-menu span {
+  margin-left: 5px; /* Add space between icon and text */
+}
+
+.img-logo {
+  height: 50px;
+  width: auto;
+  position: absolute;
+  top: 7px;
 }

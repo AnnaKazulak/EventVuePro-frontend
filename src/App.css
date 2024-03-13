@@ -84,6 +84,12 @@ body {
   height: 90vh;
 }
 
+.button-container {
+  margin-top: 20px; 
+  text-align: center;
+}
+
+
 .content {
   text-align: center;
 }
@@ -131,7 +137,8 @@ body {
 /* Media queries for smaller devices */
 @media (max-width: 768px) {
   .Content {
-    margin-left: 5%;
+    /* margin-left: 5%; */
+    margin: 0;
   }
 
   .section {
@@ -209,6 +216,7 @@ body {
   flex-grow: 1;
   padding-bottom: 100px;
   background-color: var(--very_light_grey);
+  padding-bottom: 100px;
 }
 
 .pointer {
