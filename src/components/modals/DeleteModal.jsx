@@ -21,7 +21,7 @@ const DeleteModal = ({ itemName, show, onDelete, onClose }) => {
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-danger" onClick={onDelete}>Delete</button>
-            <button type="button" className="btn btn-outline-success" onClick={onClose}>Cancel</button>
+            <button type="button" className="btn btn-cancel" onClick={onClose}>Cancel</button>
 
           </div>
         </div>

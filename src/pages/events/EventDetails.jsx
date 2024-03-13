@@ -6,7 +6,7 @@ import { formatDateShort } from "../../utils/dateUtils";
 import EmailForm from "../../components/forms/EmailForm";
 import ClickableTable from "../../components/tables/ClickableTable";
 import PageDetailsHeader from "../../components/headers/PageDetailsHeader";
-import Accordion from "../../components/Accordion";
+import Accordion from "../../components/accordion/Accordion";
 import DeleteModal from "../../components/modals/DeleteModal";
 
 
@@ -81,7 +81,7 @@ function EventDetails() {
           <button className="btn btn-danger me-md-3 mb-2 mb-md-0" onClick={() => setShowDeleteModal(true)}>
             Delete
           </button>
-          <a className="btn btn-outline-success mb-2 mb-md-0" role="button" href={`/events`}>
+          <a className="btn btn-cancel mb-2 mb-md-0" role="button" href={`/events`}>
             Cancel
           </a>
         </div>

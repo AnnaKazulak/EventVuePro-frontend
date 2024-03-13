@@ -192,7 +192,7 @@ const EventForm = ({
                         {imageLoading ? "Uploading Image..." : (isEditing ? "Submit Changes" : "Add Event")}
                     </button>
                     <a
-                        className="btn btn-outline-success"
+                        className="btn btn-cancel"
                         role="button"
                         href="/events"
                     >

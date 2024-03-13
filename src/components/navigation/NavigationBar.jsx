@@ -48,9 +48,6 @@ const NavigationBar = () => {
                 <li>
                   <span>Hallo {user && user.name}</span>
                 </li>
-                {/* <li>
-                  <NavLink to="/events">My Events</NavLink>
-                </li> */}
                 <li>
                   <button onClick={logOutUser}>Logout</button>
                 </li>

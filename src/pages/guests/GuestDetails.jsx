@@ -55,7 +55,7 @@ function GuestDetails() {
           <button className="btn btn-danger me-md-3" onClick={() => setShowDeleteModal(true)}>
             Delete
           </button>
-          <a className="btn btn-outline-success mb-2 mb-md-0" role="button" href={`/guests`}>
+          <a className="btn btn-cancel mb-2 mb-md-0" role="button" href={`/guests`}>
             Cancel
           </a>
         </div>

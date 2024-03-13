@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import "./accordion.css";
 
 function Accordion({ id, title, children }) {
     return (
@@ -6,7 +7,7 @@ function Accordion({ id, title, children }) {
             <div className="accordion-item">
                 <h2 className="accordion-header" id={`heading${id}`}>
                     <button
-                        className="accordion-button collapsed bg-success"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target={`#collapse${id}`}

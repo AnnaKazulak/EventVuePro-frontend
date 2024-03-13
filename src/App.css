@@ -20,6 +20,7 @@
 /* Override Bootstrap's colors with custom colors */
 :root {
   --primary: var(--light_blue);
+  --dark-blue: var(--dark_blue);
   --secondary: var(--dark_pink);
   --success: var(--light_green);
   --info: var(--light_orange);

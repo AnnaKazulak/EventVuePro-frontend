@@ -1,0 +1,5 @@
+div.accordion .accordion-item .accordion-header .accordion-button,
+div.accordion .accordion-item .accordion-header .accordion-button.collapsed {
+    background-color: var(--primary);
+    color: #fff;
+}

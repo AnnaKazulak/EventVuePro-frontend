@@ -136,7 +136,7 @@ const GuestForm = ({
                         {imageLoading ? "Uploading Image..." : (isEditing ? "Submit Changes" : "Add Guest")}
                     </button>
                     <a
-                        className="btn btn-outline-success mb-5"
+                        className="btn btn-cancel mb-5"
                         role="button"
                         href="/guests"
                     >

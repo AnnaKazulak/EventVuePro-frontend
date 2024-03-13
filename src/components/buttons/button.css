@@ -10,20 +10,32 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #74c2f2; 
+  background-color: var(--primary);
   color: #fff;
 }
 
-.btn-success {
-  background-color: #3ba1a3; 
-}
-
-.btn-primary {
-  background-color: #74c2f2; 
-}
-
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: var(--success);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary); /*pink*/
+}
+
+.btn-success:hover {
+  background-color: var(--success);
+}
+
+.btn-warning:hover {
+  background-color: var(--warning); 
+}
+
+.btn-danger:hover {
+  background-color: var(--danger); 
+}
+
+.btn-cancel:hover {
+  background-color: var(--baby-blue);
 }
 
 .btn-primary a {
@@ -60,5 +72,5 @@
 }
 
 .scroll-to-top-button button:hover {
-  background-color: #74c2f2; 
+  background-color: var(--baby_blue);
 }
