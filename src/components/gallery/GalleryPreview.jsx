@@ -1,10 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import "./gallery.css"
+import "./gallery.css";
 
 const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton }) => {
     const [lightboxIndex, setLightboxIndex] = useState(null);
     const [isLightboxOpen, setLightboxOpen] = useState(false);
+    const [isSlideshowOn, setSlideshowOn] = useState(false);
+    const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+    useEffect(() => {
+        let slideshowTimer;
+        if (isSlideshowOn) {
+            slideshowTimer = setInterval(() => {
+                setCurrentSlideIndex((prevIndex) =>
+                    prevIndex === images.length - 1 ? 0 : prevIndex + 1
+                );
+            }, 3000); // Change slide every 3 seconds (adjust as needed)
+        } else {
+            clearInterval(slideshowTimer);
+        }
+
+        return () => clearInterval(slideshowTimer);
+    }, [isSlideshowOn, images.length]);
 
     const openLightbox = (index) => {
         setLightboxIndex(index);
@@ -16,8 +33,20 @@ const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton }) => {
         setLightboxIndex(null);
     };
 
+    const toggleSlideshow = () => {
+        setSlideshowOn((prevState) => !prevState);
+    };
+
     return (
         <>
+            <div className="slideshow-controls">
+                <button
+                    className={`btn mt-1 ${isSlideshowOn ? "btn-secondary" : ""}`}
+                    onClick={toggleSlideshow}
+                >
+                    {isSlideshowOn ? "Stop Slideshow" : "Start Slideshow"}
+                </button>
+            </div>
             <div className="gallery-container my-5">
                 <div className="gallery-images-container">
                     {images.map((image, index) => (
@@ -49,7 +78,17 @@ const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton }) => {
                     <img
                         src={images[lightboxIndex]}
                         alt={`Gallery Image ${lightboxIndex + 1}`}
-                        className="lightbox-image"
+                        className="lightbox-image with-frame"
+                    />
+                </div>
+            )}
+
+            {isSlideshowOn && (
+                <div className="lightbox-overlay slideshow-image" onClick={toggleSlideshow}>
+                    <img
+                        src={images[currentSlideIndex]}
+                        alt={`Slideshow Image ${currentSlideIndex + 1}`}
+                        className="lightbox-image with-frame"
                     />
                 </div>
             )}
@@ -61,11 +100,11 @@ const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton }) => {
 GalleryPreview.propTypes = {
     images: PropTypes.array.isRequired,
     deleteGalleryImage: PropTypes.func,
-    showDeleteButton: PropTypes.bool
+    showDeleteButton: PropTypes.bool,
 };
 
 GalleryPreview.defaultProps = {
-    showDeleteButton: false // By default, don't show the delete button
+    showDeleteButton: false, // By default, don't show the delete button
 };
 
 export default GalleryPreview;
