@@ -74,3 +74,41 @@
 .scroll-to-top-button button:hover {
   background-color: var(--baby_blue);
 }
+
+
+/* SideMenuButton.css */
+
+.side-menu-button {
+  position: fixed;
+  left: 0;
+  top: 80%;
+  transform: translateY(-50%);
+  z-index: 9999; /* Ensure it's above other elements */
+  display: none; /* Initially hidden */
+}
+
+.side-menu-button button {
+  background-color: #010a35;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Initially hide the button */
+.side-menu-button {
+  display: none;
+}
+
+/* Show the button on small and smaller screens */
+@media (max-width: 768px) {
+  .side-menu-button {
+    display: block; /* Show the button */
+  }
+}

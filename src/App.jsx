@@ -22,11 +22,14 @@ import { AuthContext } from "./context/auth.context";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/buttons/ScrollToTopButton";
 import CollapsibleMenu from "./components/menus/CollapsibleMenu";
+import SideMenuButton from "./components/buttons/SideMenuButton";
+import OffcanvasComponent from "./components/OffcanvasComponent";
 
 function App() {
   const [imageDimensions, setImageDimensions] = useState({});
   const [isExpanded, setIsExpanded] = useState(false);
   const { isLoggedIn } = useContext(AuthContext);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
 
   const updateImageDimensions = (imageUrl, width, height) => {
     setImageDimensions(prev =>
@@ -70,13 +73,14 @@ function App() {
 
   return (
     <div className={isLoggedIn ? "App Content" : "App"}>
+      {isLoggedIn && isSmallScreen && <SideMenuButton />}
+      {isLoggedIn && isSmallScreen && <OffcanvasComponent />}
       {isLoggedIn && (
         <>
           <CollapsibleMenu
             onExpand={handleToggleExpand}
             isExpanded={isExpanded}
           />
-         
         </>
       )}
 
