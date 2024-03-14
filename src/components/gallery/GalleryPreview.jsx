@@ -21,7 +21,7 @@ const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton, showSlid
         }
 
         return () => clearInterval(slideshowTimer);
-    }, [isSlideshowOn, images.length]);
+    }, [isSlideshowOn, images]);
 
     const openLightbox = (index) => {
         setLightboxIndex(index);
@@ -45,6 +45,7 @@ const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton, showSlid
                     <button
                         className={`btn mt-1 btn-secondary ${isSlideshowOn ? "btn-pink" : ""}`}
                         onClick={toggleSlideshow}
+                        disabled={images.length === 0}
                     >
                         {isSlideshowOn ? "Stop Slideshow" : "Start Slideshow"}
                     </button>
