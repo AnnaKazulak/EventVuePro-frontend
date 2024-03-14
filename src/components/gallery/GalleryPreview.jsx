@@ -15,7 +15,7 @@ const GalleryPreview = ({ images, deleteGalleryImage, showDeleteButton, showSlid
                 setCurrentSlideIndex((prevIndex) =>
                     prevIndex === images.length - 1 ? 0 : prevIndex + 1
                 );
-            }, 3000); // Change slide every 3 seconds (adjust as needed)
+            }, 3000); // Change slide every 3 seconds
         } else {
             clearInterval(slideshowTimer);
         }
