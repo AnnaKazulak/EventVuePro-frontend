@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { formatDateShort } from '../../utils/dateUtils';
 import Pagination from '../pagination/Pagination';
 
-const EventTable = ({ title, events, deleteEvent }) => {
+const EventTable = ({ title, events }) => {
   const [sortedEvents, setSortedEvents] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
@@ -74,7 +74,7 @@ const EventTable = ({ title, events, deleteEvent }) => {
                 <i className={`fas fa-caret-${sortConfig.direction === 'asc' ? 'up' : 'down'}`}></i>
               )}
             </th>
-            <th scope="col" style={{ width: "10%" }}>Action</th>
+            <th scope="col" style={{ width: "10%" }}>Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -98,9 +98,6 @@ const EventTable = ({ title, events, deleteEvent }) => {
                 >
                   <i className="fas fa-pencil-alt icon-link"></i>
                 </Link>
-                <span className="event-link" onClick={() => deleteEvent(event._id)}>
-                  <i className="fas fa-trash-alt icon-link"></i>
-                </span>
               </td>
             </tr>
           ))}
