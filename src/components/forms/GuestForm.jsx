@@ -36,8 +36,8 @@ const GuestForm = ({
 
     return (
         <>
-            <div className="login-container">
-                <form className="login-form" onSubmit={handleSubmit}>
+            <div className="event-form-container my-5">
+                <form className="event-form" onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <input
                             type="text"
