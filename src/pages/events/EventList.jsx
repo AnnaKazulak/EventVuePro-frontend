@@ -67,7 +67,7 @@ function EventList() {
 
     return (
         <>
-            <section className="section bg-light section-event-list text-dark">
+            <section className="section bg-light text-dark mx-3">
                 <div className="row">
                     <div className="col-md-1 "></div>
                     <div className="col-md-10 ">

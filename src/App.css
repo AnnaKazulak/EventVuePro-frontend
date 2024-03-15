@@ -34,10 +34,13 @@
 }
 
 /* Global styles */
-body {
+html, body {
   font-family: 'Lucida Sans Unicode', "Monaco", monospace, sans-serif;
   color: var(--dark);
   overflow-x: hidden;
+}
+.body {
+  position: relative;
 }
 
 .checkbox-custom:checked {

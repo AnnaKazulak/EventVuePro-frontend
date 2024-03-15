@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
   padding: 10px 0;
   position: fixed;
   top: 0;
@@ -11,8 +11,10 @@
 
 /* Scrolled state */
 .navbar.scrolled {
-  background-color: #ffffff; /* Change background color when scrolled */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  background-color: #ffffff;
+  /* Change background color when scrolled */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  /* Add subtle shadow effect */
 }
 
 .container {
@@ -26,7 +28,7 @@
 }
 
 .navbar-brand a {
-  color: #252c62; 
+  color: #252c62;
   text-decoration: none;
 }
 
@@ -35,7 +37,8 @@
 }
 
 .navbar-toggler {
-  display: none; /* Hide by default */
+  display: none;
+  /* Hide by default */
   background: none;
   border: none !important;
   cursor: pointer;
@@ -47,14 +50,16 @@
 }
 
 .navbar-toggler:focus:not(:focus-visible) {
-  outline: none; /* Remove outline on focus */
+  outline: none;
+  /* Remove outline on focus */
 }
 
 .navbar-toggler span {
   display: block;
   width: 25px;
   height: 3px;
-  background-color: #252c62; /* Set hamburger button color */
+  background-color: #252c62;
+  /* Set hamburger button color */
   margin: 5px;
   transition: transform 0.3s ease-in-out;
 }
@@ -73,7 +78,8 @@
 }
 
 .navbar-toggler.open span:nth-child(2) {
-  opacity: 0; /* Hide middle line */
+  opacity: 0;
+  /* Hide middle line */
 }
 
 .navbar-toggler.open span:nth-child(3) {
@@ -97,59 +103,23 @@
 }
 
 .navbar-links a {
-  color: #252c62; 
+  color: #252c62;
   text-decoration: none;
 }
 
 .navbar-links button {
   color: #000;
-  background-color: #f3514e; 
+  background-color: #f3514e;
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
 }
 
-/* Mobile navigation */
-@media (max-width: 768px) {
- 
-  .navbar-toggler {
-    display: block; /* Show for smaller devices */
-  }
 
-  .navbar-links {
-    display: none; /* Hide links by default */
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #f8f9fa; /* Assuming $very_light_grey is #f8f9fa */
-    padding: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-
-  .navbar-links.open {
-    display: flex; /* Show links when mobile navigation is open */
-    flex-direction: column;
-  }
-
-  .navbar-links ul {
-    width: 100%;
-  }
-
-  .navbar-links li {
-    margin: 10px 0; /* Add margin between links */
-  }
-
-  .navbar-links a,
-  .navbar-links button {
-    margin-right: 10px;
-    width: 100%;
-    text-align: center;
-  }
-}
 .icon-logout-menu span {
-  margin-left: 5px; /* Add space between icon and text */
+  margin-left: 5px;
+  /* Add space between icon and text */
 }
 
 .img-logo {
@@ -157,4 +127,60 @@
   width: auto;
   position: absolute;
   top: 7px;
+}
+
+
+/* Mobile navigation */
+@media (max-width: 768px) {
+
+  .navbar-toggler {
+    display: block;
+    /* Show for smaller devices */
+  }
+
+  .navbar-links {
+    display: none;
+    /* Hide links by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    /* Assuming $very_light_grey is #f8f9fa */
+    padding: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-links.open {
+    display: flex;
+    /* Show links when mobile navigation is open */
+    flex-direction: column;
+  }
+
+  .open .navbar-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    align-items: center;
+    justify-content: space-around;
+
+    .navbar-links ul {
+      width: 100%;
+    }
+
+    .navbar-links li {
+      margin: 10px 0;
+      /* Add margin between links */
+    }
+
+    .navbar-links a,
+    .navbar-links button {
+      margin-right: 10px;
+      width: 100%;
+      text-align: center;
+    }
+  }
 }
