@@ -6,7 +6,7 @@ import GuestList from "./pages/guests/GuestList";
 import EventList from "./pages/events/EventList";
 import CreateGuest from "./pages/guests/CreateGuest";
 import CreateEvent from "./pages/events/CreateEvent";
-import { Route, Routes, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import SignupPage from "./pages/auth/SignupPage";
 import LoginPage from "./pages/auth/LoginPage";
 import IsPrivate from "./components/others/IsPrivate";
@@ -91,16 +91,13 @@ function App() {
           <ScrollToTop />
           <ScrollToTopButton />
           <Routes>
-            <Switch>
-              {/* Route for 'Yes' response */}
-              <Route path="/response/yes">
-                <ResponseMessage response="Yes" />
-              </Route>
-              {/* Route for 'No' response */}
-              <Route path="/response/no">
-                <ResponseMessage response="No" />
-              </Route>
-            </Switch>
+            {/* Route for 'Yes' response */}
+            <Route path="/response/yes"
+             element={<ResponseMessage response="Yes" />} />
+
+            {/* Route for 'No' response */}
+            <Route path="/response/no" 
+            element={<ResponseMessage response="No" />} />
             
             <Route path="/" element={<HomePage />} />
 
