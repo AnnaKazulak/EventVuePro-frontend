@@ -6,7 +6,7 @@ import GuestList from "./pages/guests/GuestList";
 import EventList from "./pages/events/EventList";
 import CreateGuest from "./pages/guests/CreateGuest";
 import CreateEvent from "./pages/events/CreateEvent";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Switch } from "react-router-dom";
 import SignupPage from "./pages/auth/SignupPage";
 import LoginPage from "./pages/auth/LoginPage";
 import IsPrivate from "./components/others/IsPrivate";
@@ -24,6 +24,7 @@ import ScrollToTopButton from "./components/buttons/ScrollToTopButton";
 import CollapsibleMenu from "./components/menus/CollapsibleMenu";
 import SideMenuButton from "./components/buttons/SideMenuButton";
 import OffcanvasComponent from "./components/OffcanvasComponent";
+import ResponseMessage from "./components/responseMessage/ResponseMessage";
 
 function App() {
   const [imageDimensions, setImageDimensions] = useState({});
@@ -90,6 +91,17 @@ function App() {
           <ScrollToTop />
           <ScrollToTopButton />
           <Routes>
+            <Switch>
+              {/* Route for 'Yes' response */}
+              <Route path="/response/yes">
+                <ResponseMessage response="Yes" />
+              </Route>
+              {/* Route for 'No' response */}
+              <Route path="/response/no">
+                <ResponseMessage response="No" />
+              </Route>
+            </Switch>
+            
             <Route path="/" element={<HomePage />} />
 
             <Route
