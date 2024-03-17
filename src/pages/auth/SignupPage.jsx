@@ -4,7 +4,6 @@ import axios from 'axios';
 import LoginForm from '../../components/forms/LoginForm';
 
 function SignupPage() {
-
   const [errorMessage, setErrorMessage] = useState(undefined);
   const navigate = useNavigate();
 
@@ -20,14 +19,23 @@ function SignupPage() {
       });
   };
 
+  // Define handleResendVerification function
+  const handleResendVerification = (email) => {
+    // Implement resend verification logic here
+    console.log("Resending verification email to:", email);
+  };
+
   return (
     <section className='bg-very-light-grey'>
       <div className="container custom-container mt-5">
-        <LoginForm onSubmit={handleSignupSubmit} isSignup errorMessage={errorMessage} />
-        <p>You&#39;ll be redirected to the login page</p>
+        <LoginForm
+          onSubmit={handleSignupSubmit}
+          onResendVerification={handleResendVerification}
+          isSignup={true}
+          errorMessage={errorMessage}
+        />
       </div>
     </section>
-
   );
 }
 

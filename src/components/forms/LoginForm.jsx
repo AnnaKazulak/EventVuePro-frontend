@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './login-form.css';
 
-
-const LoginForm = ({ onSubmit, isSignup, errorMessage }) => {
+const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isEmailVerified }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -18,6 +17,11 @@ const LoginForm = ({ onSubmit, isSignup, errorMessage }) => {
         const formData = { email, password, name };
         onSubmit(formData);
     };
+
+    const handleResendVerification = () => {
+        onResendVerification(email);
+    };
+
 
     return (
         <div className="login-container">
@@ -65,10 +69,19 @@ const LoginForm = ({ onSubmit, isSignup, errorMessage }) => {
                     </div>
                 </div>
 
+                {isSignup && (
+                    <p className="text-muted">Check your email for verification after signing up.</p>
+                )}
+
                 <div className="button-group">
-                    <button type="submit" className="btn btn-success">
+                    <button type="submit" className="btn btn-success"  onClick={handleResendVerification}>
                         {isSignup ? "Sign Up" : "Log in"}
                     </button>
+                    {isSignup && !isEmailVerified && (
+                        <button className="btn btn-secondary" onClick={handleResendVerification}>
+                            Resend Verification Email
+                        </button>
+                    )}
                     {!isSignup && (
                         <button className="btn btn-primary">
                             <Link to="/auth/signup" className="text-white">Sign Up</Link>
@@ -83,8 +96,10 @@ const LoginForm = ({ onSubmit, isSignup, errorMessage }) => {
 
 LoginForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
+    onResendVerification: PropTypes.func, // Function to resend verification email
     isSignup: PropTypes.bool,
-    errorMessage: PropTypes.string
+    errorMessage: PropTypes.string,
+    isEmailVerified: PropTypes.bool,
 };
 
 export default LoginForm;

@@ -15,7 +15,7 @@ function LoginPage() {
     axios
       .post(`${import.meta.env.VITE_API_URL}/auth/login`, formData)
       .then((response) => {
-        console.log('JWT token', response.data.authToken);
+        // console.log('JWT token', response.data.authToken);
         storeToken(response.data.authToken);
         authenticateUser();
         navigate('/');
