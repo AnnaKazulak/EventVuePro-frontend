@@ -11,7 +11,7 @@ function Hero({ isLoggedIn, userName }) {
                 <div className="row h-100">
                     {/* Left half */}
                     <div className="col-md-6 d-flex align-items-center justify-content-center mt-5">
-                        <img src="/party_people-removebg.png" alt="Party People" className="party-image" />
+                        <img src="/party_people-removebg.png" alt="Party People" className="party-image img-fluid" />
                     </div>
                     {/* Right half */}
                     <div className="col-md-6 d-flex align-items-center justify-content-center">
