@@ -47,7 +47,7 @@ const NavigationBar = () => {
 
               <>
                 <li className='mt-1'>
-                  Hallo {user && user.name}
+                <NavLink to="/auth/user-page">Hallo {user && user.name}</NavLink>
                 </li>
                 <li>
                   <button onClick={logOutUser} className="icon-logout-menu">

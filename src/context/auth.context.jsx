@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import axios from "axios";
 
 const AuthContext = React.createContext();
@@ -47,6 +48,7 @@ function AuthProviderWrapper(props) {
     removeToken();
     authenticateUser();
   };
+
   useEffect(() => {
     authenticateUser();
   }, []);
@@ -57,6 +59,7 @@ function AuthProviderWrapper(props) {
         isLoggedIn,
         isLoading,
         user,
+        setUser,
         storeToken,
         authenticateUser,
         logOutUser,
@@ -66,5 +69,9 @@ function AuthProviderWrapper(props) {
     </AuthContext.Provider>
   );
 }
+
+AuthProviderWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export { AuthProviderWrapper, AuthContext };

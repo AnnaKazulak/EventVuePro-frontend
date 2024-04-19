@@ -25,6 +25,7 @@ import CollapsibleMenu from "./components/menus/CollapsibleMenu";
 import SideMenuButton from "./components/buttons/SideMenuButton";
 import OffcanvasComponent from "./components/OffcanvasComponent";
 import ResponseMessage from "./components/responseMessage/ResponseMessage";
+import UserPage from "./pages/auth/UserPage";
 
 function App() {
   const [imageDimensions, setImageDimensions] = useState({});
@@ -93,12 +94,12 @@ function App() {
           <Routes>
             {/* Route for 'Yes' response */}
             <Route path="/response/yes"
-             element={<ResponseMessage response="Yes" />} />
+              element={<ResponseMessage response="Yes" />} />
 
             {/* Route for 'No' response */}
-            <Route path="/response/no" 
-            element={<ResponseMessage response="No" />} />
-            
+            <Route path="/response/no"
+              element={<ResponseMessage response="No" />} />
+
             <Route path="/" element={<HomePage />} />
 
             <Route
@@ -172,6 +173,14 @@ function App() {
                 <IsAnon>
                   <LoginPage />
                 </IsAnon>
+              }
+            />
+            <Route
+              path="/auth/user-page"
+              element={
+                <IsPrivate>
+                  <UserPage />
+                </IsPrivate>
               }
             />
           </Routes>

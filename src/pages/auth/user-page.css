@@ -1,0 +1,22 @@
+.user-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.form-container {
+    width: 90%;
+    max-width: 600px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        width: 95%;
+    }
+}
