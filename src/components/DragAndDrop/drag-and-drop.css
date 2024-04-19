@@ -1,0 +1,13 @@
+.image-input {
+  position: relative;
+}
+
+.click-to-select,
+.drag-n-drop {
+  cursor: pointer;
+}
+
+.click-to-select:hover,
+.drag-n-drop:hover {
+  background-color: #e5eeff;
+}

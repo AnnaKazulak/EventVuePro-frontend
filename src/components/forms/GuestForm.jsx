@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import DragAndDrop from '../DragAndDrop/DragAndDrop'
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -32,6 +33,12 @@ const GuestForm = ({
         } else {
             setEmailValidationError(null);
         }
+    };
+
+    // Function to handle file drop
+    const handleFileDrop = (droppedFiles) => {
+        const file = droppedFiles[0]; 
+        handleFileUpload({ target: { files: [file] } }); // Pass the dropped file as an event object
     };
 
     return (
@@ -115,19 +122,26 @@ const GuestForm = ({
                         </div>
                     )}
 
-                    {/* Main Image Input */}
+                    {/* Main Image Input hide*/}
                     <div className="mb-3">
-                        <label htmlFor="image" className="form-label">
-                            Image
+                        <label htmlFor="image" className="form-label image-input">
+                            <span onChange={(e) => handleFileUpload(e)} className="click-to-select">Click to select image</span>
                         </label>
                         <input
                             type="file"
                             className="form-control"
                             id="image"
                             name="main-image"
+                            style={{ display: 'none' }}
                             onChange={(e) => handleFileUpload(e)}
                         />
                     </div>
+                    <div className="mb-3">
+                        <DragAndDrop handleDrop={handleFileDrop}>
+                            <span className="drag-n-drop">Drag &apos;n&apos; drop image here</span>
+                        </DragAndDrop>
+                    </div>
+
                     <button
                         className="btn btn-success me-5 mb-5"
                         type="submit"
