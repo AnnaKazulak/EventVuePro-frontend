@@ -1,13 +1,12 @@
-.image-input {
-  position: relative;
+.drag-zone {
+  border: 2px dashed #aaa;
+  padding: 20px;
+  transition: border-color 0.3s ease;
 }
 
-.click-to-select,
-.drag-n-drop {
-  cursor: pointer;
+.drag-over {
+  border-color: #3ba1a3;
+  background-color: #3ba1a3;
 }
 
-.click-to-select:hover,
-.drag-n-drop:hover {
-  background-color: #e5eeff;
-}
+

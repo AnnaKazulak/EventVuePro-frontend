@@ -1,5 +1,6 @@
 import GalleryPreview from "../gallery/GalleryPreview";
 import PropTypes from 'prop-types';
+import GalleryImageUploader from "../images/GalleryImageUploader";
 import { formatDateShort } from '../../utils/dateUtils';
 import { useState, useEffect } from "react";
 import './event-form.css';
@@ -17,7 +18,6 @@ const EventForm = ({
     validationErrors,
     imageLoading,
     galleryImages,
-    handleFileUpload,
     handleGalleryFileUpload,
     setTitle,
     setDescription,
@@ -36,6 +36,8 @@ const EventForm = ({
     useEffect(() => {
         setFormattedDate(formatDateShort(date));
     }, [date]);
+
+
 
     return (
         <>
@@ -133,24 +135,23 @@ const EventForm = ({
                                 ))}
                             </select>
                         </label>
-                        <div id="multiSelectHelp" className="form-text">
-                            At least one guest must be selected
-                        </div>
                     </div>
-
 
                     {/* Main Image Preview */}
                     {imageUrl && (
-                        <div className="mb-3 main-image-container"                         >
+                        <div className="mb-3 main-image-container">
                             <img
                                 src={imageUrl}
                                 alt="Main Event"
-                                className="main-image" />
+                                className="main-image"
+                            />
                             <button
                                 className="btn btn-danger btn-sm delete-button-main-image"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    deleteImage();
+                                    if (deleteImage) { // Check if deleteImage exists before calling it
+                                        deleteImage();
+                                    }
                                 }}
                             >
                                 Delete Image
@@ -158,32 +159,9 @@ const EventForm = ({
                         </div>
                     )}
 
-                    {/* Gallery Image Input */}
-                    <div className="mb-3">
-                        <label htmlFor="image" className="form-label">
-                            Main Image
-                        </label>
-                        <input
-                            type="file"
-                            className="form-control"
-                            id="image"
-                            name="main-image"
-                            onChange={(e) => handleFileUpload(e)}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="galleryImages" className="form-label">
-                            Gallery Images
-                        </label>
-                        <input
-                            type="file"
-                            className="form-control"
-                            id="galleryImages"
-                            name="gallery-images"
-                            multiple
-                            onChange={(e) => handleGalleryFileUpload(e)}
-                        />
-                    </div>
+                    {/* Gallery  image */}
+                    <GalleryImageUploader handleGalleryFileUpload={handleGalleryFileUpload} />
+
                     <button
                         className="btn btn-success me-5"
                         type="submit"

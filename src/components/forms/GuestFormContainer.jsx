@@ -33,7 +33,7 @@ const GuestFormContainer = ({ guestId }) => {
                     setImageUrl(existingGuest.imageUrl);
                     setEmail(existingGuest.email);
                     setWhatsappNumber(existingGuest.whatsappNumber)
-                    setIsEditing(true); 
+                    setIsEditing(true);
                 })
                 .catch((error) => console.log(error));
         }
@@ -118,6 +118,32 @@ const GuestFormContainer = ({ guestId }) => {
             .catch((error) => console.log(error));
     };
 
+    // Delete image
+    const deleteImage = async () => {
+        try {
+            if (!imageUrl) {
+                console.error('No imageUrl provided');
+                return;
+            }
+
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/images`, {
+                data: { imageUrl } // Send imageUrl in request body
+            });
+
+            // Check if the response indicates success
+            if (response.data.message === 'Image deleted successfully') {
+                console.log('Image deletion response:', response.data);
+                // Update the imageUrl state to clear the image
+                setImageUrl('');
+            } else {
+                console.error('Error deleting image:', response.data.message);
+            }
+        } catch (error) {
+            console.error('Error deleting image:', error);
+            // Handle error here
+        }
+    };
+
     return (
         <>
             <GuestForm
@@ -135,6 +161,7 @@ const GuestFormContainer = ({ guestId }) => {
                 handleSubmit={handleSubmit}
                 validationErrors={validationErrors}
                 isEditing={isEditing}
+                deleteImage={deleteImage}
             />
         </>
     );

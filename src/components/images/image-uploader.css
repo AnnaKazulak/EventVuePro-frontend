@@ -1,0 +1,46 @@
+.main-image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .main-image {
+    max-width: 200px;
+    height: auto;
+  }
+  
+  .delete-button-main-image {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .file-upload-container {
+    display: flex;
+    align-items: center;
+}
+/* Adjust spacing between the components */
+.click-to-select,
+.drag-n-drop {
+    margin-top: 9px;
+    cursor: pointer;
+    margin-right: 25px; 
+}
+
+/* Ensure both spans are vertically aligned */
+.image-input > span,
+.drag-n-drop > span {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+/* Add some space below the file input */
+.image-input input[type="file"] {
+    margin-top: 5px;
+}
+
+/* Apply hover effect */
+.click-to-select:hover,
+.drag-n-drop:hover {
+    background-color: #e5eeff;
+}

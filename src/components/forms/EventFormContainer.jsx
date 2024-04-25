@@ -71,39 +71,44 @@ function EventFormContainer({ eventId }) {
 
     const handleFileUpload = (e) => {
         const uploadData = new FormData();
-
+    
         uploadData.append("imageType", "mainImage");
         uploadData.append("imageUrl", e.target.files[0]);
-
+    
         setImageLoading(true);
-
+    
         uploadImage(uploadData)
             .then((response) => {
-                console.log('response mainImage', response)
-                setImageUrl(response.fileUrl);
+                console.log('response mainImage', response);
+                if (response && response.data && response.data.fileUrl) {
+                    setImageUrl(response.data.fileUrl);
+                } else {
+                    console.error("Invalid response from server");
+                }
             })
             .catch((err) => console.log("Error while uploading the file: ", err))
             .finally(() => {
                 setImageLoading(false);
             });
     };
+    
 
-    const handleGalleryFileUpload = (e) => {
+    const handleGalleryFileUpload = (files) => {
         const uploadDataArray = []; // Array to store upload data for each file
-
+    
         // Iterate over each file selected by the user
-        Array.from(e.target.files).forEach((file) => {
+        Array.from(files).forEach((file) => {
             const uploadData = new FormData();
-
+    
             // Append individual file data to FormData object
             uploadData.append("imageType", "galleryImage");
             uploadData.append("imageUrl", file);
-
+    
             uploadDataArray.push(uploadData); // Store FormData object in array
         });
-
+    
         setImageLoading(true);
-
+    
         // Map over each FormData object and upload them individually
         Promise.all(uploadDataArray.map(uploadImage))
             .then((responses) => {

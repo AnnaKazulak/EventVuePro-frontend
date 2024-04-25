@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import './drag-and-drop.css'; // Import CSS file for styling
+import './drag-and-drop.css';
 
 const DragAndDrop = ({ handleDrop, children }) => {
   const [dragged, setDragged] = useState(false);
@@ -19,26 +19,25 @@ const DragAndDrop = ({ handleDrop, children }) => {
     e.preventDefault();
   };
 
+
   const handleDropEvent = (e) => {
     e.preventDefault();
-    e.stopPropagation();
+    setDragged(false);
     const files = e.dataTransfer.files;
     if (files && files.length > 0) {
-      handleDrop(files); // Pass the dropped files to the handleDrop function
+      handleDrop(Array.from(files)); // Pass the dropped files as an array
     }
-    setDragged(false);
   };
 
   return (
     <div
+      className={`drag-zone ${dragged ? 'drag-over' : ''}`}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
       onDrop={handleDropEvent}
     >
-      <div >
-        {dragged ? <div>Drop here</div> : children}
-      </div>
+      {children}
     </div>
   );
 };
