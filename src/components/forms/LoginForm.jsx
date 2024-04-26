@@ -22,7 +22,6 @@ const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isE
         onResendVerification(email);
     };
 
-
     return (
         <div className="login-container">
             <form onSubmit={handleSubmit} className="login-form">
@@ -74,14 +73,9 @@ const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isE
                 )}
 
                 <div className="button-group">
-                    <button type="submit" className="btn btn-success"  onClick={handleResendVerification}>
+                    <button type="submit" className="btn btn-primary">
                         {isSignup ? "Sign Up" : "Log in"}
                     </button>
-                    {isSignup && !isEmailVerified && (
-                        <button className="btn btn-secondary" onClick={handleResendVerification}>
-                            Resend Verification Email
-                        </button>
-                    )}
                     {!isSignup && (
                         <button className="btn btn-primary">
                             <Link to="/auth/signup" className="text-white">Sign Up</Link>
