@@ -1,0 +1,7 @@
+{
+    "baseUrl": "http://localhost:5173",
+    "testFiles": "**/*.spec.js",
+    "include": [
+        "e2e/**/*.spec.js"
+    ]
+}

@@ -32,8 +32,8 @@ function Hero({ isLoggedIn, userName }) {
                                             <button className="btn btn-primary me-2">Sign Up</button>
                                         </Link>
                                         <span className="btn-spacing"></span> 
-                                        <Link to="/auth/login">
-                                            <button className="btn btn-success">Login</button>
+                                        <Link data-testid="login-button-hero" to="/auth/login">
+                                            <button data-testid="login-button" className="btn btn-success">Login</button>
                                         </Link>
                                     </div>
                                 </>

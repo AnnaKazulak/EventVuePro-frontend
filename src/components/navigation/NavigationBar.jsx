@@ -1,8 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from "../../context/auth.context";
-import "./navigation.css"
-
+import "./navigation.css";
 
 const NavigationBar = () => {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
@@ -25,32 +24,32 @@ const NavigationBar = () => {
   };
 
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} data-testid="navbar-navigationsBar">
       <div className="container">
-        <div className="navbar-brand">
-          <Link to="/">
+        <div className="navbar-brand" data-testid="navbar-brand-navigationsBar">
+          <Link to="/" data-testid="logo-link-navigationsBar">
             <span>EventVuePro</span>
-            <img src="/balooon-1-removebg.png" alt="logo baloon" className='img-logo' />
+            <img src="/balooon-1-removebg.png" alt="logo baloon" className='img-logo' data-testid="logo-img-navigationsBar" />
           </Link>
         </div>
         <button
           className={`mr-1 navbar-toggler ${isMobileNavOpen ? 'open' : ''}`}
           onClick={toggleMobileNav}
+          data-testid="mobile-nav-toggler-navigationsBar"
         >
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <div className={`navbar-links ${isMobileNavOpen ? 'open' : ''}`}>
+        <div className={`navbar-links ${isMobileNavOpen ? 'open' : ''}`} data-testid="navbar-links-navigationsBar">
           <ul>
             {isLoggedIn ? (
-
               <>
                 <li className='mt-1'>
-                <NavLink to="/auth/user-page">Hallo {user && user.name}</NavLink>
+                  <NavLink to="/auth/user-page" data-testid="user-page-link-navigationsBar">Hallo {user && user.name}</NavLink>
                 </li>
                 <li>
-                  <button onClick={logOutUser} className="icon-logout-menu">
+                  <button onClick={logOutUser} className="icon-logout-menu" data-testid="logout-button-navigationsBar">
                     <i className="fa-solid fa-power-off"></i> <span>Logout</span>
                   </button>
                 </li>
@@ -58,10 +57,10 @@ const NavigationBar = () => {
             ) : (
               <>
                 <li>
-                  <NavLink to="/auth/signup">SignUp</NavLink>
+                  <NavLink to="/auth/signup" data-testid="signup-link-navigationsBar">SignUp</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/auth/login">Login</NavLink>
+                  <NavLink to="/auth/login" data-testid="login-link-navigationsBar">Login</NavLink>
                 </li>
               </>
             )}
