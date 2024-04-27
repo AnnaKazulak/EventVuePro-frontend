@@ -7,6 +7,7 @@ const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isE
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleEmailChange = (e) => setEmail(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -21,6 +22,12 @@ const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isE
     const handleResendVerification = () => {
         onResendVerification(email);
     };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(prevShowPassword => !prevShowPassword); // Update state using previous state
+    };
+
+    const inputType = showPassword ? 'text' : 'password'; // Update input type based on state
 
     return (
         <div className="login-container">
@@ -51,9 +58,9 @@ const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isE
                         required
                     />
                 </div>
-                <div className="mb-3">
+                <div className="mb-3 position-relative">
                     <input
-                        type="password"
+                        type={inputType} // Use input type based on state
                         className="form-control"
                         id="password"
                         name="password"
@@ -62,10 +69,9 @@ const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isE
                         onChange={handlePasswordChange}
                         required
                     />
-                    <div id="passwordHelp" className="form-text">
-                        <p>All fields are required</p>
-                        <p>Password must be longer than 6 characters</p>
-                    </div>
+                    <label className="show-password-label">
+                        <input type="checkbox" onChange={togglePasswordVisibility} /> Show Password
+                    </label>
                 </div>
 
                 {isSignup && (
