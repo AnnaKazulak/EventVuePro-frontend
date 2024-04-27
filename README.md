@@ -3,6 +3,7 @@
 
 ## Description
 EvenVuePro is the frontend part of a MERN web application that allows logged-in users to manage guests and events. Users can create, read, update, and delete guests, and associate them with events. This README is for the frontend (React) part of the application.
+This repo has 2 branches: develop and main. The main branch is the one that is deployed.
 
 For the backend (Express API), you can find the repository [https://github.com/AnnaKazulak/EventVuePro-backend](link-to-backend-repo).
 
