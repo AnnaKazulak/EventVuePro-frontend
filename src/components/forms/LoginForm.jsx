@@ -61,7 +61,7 @@ const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isE
                 </div>
                 <div className="mb-3">
                     <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         className="form-control"
                         id="password"
                         name="password"
