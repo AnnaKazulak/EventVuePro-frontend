@@ -55,5 +55,25 @@ describe('LoginForm component', () => {
         cy.get('[data-testid=password-input-login-form]').should('have.attr', 'type', 'password');
       });
       
-      
+      it('should redirect to homepage after successful login', () => {
+ 
+        // Fill in the email and password fields with correct credentials
+        cy.get('[data-testid=email-input-login-form]').type('annadehamburg@gmail.com');
+        cy.get('[data-testid=password-input-login-form]').type('Yxcvbnm1');
+    
+        // Submit the form
+        cy.get('[data-testid=submit-button-login-form]').click();
+    
+        // Wait for redirection
+        cy.url().should('eq', 'http://localhost:5173/'); 
+      });
+
+      it('should redirect to sign-up page when Sign Up button is clicked', () => {
+    
+        // Click the Sign Up button
+        cy.get('[data-testid=signup-button-login-form]').click();
+    
+        // Wait for redirection
+        cy.url().should('eq', 'http://localhost:5173/auth/signup');
+      });
 });
