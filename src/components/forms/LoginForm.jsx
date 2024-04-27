@@ -24,10 +24,9 @@ const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isE
     };
 
     const togglePasswordVisibility = () => {
-        setShowPassword(prevShowPassword => !prevShowPassword); // Update state using previous state
+        setShowPassword(!showPassword);
     };
 
-    const inputType = showPassword ? 'text' : 'password'; // Update input type based on state
 
     return (
         <div className="login-container">
@@ -43,6 +42,7 @@ const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isE
                             value={name}
                             onChange={handleNameChange}
                             required
+                            data-testid="name-input-login-form"
                         />
                     </div>
                 )}
@@ -56,11 +56,12 @@ const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isE
                         value={email}
                         onChange={handleEmailChange}
                         required
+                        data-testid="email-input-login-form"
                     />
                 </div>
-                <div className="mb-3 position-relative">
+                <div className="mb-3">
                     <input
-                        type={inputType} // Use input type based on state
+                        type="password"
                         className="form-control"
                         id="password"
                         name="password"
@@ -68,27 +69,32 @@ const LoginForm = ({ onSubmit, onResendVerification, isSignup, errorMessage, isE
                         value={password}
                         onChange={handlePasswordChange}
                         required
+                        data-testid="password-input-login-form"
                     />
-                    <label className="show-password-label">
+                    <label data-testid="show-password-label-login-form">
                         <input type="checkbox" onChange={togglePasswordVisibility} /> Show Password
                     </label>
+                    <div id="passwordHelp" className="form-text">
+                        <p>All fields are required</p>
+                        <p>Password must be longer than 6 characters</p>
+                    </div>
                 </div>
 
                 {isSignup && (
-                    <p className="text-muted">Check your email for verification after signing up.</p>
+                    <p className="text-muted" data-testid="signup-info-login-form">Check your email for verification after signing up.</p>
                 )}
 
                 <div className="button-group">
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn btn-primary" data-testid="submit-button-login-form">
                         {isSignup ? "Sign Up" : "Log in"}
                     </button>
                     {!isSignup && (
-                        <button className="btn btn-primary">
+                        <button className="btn btn-primary" data-testid="signup-button-login-form">
                             <Link to="/auth/signup" className="text-white">Sign Up</Link>
                         </button>
                     )}
                 </div>
-                {errorMessage && <p className="text-danger">{errorMessage}</p>}
+                {errorMessage && <p className="text-danger" data-testid="error-message-login-form">{errorMessage}</p>}
             </form>
         </div>
     );
